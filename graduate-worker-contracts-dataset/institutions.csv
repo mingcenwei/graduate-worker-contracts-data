@@ -1,0 +1,40 @@
+institution_id,name,city,state,representation,contract_status,union
+asu,Arizona State University,Tempe,AZ,university-policy,,
+boston-university,Boston University,Boston,MA,union-contract,current,"Boston University Graduate Workers Union (BUGWU), SEIU Local 509"
+brown,Brown University,Providence,RI,union-contract,expired-continuing,Graduate Labor Organization (GLO)
+columbia,Columbia University,New York,NY,union-contract,expired,"Student Workers of Columbia, UAW, and its Local Union, SWC-UAW Local 2710"
+cornell,Cornell University,Ithaca,NY,union-contract,current,"Cornell Graduate Students United (CGSU-UE), UE Local 300 of the United Electrical, Radio and Machine Workers of America"
+cuny,City University of New York,New York,NY,union-contract,current,Professional Staff Congress/CUNY (AFT Local 2334)
+duke,Duke University,Durham,NC,union-contract,current,"Duke University Graduate Students Union/Service Employees International Union, Southern Region (Southern Region Workers United, A/W SEIU)"
+georgia-tech,Georgia Institute of Technology,Atlanta,GA,university-policy,,
+gmu,George Mason University,Fairfax,VA,university-policy,,
+harvard,Harvard University,Cambridge,MA,union-contract,expired-continuing,"Harvard Graduate Students Union-UAW Local 5118 (HGSU-UAW), International Union, UAW"
+jhu,Johns Hopkins University,Baltimore,MD,union-contract,current,"Teachers and Researchers United, United Electrical, Radio and Machine Workers of America (TRU-UE) Local 197"
+mit,Massachusetts Institute of Technology,Cambridge,MA,union-contract,expired-continuing,"MIT Graduate Student Union, UE Local 256 (United Electrical, Radio and Machine Workers of America)"
+nc-state,North Carolina State University,Raleigh,NC,university-policy,,
+njit,New Jersey Institute of Technology,Newark,NJ,union-contract,expired-continuing,"United Council of Academics at NJIT (UCAN), Rutgers Council of AAUP Chapters, AAUP-AFT, AFL-CIO"
+northwestern,Northwestern University,Evanston,IL,union-contract,current,"Northwestern University Graduate Workers, United Electrical, Radio and Machine Workers of America Local 1122 (NUGW-UE)"
+nyu,New York University,New York,NY,union-contract,expired,"Graduate Student Organizing Committee (GSOC), International Union, UAW, AFL-CIO and Local 2110, UAW (GSOC has been part of UAW Local 7902 since August 2025)"
+penn-state,Pennsylvania State University,University Park,PA,university-policy,,
+penn,University of Pennsylvania,Philadelphia,PA,union-contract,current,Graduate Workers Together at the University of Pennsylvania (GETUP-UAW Local 5124)
+princeton,Princeton University,Princeton,NJ,university-policy,,
+purdue,Purdue University,West Lafayette,IN,university-policy,,
+rensselaer,Rensselaer Polytechnic Institute,Troy,NY,university-policy,,
+rice,Rice University,Houston,TX,university-policy,,
+rutgers,"Rutgers, The State University of New Jersey",New Brunswick,NJ,union-contract,expired-continuing,"Rutgers Council of AAUP Chapters, American Association of University Professors-American Federation of Teachers (AAUP-AFT)"
+stanford,Stanford University,Stanford,CA,union-contract,current,Stanford Graduate Workers Union (UE Local 1043)
+stony-brook,Stony Brook University,Stony Brook,NY,union-contract,expired,"Graduate Student Employees Union (GSEU), Communications Workers of America Local 1104"
+sva,School of Visual Arts,New York,NY,university-policy,,
+texas-am,Texas A&M University,College Station,TX,university-policy,,
+uchicago,University of Chicago,Chicago,IL,union-contract,current,"United Electrical, Radio and Machine Workers of America, UE Local 1103 (Graduate Students United, GSU-UE)"
+umass-amherst,University of Massachusetts Amherst,Amherst,MA,union-contract,current,"Graduate Employee Organization (GEO), UAW Local 2322"
+umd,"University of Maryland, College Park",College Park,MD,university-policy,,
+umich,University of Michigan,Ann Arbor,MI,union-contract,expired-continuing,"Graduate Employees' Organization (GEO), American Federation of Teachers, AFL-CIO Local 3550"
+university-of-california,University of California,Oakland,CA,union-contract,current,"International Union, United Automobile, Aerospace and Agricultural Implement Workers of America (UAW), Local 4811"
+university-of-iowa,University of Iowa,Iowa City,IA,union-contract,current,"United Electrical, Radio and Machine Workers of America, Local 896/COGS"
+ut-austin,University of Texas at Austin,Austin,TX,university-policy,,
+utah,University of Utah,Salt Lake City,UT,university-policy,,
+uw-madison,University of Wisconsin–Madison,Madison,WI,university-policy,,
+uw,University of Washington,Seattle,WA,union-contract,current,UAW Local 4121
+virginia-tech,Virginia Tech,Blacksburg,VA,university-policy,,
+yale,Yale University,New Haven,CT,union-contract,current,"Local 33, UNITE HERE"

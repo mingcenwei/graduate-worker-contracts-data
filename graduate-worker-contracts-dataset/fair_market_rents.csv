@@ -1,0 +1,281 @@
+institution_id,campus,academic_year,hud_fiscal_year,hud_area,studio_usd,one_bedroom_usd,source_url
+asu,Tempe,2022-23,2023,"Phoenix-Mesa-Scottsdale, AZ MSA",1344,1467,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+asu,Tempe,2023-24,2024,"Phoenix-Mesa-Scottsdale, AZ MSA",1460,1599,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+asu,Tempe,2024-25,2025,"Phoenix-Mesa-Scottsdale, AZ MSA",1530,1679,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+asu,Tempe,2025-26,2026,"Phoenix-Mesa-Chandler, AZ MSA",1457,1583,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+asu,Tempe,2026-27,2027,"Phoenix-Mesa-Chandler, AZ MSA",1390,1493,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+boston-university,Charles River Campus,2022-23,2023,"Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",2025,2198,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+boston-university,Charles River Campus,2023-24,2024,"Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",2212,2377,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+boston-university,Charles River Campus,2024-25,2025,"Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",2263,2394,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+boston-university,Charles River Campus,2025-26,2026,"Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",2359,2476,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+boston-university,Charles River Campus,2026-27,2027,"Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",2440,2518,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+brown,Providence,2022-23,2023,"Providence-Fall River, RI-MA HUD Metro FMR Area",1066,1171,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+brown,Providence,2023-24,2024,"Providence-Fall River, RI-MA HUD Metro FMR Area",1289,1398,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+brown,Providence,2024-25,2025,"Providence-Fall River, RI-MA HUD Metro FMR Area",1233,1319,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+brown,Providence,2025-26,2026,"Providence-Fall River, RI-MA HUD Metro FMR Area",1318,1402,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+brown,Providence,2026-27,2027,"Providence-Fall River, RI-MA HUD Metro FMR Area",1423,1509,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+columbia,Morningside Heights,2022-23,2023,"New York, NY HUD Metro FMR Area",2123,2170,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+columbia,Morningside Heights,2023-24,2024,"New York, NY HUD Metro FMR Area",2386,2451,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+columbia,Morningside Heights,2024-25,2025,"New York, NY HUD Metro FMR Area",2406,2511,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+columbia,Morningside Heights,2025-26,2026,"New York, NY HUD Metro FMR Area",2529,2655,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+columbia,Morningside Heights,2026-27,2027,"New York, NY HUD Metro FMR Area",2593,2729,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+cornell,Ithaca,2022-23,2023,"Ithaca, NY MSA",1187,1276,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+cornell,Ithaca,2023-24,2024,"Ithaca, NY MSA",1311,1434,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+cornell,Ithaca,2024-25,2025,"Ithaca, NY MSA",1320,1489,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+cornell,Ithaca,2025-26,2026,"Ithaca, NY MSA",1263,1466,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+cornell,Ithaca,2026-27,2027,"Ithaca, NY MSA",1198,1427,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+cornell,Geneva,2022-23,2023,"Rochester, NY HUD Metro FMR Area",839,950,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+cornell,Geneva,2023-24,2024,"Rochester, NY HUD Metro FMR Area",938,1050,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+cornell,Geneva,2024-25,2025,"Rochester, NY HUD Metro FMR Area",1022,1149,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+cornell,Geneva,2025-26,2026,"Rochester, NY MSA",1116,1256,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+cornell,Geneva,2026-27,2027,"Rochester, NY MSA",1005,1131,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+cornell,Cornell Tech,2022-23,2023,"New York, NY HUD Metro FMR Area",2123,2170,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+cornell,Cornell Tech,2023-24,2024,"New York, NY HUD Metro FMR Area",2386,2451,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+cornell,Cornell Tech,2024-25,2025,"New York, NY HUD Metro FMR Area",2406,2511,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+cornell,Cornell Tech,2025-26,2026,"New York, NY HUD Metro FMR Area",2529,2655,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+cornell,Cornell Tech,2026-27,2027,"New York, NY HUD Metro FMR Area",2593,2729,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+cuny,Graduate Center,2022-23,2023,"New York, NY HUD Metro FMR Area",2123,2170,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+cuny,Graduate Center,2023-24,2024,"New York, NY HUD Metro FMR Area",2386,2451,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+cuny,Graduate Center,2024-25,2025,"New York, NY HUD Metro FMR Area",2406,2511,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+cuny,Graduate Center,2025-26,2026,"New York, NY HUD Metro FMR Area",2529,2655,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+cuny,Graduate Center,2026-27,2027,"New York, NY HUD Metro FMR Area",2593,2729,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+duke,Durham,2022-23,2023,"Durham-Chapel Hill, NC HUD Metro FMR Area",1128,1134,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+duke,Durham,2023-24,2024,"Durham-Chapel Hill, NC HUD Metro FMR Area",1385,1418,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+duke,Durham,2024-25,2025,"Durham-Chapel Hill, NC HUD Metro FMR Area",1548,1637,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+duke,Durham,2025-26,2026,"Durham-Chapel Hill, NC HUD Metro FMR Area",1417,1507,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+duke,Durham,2026-27,2027,"Durham-Chapel Hill, NC HUD Metro FMR Area",1498,1554,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+georgia-tech,Atlanta,2022-23,2023,"Atlanta-Sandy Springs-Roswell, GA HUD Metro FMR Area",1345,1375,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+georgia-tech,Atlanta,2023-24,2024,"Atlanta-Sandy Springs-Roswell, GA HUD Metro FMR Area",1599,1643,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+georgia-tech,Atlanta,2024-25,2025,"Atlanta-Sandy Springs-Roswell, GA HUD Metro FMR Area",1591,1653,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+georgia-tech,Atlanta,2025-26,2026,"Atlanta-Sandy Springs-Roswell, GA HUD Metro FMR Area",1585,1660,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+georgia-tech,Atlanta,2026-27,2027,"Atlanta-Sandy Springs-Roswell, GA HUD Metro FMR Area",1554,1619,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+gmu,Fairfax,2022-23,2023,"Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area",1589,1615,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+gmu,Fairfax,2023-24,2024,"Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area",1772,1803,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+gmu,Fairfax,2024-25,2025,"Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area",2012,2056,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+gmu,Fairfax,2025-26,2026,"Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area",1953,2015,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+gmu,Fairfax,2026-27,2027,"Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area",2111,2204,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+harvard,Cambridge,2022-23,2023,"Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",2025,2198,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+harvard,Cambridge,2023-24,2024,"Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",2212,2377,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+harvard,Cambridge,2024-25,2025,"Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",2263,2394,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+harvard,Cambridge,2025-26,2026,"Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",2359,2476,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+harvard,Cambridge,2026-27,2027,"Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",2440,2518,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+jhu,Homewood,2022-23,2023,"Baltimore-Columbia-Towson, MD MSA",1082,1254,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+jhu,Homewood,2023-24,2024,"Baltimore-Columbia-Towson, MD MSA",1379,1582,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+jhu,Homewood,2024-25,2025,"Baltimore-Columbia-Towson, MD MSA",1407,1604,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+jhu,Homewood,2025-26,2026,"Baltimore-Columbia-Towson, MD MSA",1362,1511,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+jhu,Homewood,2026-27,2027,"Baltimore-Columbia-Towson, MD MSA",1523,1625,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+mit,Cambridge,2022-23,2023,"Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",2025,2198,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+mit,Cambridge,2023-24,2024,"Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",2212,2377,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+mit,Cambridge,2024-25,2025,"Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",2263,2394,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+mit,Cambridge,2025-26,2026,"Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",2359,2476,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+mit,Cambridge,2026-27,2027,"Boston-Cambridge-Quincy, MA-NH HUD Metro FMR Area",2440,2518,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+nc-state,Raleigh,2022-23,2023,"Raleigh, NC MSA",1213,1250,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+nc-state,Raleigh,2023-24,2024,"Raleigh, NC MSA",1427,1466,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+nc-state,Raleigh,2024-25,2025,"Raleigh, NC MSA",1533,1592,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+nc-state,Raleigh,2025-26,2026,"Raleigh-Cary, NC MSA",1524,1596,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+nc-state,Raleigh,2026-27,2027,"Raleigh-Cary, NC MSA",1489,1552,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+njit,Newark,2022-23,2023,"Newark, NJ HUD Metro FMR Area",1129,1338,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+njit,Newark,2023-24,2024,"Newark, NJ HUD Metro FMR Area",1379,1590,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+njit,Newark,2024-25,2025,"Newark, NJ HUD Metro FMR Area",1551,1768,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+njit,Newark,2025-26,2026,"Newark, NJ HUD Metro FMR Area",1612,1822,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+njit,Newark,2026-27,2027,"Newark, NJ HUD Metro FMR Area",1637,1850,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+northwestern,Evanston,2022-23,2023,"Chicago-Joliet-Naperville, IL HUD Metro FMR Area",1158,1255,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+northwestern,Evanston,2023-24,2024,"Chicago-Joliet-Naperville, IL HUD Metro FMR Area",1399,1507,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+northwestern,Evanston,2024-25,2025,"Chicago-Joliet-Naperville, IL HUD Metro FMR Area",1458,1560,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+northwestern,Evanston,2025-26,2026,"Chicago-Joliet-Naperville, IL HUD Metro FMR Area",1480,1581,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+northwestern,Evanston,2026-27,2027,"Chicago-Joliet-Naperville, IL HUD Metro FMR Area",1678,1780,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+nyu,Washington Square,2022-23,2023,"New York, NY HUD Metro FMR Area",2123,2170,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+nyu,Washington Square,2023-24,2024,"New York, NY HUD Metro FMR Area",2386,2451,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+nyu,Washington Square,2024-25,2025,"New York, NY HUD Metro FMR Area",2406,2511,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+nyu,Washington Square,2025-26,2026,"New York, NY HUD Metro FMR Area",2529,2655,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+nyu,Washington Square,2026-27,2027,"New York, NY HUD Metro FMR Area",2593,2729,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+penn,Philadelphia,2022-23,2023,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA",1081,1218,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+penn,Philadelphia,2023-24,2024,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA",1303,1451,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+penn,Philadelphia,2024-25,2025,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA",1372,1512,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+penn,Philadelphia,2025-26,2026,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA",1397,1520,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+penn,Philadelphia,2026-27,2027,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA",1438,1558,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+penn-state,University Park,2022-23,2023,"State College, PA MSA",1091,1111,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+penn-state,University Park,2023-24,2024,"State College, PA MSA",1122,1133,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+penn-state,University Park,2024-25,2025,"State College, PA MSA",1226,1234,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+penn-state,University Park,2025-26,2026,"State College, PA MSA",1187,1194,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+penn-state,University Park,2026-27,2027,"State College, PA MSA",1274,1282,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+princeton,Princeton,2022-23,2023,"Trenton, NJ MSA",1158,1321,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+princeton,Princeton,2023-24,2024,"Trenton, NJ MSA",1354,1550,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+princeton,Princeton,2024-25,2025,"Trenton, NJ MSA",1391,1605,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+princeton,Princeton,2025-26,2026,"Trenton-Princeton, NJ MSA",1344,1545,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+princeton,Princeton,2026-27,2027,"Trenton-Princeton, NJ MSA",1561,1764,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+purdue,West Lafayette,2022-23,2023,"Lafayette-West Lafayette, IN HUD Metro FMR Area",794,917,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+purdue,West Lafayette,2023-24,2024,"Lafayette-West Lafayette, IN HUD Metro FMR Area",778,908,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+purdue,West Lafayette,2024-25,2025,"Lafayette-West Lafayette, IN HUD Metro FMR Area",831,971,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+purdue,West Lafayette,2025-26,2026,"Lafayette-West Lafayette, IN HUD Metro FMR Area",894,1032,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+purdue,West Lafayette,2026-27,2027,"Lafayette-West Lafayette, IN HUD Metro FMR Area",942,1070,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+purdue,Fort Wayne,2022-23,2023,"Fort Wayne, IN MSA",658,743,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+purdue,Fort Wayne,2023-24,2024,"Fort Wayne, IN MSA",826,895,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+purdue,Fort Wayne,2024-25,2025,"Fort Wayne, IN MSA",943,991,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+purdue,Fort Wayne,2025-26,2026,"Fort Wayne, IN HUD Metro FMR Area",892,916,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+purdue,Fort Wayne,2026-27,2027,"Fort Wayne, IN HUD Metro FMR Area",1025,1026,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+purdue,Northwest,2022-23,2023,"Gary, IN HUD Metro FMR Area",677,815,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+purdue,Northwest,2023-24,2024,"Gary, IN HUD Metro FMR Area",869,1027,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+purdue,Northwest,2024-25,2025,"Gary, IN HUD Metro FMR Area",860,985,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+purdue,Northwest,2025-26,2026,"Gary, IN HUD Metro FMR Area",959,1082,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+purdue,Northwest,2026-27,2027,"Gary, IN HUD Metro FMR Area",1117,1176,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+rensselaer,Troy,2022-23,2023,"Albany-Schenectady-Troy, NY MSA",968,1079,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+rensselaer,Troy,2023-24,2024,"Albany-Schenectady-Troy, NY MSA",1011,1131,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+rensselaer,Troy,2024-25,2025,"Albany-Schenectady-Troy, NY MSA",1074,1230,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+rensselaer,Troy,2025-26,2026,"Albany-Schenectady-Troy, NY MSA",1217,1417,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+rensselaer,Troy,2026-27,2027,"Albany-Schenectady-Troy, NY MSA",1238,1425,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+rice,Houston,2022-23,2023,"Houston-The Woodlands-Sugar Land, TX HUD Metro FMR Area",1030,1095,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+rice,Houston,2023-24,2024,"Houston-The Woodlands-Sugar Land, TX HUD Metro FMR Area",1073,1135,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+rice,Houston,2024-25,2025,"Houston-The Woodlands-Sugar Land, TX HUD Metro FMR Area",1226,1279,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+rice,Houston,2025-26,2026,"Houston-The Woodlands-Sugar Land, TX HUD Metro FMR Area",1280,1323,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+rice,Houston,2026-27,2027,"Houston-The Woodlands-Sugar Land, TX HUD Metro FMR Area",1233,1261,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+rutgers,New Brunswick,2022-23,2023,"Middlesex-Somerset-Hunterdon, NJ HUD Metro FMR Area",1336,1515,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+rutgers,New Brunswick,2023-24,2024,"Middlesex-Somerset-Hunterdon, NJ HUD Metro FMR Area",1608,1807,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+rutgers,New Brunswick,2024-25,2025,"Middlesex-Somerset-Hunterdon, NJ HUD Metro FMR Area",1540,1731,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+rutgers,New Brunswick,2025-26,2026,"Middlesex-Somerset-Hunterdon, NJ HUD Metro FMR Area",1804,1978,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+rutgers,New Brunswick,2026-27,2027,"Middlesex-Somerset-Hunterdon, NJ HUD Metro FMR Area",1953,2103,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+rutgers,Newark,2022-23,2023,"Newark, NJ HUD Metro FMR Area",1129,1338,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+rutgers,Newark,2023-24,2024,"Newark, NJ HUD Metro FMR Area",1379,1590,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+rutgers,Newark,2024-25,2025,"Newark, NJ HUD Metro FMR Area",1551,1768,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+rutgers,Newark,2025-26,2026,"Newark, NJ HUD Metro FMR Area",1612,1822,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+rutgers,Newark,2026-27,2027,"Newark, NJ HUD Metro FMR Area",1637,1850,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+rutgers,Camden,2022-23,2023,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA",1081,1218,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+rutgers,Camden,2023-24,2024,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA",1303,1451,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+rutgers,Camden,2024-25,2025,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA",1372,1512,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+rutgers,Camden,2025-26,2026,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA",1397,1520,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+rutgers,Camden,2026-27,2027,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA",1438,1558,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+stanford,Stanford,2022-23,2023,"San Jose-Sunnyvale-Santa Clara, CA HUD Metro FMR Area",2223,2513,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+stanford,Stanford,2023-24,2024,"San Jose-Sunnyvale-Santa Clara, CA HUD Metro FMR Area",2383,2694,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+stanford,Stanford,2024-25,2025,"San Jose-Sunnyvale-Santa Clara, CA HUD Metro FMR Area",2608,2975,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+stanford,Stanford,2025-26,2026,"San Jose-Sunnyvale-Santa Clara, CA HUD Metro FMR Area",2621,2982,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+stanford,Stanford,2026-27,2027,"San Jose-Sunnyvale-Santa Clara, CA HUD Metro FMR Area",2458,2778,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+stony-brook,Stony Brook,2022-23,2023,"Nassau-Suffolk, NY HUD Metro FMR Area",1536,1914,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+stony-brook,Stony Brook,2023-24,2024,"Nassau-Suffolk, NY HUD Metro FMR Area",1708,2144,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+stony-brook,Stony Brook,2024-25,2025,"Nassau-Suffolk, NY HUD Metro FMR Area",1848,2241,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+stony-brook,Stony Brook,2025-26,2026,"Nassau-Suffolk, NY HUD Metro FMR Area",1992,2379,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+stony-brook,Stony Brook,2026-27,2027,"Nassau-Suffolk, NY HUD Metro FMR Area",1964,2285,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+sva,Manhattan,2022-23,2023,"New York, NY HUD Metro FMR Area",2123,2170,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+sva,Manhattan,2023-24,2024,"New York, NY HUD Metro FMR Area",2386,2451,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+sva,Manhattan,2024-25,2025,"New York, NY HUD Metro FMR Area",2406,2511,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+sva,Manhattan,2025-26,2026,"New York, NY HUD Metro FMR Area",2529,2655,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+sva,Manhattan,2026-27,2027,"New York, NY HUD Metro FMR Area",2593,2729,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+texas-am,College Station,2022-23,2023,"College Station-Bryan, TX MSA",839,904,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+texas-am,College Station,2023-24,2024,"College Station-Bryan, TX MSA",958,1015,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+texas-am,College Station,2024-25,2025,"College Station-Bryan, TX MSA",1034,1089,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+texas-am,College Station,2025-26,2026,"College Station-Bryan, TX MSA",1025,1082,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+texas-am,College Station,2026-27,2027,"College Station-Bryan, TX MSA",1005,1057,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+uchicago,Hyde Park,2022-23,2023,"Chicago-Joliet-Naperville, IL HUD Metro FMR Area",1158,1255,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+uchicago,Hyde Park,2023-24,2024,"Chicago-Joliet-Naperville, IL HUD Metro FMR Area",1399,1507,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+uchicago,Hyde Park,2024-25,2025,"Chicago-Joliet-Naperville, IL HUD Metro FMR Area",1458,1560,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+uchicago,Hyde Park,2025-26,2026,"Chicago-Joliet-Naperville, IL HUD Metro FMR Area",1480,1581,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+uchicago,Hyde Park,2026-27,2027,"Chicago-Joliet-Naperville, IL HUD Metro FMR Area",1678,1780,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+umass-amherst,Amherst,2022-23,2023,"Springfield, MA HUD Metro FMR Area",818,987,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+umass-amherst,Amherst,2023-24,2024,"Springfield, MA HUD Metro FMR Area",934,1115,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+umass-amherst,Amherst,2024-25,2025,"Springfield, MA HUD Metro FMR Area",1044,1205,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+umass-amherst,Amherst,2025-26,2026,"Amherst Town-Northampton, MA MSA",1382,1580,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+umass-amherst,Amherst,2026-27,2027,"Amherst Town-Northampton, MA MSA",1416,1593,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+umd,College Park,2022-23,2023,"Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area",1589,1615,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+umd,College Park,2023-24,2024,"Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area",1772,1803,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+umd,College Park,2024-25,2025,"Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area",2012,2056,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+umd,College Park,2025-26,2026,"Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area",1953,2015,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+umd,College Park,2026-27,2027,"Washington-Arlington-Alexandria, DC-VA-MD HUD Metro FMR Area",2111,2204,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+umich,Ann Arbor,2022-23,2023,"Ann Arbor, MI MSA",1148,1153,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+umich,Ann Arbor,2023-24,2024,"Ann Arbor, MI MSA",1222,1234,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+umich,Ann Arbor,2024-25,2025,"Ann Arbor, MI MSA",1327,1346,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+umich,Ann Arbor,2025-26,2026,"Ann Arbor, MI MSA",1365,1387,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+umich,Ann Arbor,2026-27,2027,"Ann Arbor, MI MSA",1458,1503,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+umich,Dearborn,2022-23,2023,"Detroit-Warren-Livonia, MI HUD Metro FMR Area",845,952,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+umich,Dearborn,2023-24,2024,"Detroit-Warren-Livonia, MI HUD Metro FMR Area",920,1019,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+umich,Dearborn,2024-25,2025,"Detroit-Warren-Livonia, MI HUD Metro FMR Area",991,1090,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+umich,Dearborn,2025-26,2026,"Detroit-Warren-Livonia, MI HUD Metro FMR Area",1009,1122,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+umich,Dearborn,2026-27,2027,"Detroit-Warren-Livonia, MI HUD Metro FMR Area",1047,1167,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+umich,Flint,2022-23,2023,"Flint, MI MSA",646,745,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+umich,Flint,2023-24,2024,"Flint, MI MSA",740,854,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+umich,Flint,2024-25,2025,"Flint, MI MSA",691,806,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+umich,Flint,2025-26,2026,"Flint, MI MSA",731,856,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+umich,Flint,2026-27,2027,"Flint, MI MSA",792,939,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+university-of-california,Berkeley,2022-23,2023,"Oakland-Fremont, CA HUD Metro FMR Area",1658,1969,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+university-of-california,Berkeley,2023-24,2024,"Oakland-Fremont, CA HUD Metro FMR Area",1825,2131,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+university-of-california,Berkeley,2024-25,2025,"Oakland-Fremont, CA HUD Metro FMR Area",1937,2201,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+university-of-california,Berkeley,2025-26,2026,"Oakland-Fremont, CA HUD Metro FMR Area",2142,2385,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+university-of-california,Berkeley,2026-27,2027,"Oakland-Fremont, CA HUD Metro FMR Area",2088,2290,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+university-of-california,Davis,2022-23,2023,"Yolo, CA HUD Metro FMR Area",1386,1406,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+university-of-california,Davis,2023-24,2024,"Yolo, CA HUD Metro FMR Area",1497,1507,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+university-of-california,Davis,2024-25,2025,"Yolo, CA HUD Metro FMR Area",1602,1613,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+university-of-california,Davis,2025-26,2026,"Yolo, CA HUD Metro FMR Area",1604,1615,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+university-of-california,Davis,2026-27,2027,"Yolo, CA HUD Metro FMR Area",1659,1670,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+university-of-california,Irvine,2022-23,2023,"Santa Ana-Anaheim-Irvine, CA HUD Metro FMR Area",1939,2113,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+university-of-california,Irvine,2023-24,2024,"Santa Ana-Anaheim-Irvine, CA HUD Metro FMR Area",2200,2344,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+university-of-california,Irvine,2024-25,2025,"Santa Ana-Anaheim-Irvine, CA HUD Metro FMR Area",2352,2454,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+university-of-california,Irvine,2025-26,2026,"Santa Ana-Anaheim-Irvine, CA HUD Metro FMR Area",2682,2746,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+university-of-california,Irvine,2026-27,2027,"Santa Ana-Anaheim-Irvine, CA HUD Metro FMR Area",2580,2610,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+university-of-california,Los Angeles,2022-23,2023,"Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area",1534,1747,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+university-of-california,Los Angeles,2023-24,2024,"Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area",1777,2006,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+university-of-california,Los Angeles,2024-25,2025,"Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area",1856,2081,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+university-of-california,Los Angeles,2025-26,2026,"Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area",2079,2328,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+university-of-california,Los Angeles,2026-27,2027,"Los Angeles-Long Beach-Glendale, CA HUD Metro FMR Area",2151,2402,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+university-of-california,Merced,2022-23,2023,"Merced, CA MSA",854,1017,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+university-of-california,Merced,2023-24,2024,"Merced, CA MSA",994,1159,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+university-of-california,Merced,2024-25,2025,"Merced, CA MSA",1071,1227,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+university-of-california,Merced,2025-26,2026,"Merced, CA MSA",1116,1213,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+university-of-california,Merced,2026-27,2027,"Merced, CA MSA",1200,1262,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+university-of-california,Riverside,2022-23,2023,"Riverside-San Bernardino-Ontario, CA MSA",1281,1398,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+university-of-california,Riverside,2023-24,2024,"Riverside-San Bernardino-Ontario, CA MSA",1517,1611,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+university-of-california,Riverside,2024-25,2025,"Riverside-San Bernardino-Ontario, CA MSA",1776,1852,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+university-of-california,Riverside,2025-26,2026,"Riverside-San Bernardino-Ontario, CA MSA",1692,1777,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+university-of-california,Riverside,2026-27,2027,"Riverside-San Bernardino-Ontario, CA MSA",1605,1705,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+university-of-california,San Diego,2022-23,2023,"San Diego-Carlsbad, CA MSA",1714,1885,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+university-of-california,San Diego,2023-24,2024,"San Diego-Carlsbad, CA MSA",2062,2248,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+university-of-california,San Diego,2024-25,2025,"San Diego-Carlsbad, CA MSA",2145,2328,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+university-of-california,San Diego,2025-26,2026,"San Diego-Chula Vista-Carlsbad, CA MSA",2288,2459,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+university-of-california,San Diego,2026-27,2027,"San Diego-Chula Vista-Carlsbad, CA MSA",2192,2335,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+university-of-california,San Francisco,2022-23,2023,"San Francisco, CA HUD Metro FMR Area",2156,2665,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+university-of-california,San Francisco,2023-24,2024,"San Francisco, CA HUD Metro FMR Area",2292,2818,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+university-of-california,San Francisco,2024-25,2025,"San Francisco, CA HUD Metro FMR Area",2275,2780,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+university-of-california,San Francisco,2025-26,2026,"San Francisco, CA HUD Metro FMR Area",2485,2977,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+university-of-california,San Francisco,2026-27,2027,"San Francisco, CA HUD Metro FMR Area",2574,3003,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+university-of-california,Santa Barbara,2022-23,2023,"Santa Maria-Santa Barbara, CA MSA",2040,2350,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+university-of-california,Santa Barbara,2023-24,2024,"Santa Maria-Santa Barbara, CA MSA",2330,2651,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+university-of-california,Santa Barbara,2024-25,2025,"Santa Maria-Santa Barbara, CA MSA",2381,2688,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+university-of-california,Santa Barbara,2025-26,2026,"Santa Maria-Santa Barbara, CA MSA",2459,2746,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+university-of-california,Santa Barbara,2026-27,2027,"Santa Maria-Santa Barbara, CA MSA",2479,2711,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+university-of-california,Santa Cruz,2022-23,2023,"Santa Cruz-Watsonville, CA MSA",2212,2502,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+university-of-california,Santa Cruz,2023-24,2024,"Santa Cruz-Watsonville, CA MSA",2849,3085,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+university-of-california,Santa Cruz,2024-25,2025,"Santa Cruz-Watsonville, CA MSA",3056,3221,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+university-of-california,Santa Cruz,2025-26,2026,"Santa Cruz-Watsonville, CA MSA",3179,3298,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+university-of-california,Santa Cruz,2026-27,2027,"Santa Cruz-Watsonville, CA MSA",3230,3390,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+university-of-iowa,Iowa City,2022-23,2023,"Iowa City, IA HUD Metro FMR Area",810,922,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+university-of-iowa,Iowa City,2023-24,2024,"Iowa City, IA HUD Metro FMR Area",783,902,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+university-of-iowa,Iowa City,2024-25,2025,"Iowa City, IA HUD Metro FMR Area",816,921,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+university-of-iowa,Iowa City,2025-26,2026,"Iowa City, IA HUD Metro FMR Area",880,961,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+university-of-iowa,Iowa City,2026-27,2027,"Iowa City, IA HUD Metro FMR Area",942,1002,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+ut-austin,Austin,2022-23,2023,"Austin-Round Rock, TX MSA",1253,1386,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+ut-austin,Austin,2023-24,2024,"Austin-Round Rock, TX MSA",1519,1635,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+ut-austin,Austin,2024-25,2025,"Austin-Round Rock, TX MSA",1549,1650,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+ut-austin,Austin,2025-26,2026,"Austin-Round Rock-San Marcos, TX MSA",1474,1562,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+ut-austin,Austin,2026-27,2027,"Austin-Round Rock-San Marcos, TX MSA",1447,1530,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+utah,Salt Lake City,2022-23,2023,"Salt Lake City, UT HUD Metro FMR Area",1051,1258,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+utah,Salt Lake City,2023-24,2024,"Salt Lake City, UT HUD Metro FMR Area",1121,1338,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+utah,Salt Lake City,2024-25,2025,"Salt Lake City, UT HUD Metro FMR Area",1243,1453,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+utah,Salt Lake City,2025-26,2026,"Salt Lake City, UT HUD Metro FMR Area",1259,1456,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+utah,Salt Lake City,2026-27,2027,"Salt Lake City, UT HUD Metro FMR Area",1202,1349,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+uw-madison,Madison,2022-23,2023,"Madison, WI HUD Metro FMR Area",1007,1183,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+uw-madison,Madison,2023-24,2024,"Madison, WI HUD Metro FMR Area",1004,1182,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+uw-madison,Madison,2024-25,2025,"Madison, WI HUD Metro FMR Area",1080,1282,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+uw-madison,Madison,2025-26,2026,"Madison, WI HUD Metro FMR Area",1268,1482,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+uw-madison,Madison,2026-27,2027,"Madison, WI HUD Metro FMR Area",1196,1375,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+uw,Seattle,2022-23,2023,"Seattle-Bellevue, WA HUD Metro FMR Area",2042,2100,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+uw,Seattle,2023-24,2024,"Seattle-Bellevue, WA HUD Metro FMR Area",2211,2269,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+uw,Seattle,2024-25,2025,"Seattle-Bellevue, WA HUD Metro FMR Area",2238,2293,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+uw,Seattle,2025-26,2026,"Seattle-Bellevue, WA HUD Metro FMR Area",2074,2146,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+uw,Seattle,2026-27,2027,"Seattle-Bellevue, WA HUD Metro FMR Area",2091,2180,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+virginia-tech,Blacksburg,2022-23,2023,"Blacksburg-Christiansburg-Radford, VA HUD Metro FMR Area",827,860,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+virginia-tech,Blacksburg,2023-24,2024,"Blacksburg-Christiansburg-Radford, VA HUD Metro FMR Area",993,999,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+virginia-tech,Blacksburg,2024-25,2025,"Blacksburg-Christiansburg-Radford, VA HUD Metro FMR Area",925,968,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+virginia-tech,Blacksburg,2025-26,2026,"Blacksburg-Christiansburg-Radford, VA HUD Metro FMR Area",910,993,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+virginia-tech,Blacksburg,2026-27,2027,"Blacksburg-Christiansburg-Radford, VA HUD Metro FMR Area",1043,1050,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx
+yale,New Haven,2022-23,2023,"New Haven-Meriden, CT HUD Metro FMR Area",1200,1334,https://www.huduser.gov/portal/datasets/fmr/fmr2023/FY23_FMRs_revised.xlsx
+yale,New Haven,2023-24,2024,"New Haven-Meriden, CT HUD Metro FMR Area",1251,1374,https://www.huduser.gov/portal/datasets/fmr/fmr2024/FMR2024_final_revised.xlsx
+yale,New Haven,2024-25,2025,"New Haven-Meriden, CT HUD Metro FMR Area",1421,1529,https://www.huduser.gov/portal/datasets/fmr/fmr2025/FY25_FMRs_revised.xlsx
+yale,New Haven,2025-26,2026,"New Haven, CT MSA",1372,1591,https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx
+yale,New Haven,2026-27,2027,"New Haven, CT MSA",1609,1743,https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx

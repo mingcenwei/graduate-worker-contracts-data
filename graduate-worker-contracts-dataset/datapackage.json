@@ -1,0 +1,966 @@
+{
+	"$schema": "https://datapackage.org/profiles/2.0/datapackage.json",
+	"name": "graduate-worker-contracts",
+	"title": "Graduate worker contracts and funding policies at US universities",
+	"description": "Pay rates, summer funding, tuition and fee waivers, health insurance, raises, and union events for graduate student workers at US universities, from union contracts and, where no contract sets pay, published university funding policies. Every fact cites the document, page, and passage it comes from.",
+	"version": "2026-10-17",
+	"created": "2026-10-17T01:40:37+00:00",
+	"homepage": "https://academic-union-network.org",
+	"licenses": [
+		{
+			"name": "CC0-1.0",
+			"path": "https://creativecommons.org/publicdomain/zero/1.0/",
+			"title": "Creative Commons Zero v1.0 Universal"
+		}
+	],
+	"contributors": [
+		{
+			"title": "Academic Union Network",
+			"path": "https://academic-union-network.org",
+			"roles": [
+				"creator"
+			]
+		}
+	],
+	"resources": [
+		{
+			"name": "institutions",
+			"path": "institutions.csv",
+			"type": "table",
+			"format": "csv",
+			"mediatype": "text/csv",
+			"encoding": "utf-8",
+			"description": "One row per institution.",
+			"schema": {
+				"fields": [
+					{
+						"name": "institution_id",
+						"type": "string",
+						"description": "The institution's identifier, as in institutions.csv."
+					},
+					{
+						"name": "name",
+						"type": "string",
+						"description": "Institution name."
+					},
+					{
+						"name": "city",
+						"type": "string",
+						"description": "City."
+					},
+					{
+						"name": "state",
+						"type": "string",
+						"description": "US state (two-letter code)."
+					},
+					{
+						"name": "representation",
+						"type": "string",
+						"description": "union-contract if any union contract is recorded, else university-policy."
+					},
+					{
+						"name": "contract_status",
+						"type": "string",
+						"description": "Status of the institution's most current union contract, as in agreements.csv."
+					},
+					{
+						"name": "union",
+						"type": "string",
+						"description": "Union that holds the most current contract."
+					}
+				],
+				"primaryKey": [
+					"institution_id"
+				]
+			}
+		},
+		{
+			"name": "sources",
+			"path": "sources.csv",
+			"type": "table",
+			"format": "csv",
+			"mediatype": "text/csv",
+			"encoding": "utf-8",
+			"description": "One row per cited document.",
+			"schema": {
+				"fields": [
+					{
+						"name": "institution_id",
+						"type": "string",
+						"description": "The institution's identifier, as in institutions.csv."
+					},
+					{
+						"name": "source_id",
+						"type": "string",
+						"description": "The document's identifier within the institution."
+					},
+					{
+						"name": "title",
+						"type": "string",
+						"description": "Document title."
+					},
+					{
+						"name": "type",
+						"type": "string",
+						"description": "Kind of document: contract, wage-table, memorandum, policy, union-page, news, or other."
+					},
+					{
+						"name": "url",
+						"type": "string",
+						"description": "Where the document was retrieved."
+					},
+					{
+						"name": "format",
+						"type": "string",
+						"description": "The format of the file the URL serves: pdf, html, docx, xlsx, json, or javascript."
+					},
+					{
+						"name": "archive_url",
+						"type": "string",
+						"description": "Wayback Machine snapshot of the document, kept only if it is the same file or contains every cited quote."
+					},
+					{
+						"name": "retrieved",
+						"type": "string",
+						"description": "Date the document was retrieved."
+					},
+					{
+						"name": "sha256",
+						"type": "string",
+						"description": "256-bit Secure Hash Algorithm (SHA-256) hash of the retrieved file."
+					},
+					{
+						"name": "note",
+						"type": "string",
+						"description": "Clarifications, including what was searched when a fact could not be found."
+					}
+				],
+				"primaryKey": [
+					"institution_id",
+					"source_id"
+				],
+				"foreignKeys": [
+					{
+						"fields": [
+							"institution_id"
+						],
+						"reference": {
+							"resource": "institutions",
+							"fields": [
+								"institution_id"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "agreements",
+			"path": "agreements.csv",
+			"type": "table",
+			"format": "csv",
+			"mediatype": "text/csv",
+			"encoding": "utf-8",
+			"description": "One row per union contract or university policy that facts belong to.",
+			"schema": {
+				"fields": [
+					{
+						"name": "fact_id",
+						"type": "string",
+						"description": "Identifier of the fact: the institution id, the table name, and the fact's position among the institution's rows in that table (for agreements, the agreement id), separated by '/'."
+					},
+					{
+						"name": "institution_id",
+						"type": "string",
+						"description": "The institution's identifier, as in institutions.csv."
+					},
+					{
+						"name": "agreement_id",
+						"type": "string",
+						"description": "The agreement or policy the fact belongs to, as in agreements.csv."
+					},
+					{
+						"name": "kind",
+						"type": "string",
+						"description": "union-contract or university-policy."
+					},
+					{
+						"name": "name",
+						"type": "string",
+						"description": "Agreement or policy name."
+					},
+					{
+						"name": "union",
+						"type": "string",
+						"description": "Union party, for contracts."
+					},
+					{
+						"name": "period_start",
+						"type": "string",
+						"description": "Start of the agreement's term."
+					},
+					{
+						"name": "period_end",
+						"type": "string",
+						"description": "End of the agreement's term."
+					},
+					{
+						"name": "status",
+						"type": "string",
+						"description": "current (in force), expired-continuing (expired, with a source saying its terms still apply), expired (expired, with no successor recorded and no source saying its terms still apply), superseded (replaced by a newer agreement), or unknown."
+					},
+					{
+						"name": "signed",
+						"type": "string",
+						"description": "Date the agreement was signed, where a source dates the signatures."
+					},
+					{
+						"name": "covers",
+						"type": "string",
+						"description": "Who the agreement covers, as the source describes it."
+					},
+					{
+						"name": "note",
+						"type": "string",
+						"description": "Clarifications, including what was searched when a fact could not be found."
+					}
+				],
+				"primaryKey": [
+					"fact_id"
+				],
+				"foreignKeys": [
+					{
+						"fields": [
+							"institution_id"
+						],
+						"reference": {
+							"resource": "institutions",
+							"fields": [
+								"institution_id"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "rates",
+			"path": "rates.csv",
+			"type": "table",
+			"format": "csv",
+			"mediatype": "text/csv",
+			"encoding": "utf-8",
+			"description": "One row per pay rate as the source states it: hourly stays hourly, monthly stays monthly, with the appointment alongside. Annualized and converted monthly figures appear only in chart_picks.csv, for the rates the website charts.",
+			"schema": {
+				"fields": [
+					{
+						"name": "fact_id",
+						"type": "string",
+						"description": "Identifier of the fact: the institution id, the table name, and the fact's position among the institution's rows in that table (for agreements, the agreement id), separated by '/'."
+					},
+					{
+						"name": "institution_id",
+						"type": "string",
+						"description": "The institution's identifier, as in institutions.csv."
+					},
+					{
+						"name": "agreement_id",
+						"type": "string",
+						"description": "The agreement or policy the fact belongs to, as in agreements.csv."
+					},
+					{
+						"name": "academic_year",
+						"type": "string",
+						"description": "Academic year the rate mostly covers, for example 2025-26."
+					},
+					{
+						"name": "positions",
+						"type": "string",
+						"description": "Job titles or groups covered, separated by '; '."
+					},
+					{
+						"name": "degrees",
+						"type": "string",
+						"description": "Degree levels covered (doctoral, masters, undergraduate), separated by '; '; empty means not stated."
+					},
+					{
+						"name": "schools",
+						"type": "string",
+						"description": "Schools or colleges covered, separated by '; '; empty means institution-wide."
+					},
+					{
+						"name": "campuses",
+						"type": "string",
+						"description": "Campuses covered, separated by '; '; empty means all."
+					},
+					{
+						"name": "tier",
+						"type": "string",
+						"description": "Step, level, or other subgroup the source names."
+					},
+					{
+						"name": "component",
+						"type": "string",
+						"description": "What the figure covers: total-support (a combined minimum covering salary and stipend), salary (pay for the work, including hourly wages), stipend, or top-up (an amount added to another figure)."
+					},
+					{
+						"name": "basis",
+						"type": "string",
+						"description": "minimum (the least that may be paid), exact (the amount paid), intention (a stated aim, not a commitment), or threshold (pay that qualifies for a benefit, not minimum pay)."
+					},
+					{
+						"name": "amount_usd",
+						"type": "number",
+						"description": "Dollar amount as the source states it."
+					},
+					{
+						"name": "amount_usd_min",
+						"type": "number",
+						"description": "Lower end of a stated dollar range."
+					},
+					{
+						"name": "amount_usd_max",
+						"type": "number",
+						"description": "Upper end of a stated dollar range."
+					},
+					{
+						"name": "per",
+						"type": "string",
+						"description": "Unit of the amount: year, semester, quarter, summer, month, week, hour, course, or one-time."
+					},
+					{
+						"name": "appointment_months",
+						"type": "number",
+						"description": "Length of the appointment the rate is for, in months."
+					},
+					{
+						"name": "appointment_weeks",
+						"type": "number",
+						"description": "Length of the appointment in weeks, where stated."
+					},
+					{
+						"name": "hours_per_week",
+						"type": "number",
+						"description": "Weekly hours of the appointment."
+					},
+					{
+						"name": "max_hours_per_week",
+						"type": "number",
+						"description": "Cap on average weekly hours, where the source states a cap rather than hours."
+					},
+					{
+						"name": "fte",
+						"type": "number",
+						"description": "Full-time equivalent of the appointment (0.5 for half time)."
+					},
+					{
+						"name": "effective",
+						"type": "string",
+						"description": "Date the fact takes effect, as precise as the source (YYYY, YYYY-MM or YYYY-MM-DD)."
+					},
+					{
+						"name": "until",
+						"type": "string",
+						"description": "Last date the fact applies, as precise as the source."
+					},
+					{
+						"name": "note",
+						"type": "string",
+						"description": "Clarifications, including what was searched when a fact could not be found."
+					}
+				],
+				"primaryKey": [
+					"fact_id"
+				],
+				"foreignKeys": [
+					{
+						"fields": [
+							"institution_id"
+						],
+						"reference": {
+							"resource": "institutions",
+							"fields": [
+								"institution_id"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "terms",
+			"path": "terms.csv",
+			"type": "table",
+			"format": "csv",
+			"mediatype": "text/csv",
+			"encoding": "utf-8",
+			"description": "One row per benefit term in scope: summer funding, tuition and fee waivers, health insurance, and general increases (raises). A term with absent set to true records that the cited documents have no provision on the topic.",
+			"schema": {
+				"fields": [
+					{
+						"name": "fact_id",
+						"type": "string",
+						"description": "Identifier of the fact: the institution id, the table name, and the fact's position among the institution's rows in that table (for agreements, the agreement id), separated by '/'."
+					},
+					{
+						"name": "institution_id",
+						"type": "string",
+						"description": "The institution's identifier, as in institutions.csv."
+					},
+					{
+						"name": "agreement_id",
+						"type": "string",
+						"description": "The agreement or policy the fact belongs to, as in agreements.csv."
+					},
+					{
+						"name": "topic",
+						"type": "string",
+						"description": "summer-funding, tuition-waiver, fee-waiver, health-insurance, general-increase (a raise), or other."
+					},
+					{
+						"name": "academic_year",
+						"type": "string",
+						"description": "Academic year the term applies to; empty means not year-specific."
+					},
+					{
+						"name": "positions",
+						"type": "string",
+						"description": "Job titles or groups covered, separated by '; '."
+					},
+					{
+						"name": "degrees",
+						"type": "string",
+						"description": "Degree levels covered (doctoral, masters, undergraduate), separated by '; '; empty means not stated."
+					},
+					{
+						"name": "schools",
+						"type": "string",
+						"description": "Schools or colleges covered, separated by '; '; empty means institution-wide."
+					},
+					{
+						"name": "campuses",
+						"type": "string",
+						"description": "Campuses covered, separated by '; '; empty means all."
+					},
+					{
+						"name": "tier",
+						"type": "string",
+						"description": "Step, level, or other subgroup the source names."
+					},
+					{
+						"name": "guarantee",
+						"type": "string",
+						"description": "guaranteed, conditional (subject to conditions the summary states), or none (no guarantee)."
+					},
+					{
+						"name": "absent",
+						"type": "boolean",
+						"description": "True when the cited documents have no provision on the topic."
+					},
+					{
+						"name": "searched",
+						"type": "string",
+						"description": "For absences: what was checked, so the search can be repeated."
+					},
+					{
+						"name": "summary",
+						"type": "string",
+						"description": "The term in plain words."
+					},
+					{
+						"name": "amount_usd",
+						"type": "number",
+						"description": "Dollar amount as the source states it."
+					},
+					{
+						"name": "amount_usd_min",
+						"type": "number",
+						"description": "Lower end of a stated dollar range."
+					},
+					{
+						"name": "amount_usd_max",
+						"type": "number",
+						"description": "Upper end of a stated dollar range."
+					},
+					{
+						"name": "percent",
+						"type": "number",
+						"description": "Percentage the term states (a raise, a premium share)."
+					},
+					{
+						"name": "months",
+						"type": "number",
+						"description": "Months the term covers, where stated."
+					},
+					{
+						"name": "effective",
+						"type": "string",
+						"description": "Date the fact takes effect, as precise as the source (YYYY, YYYY-MM or YYYY-MM-DD)."
+					},
+					{
+						"name": "until",
+						"type": "string",
+						"description": "Last date the fact applies, as precise as the source."
+					},
+					{
+						"name": "note",
+						"type": "string",
+						"description": "Clarifications, including what was searched when a fact could not be found."
+					}
+				],
+				"primaryKey": [
+					"fact_id"
+				],
+				"foreignKeys": [
+					{
+						"fields": [
+							"institution_id"
+						],
+						"reference": {
+							"resource": "institutions",
+							"fields": [
+								"institution_id"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "events",
+			"path": "events.csv",
+			"type": "table",
+			"format": "csv",
+			"mediatype": "text/csv",
+			"encoding": "utf-8",
+			"description": "One row per union event: elections, recognition, bargaining, strike threats, strikes, ratification and expiration.",
+			"schema": {
+				"fields": [
+					{
+						"name": "fact_id",
+						"type": "string",
+						"description": "Identifier of the fact: the institution id, the table name, and the fact's position among the institution's rows in that table (for agreements, the agreement id), separated by '/'."
+					},
+					{
+						"name": "institution_id",
+						"type": "string",
+						"description": "The institution's identifier, as in institutions.csv."
+					},
+					{
+						"name": "agreement_id",
+						"type": "string",
+						"description": "The agreement or policy the fact belongs to, as in agreements.csv."
+					},
+					{
+						"name": "kind",
+						"type": "string",
+						"description": "election, recognition, bargaining, strike-threat, strike, ratification, expiration, or other."
+					},
+					{
+						"name": "start",
+						"type": "string",
+						"description": "Start date, as precise as the source."
+					},
+					{
+						"name": "end",
+						"type": "string",
+						"description": "End date, as precise as the source."
+					},
+					{
+						"name": "summary",
+						"type": "string",
+						"description": "What happened."
+					},
+					{
+						"name": "note",
+						"type": "string",
+						"description": "Clarifications, including what was searched when a fact could not be found."
+					}
+				],
+				"primaryKey": [
+					"fact_id"
+				],
+				"foreignKeys": [
+					{
+						"fields": [
+							"institution_id"
+						],
+						"reference": {
+							"resource": "institutions",
+							"fields": [
+								"institution_id"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "living_costs",
+			"path": "living_costs.csv",
+			"type": "table",
+			"format": "csv",
+			"mediatype": "text/csv",
+			"encoding": "utf-8",
+			"description": "One row per item of a university's published cost of attendance for graduate students: the school's own published figure for what a graduate student needs for a year, from its financial aid office. Items of one budget share its name.",
+			"schema": {
+				"fields": [
+					{
+						"name": "fact_id",
+						"type": "string",
+						"description": "Identifier of the fact: the institution id, the table name, and the fact's position among the institution's rows in that table (for agreements, the agreement id), separated by '/'."
+					},
+					{
+						"name": "institution_id",
+						"type": "string",
+						"description": "The institution's identifier, as in institutions.csv."
+					},
+					{
+						"name": "budget",
+						"type": "string",
+						"description": "The budget the line belongs to, as the source names it."
+					},
+					{
+						"name": "academic_year",
+						"type": "string",
+						"description": "Academic year of the budget."
+					},
+					{
+						"name": "degrees",
+						"type": "string",
+						"description": "Degree levels the budget is for, separated by '; '; empty means not stated."
+					},
+					{
+						"name": "schools",
+						"type": "string",
+						"description": "Schools or colleges the budget is for, separated by '; '."
+					},
+					{
+						"name": "campuses",
+						"type": "string",
+						"description": "Campuses the budget is for, separated by '; '."
+					},
+					{
+						"name": "item",
+						"type": "string",
+						"description": "What the line covers: housing, food, housing-and-food, transportation, personal, living-expenses (a stated subtotal of living costs), health-insurance, books-and-supplies, technology, tuition, fees, loan-fees, subtotal (another stated subtotal, named in label), total-excluding-tuition, total, or other (a cost the budget does not itemize)."
+					},
+					{
+						"name": "label",
+						"type": "string",
+						"description": "The line's name as the source prints it."
+					},
+					{
+						"name": "amount_usd",
+						"type": "number",
+						"description": "Dollar amount as the source states it."
+					},
+					{
+						"name": "amount_usd_min",
+						"type": "number",
+						"description": "Lower end of a stated dollar range."
+					},
+					{
+						"name": "amount_usd_max",
+						"type": "number",
+						"description": "Upper end of a stated dollar range."
+					},
+					{
+						"name": "per",
+						"type": "string",
+						"description": "Period of the amount: year, semester, quarter, month, or summer."
+					},
+					{
+						"name": "months",
+						"type": "number",
+						"description": "Months the budget covers (9 for an academic year, 12 for a calendar year)."
+					},
+					{
+						"name": "note",
+						"type": "string",
+						"description": "Clarifications, including what was searched when a fact could not be found."
+					}
+				],
+				"primaryKey": [
+					"fact_id"
+				],
+				"foreignKeys": [
+					{
+						"fields": [
+							"institution_id"
+						],
+						"reference": {
+							"resource": "institutions",
+							"fields": [
+								"institution_id"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "fair_market_rents",
+			"path": "fair_market_rents.csv",
+			"type": "table",
+			"format": "csv",
+			"mediatype": "text/csv",
+			"encoding": "utf-8",
+			"description": "For each campus and academic year, the Fair Market Rents that the U.S. Department of Housing and Urban Development (HUD) sets for the campus's area: the monthly rent, utilities included, that 40 percent of similar rentals in the area cost no more than. HUD fiscal year N is listed under academic year (N-1)-N.",
+			"schema": {
+				"fields": [
+					{
+						"name": "institution_id",
+						"type": "string",
+						"description": "The institution's identifier, as in institutions.csv."
+					},
+					{
+						"name": "campus",
+						"type": "string",
+						"description": "Campus."
+					},
+					{
+						"name": "academic_year",
+						"type": "string",
+						"description": "Academic year the HUD fiscal year mostly covers."
+					},
+					{
+						"name": "hud_fiscal_year",
+						"type": "integer",
+						"description": "HUD fiscal year of the rents."
+					},
+					{
+						"name": "hud_area",
+						"type": "string",
+						"description": "HUD Fair Market Rent area that includes the campus."
+					},
+					{
+						"name": "studio_usd",
+						"type": "number",
+						"description": "Monthly Fair Market Rent for a studio (efficiency) apartment."
+					},
+					{
+						"name": "one_bedroom_usd",
+						"type": "number",
+						"description": "Monthly Fair Market Rent for a one-bedroom apartment."
+					},
+					{
+						"name": "source_url",
+						"type": "string",
+						"description": "HUD's Fair Market Rent file for the year."
+					}
+				],
+				"primaryKey": [
+					"institution_id",
+					"campus",
+					"academic_year"
+				],
+				"foreignKeys": [
+					{
+						"fields": [
+							"institution_id"
+						],
+						"reference": {
+							"resource": "institutions",
+							"fields": [
+								"institution_id"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "citations",
+			"path": "citations.csv",
+			"type": "table",
+			"format": "csv",
+			"mediatype": "text/csv",
+			"encoding": "utf-8",
+			"description": "One row per cited passage. Every fact cites at least one; at least one quote states each figure. Absences cite the document without a quote.",
+			"schema": {
+				"fields": [
+					{
+						"name": "fact_id",
+						"type": "string",
+						"description": "Identifier of the fact: the institution id, the table name, and the fact's position among the institution's rows in that table (for agreements, the agreement id), separated by '/'."
+					},
+					{
+						"name": "institution_id",
+						"type": "string",
+						"description": "The institution's identifier, as in institutions.csv."
+					},
+					{
+						"name": "source_id",
+						"type": "string",
+						"description": "The cited document, as in sources.csv."
+					},
+					{
+						"name": "page",
+						"type": "integer",
+						"description": "Page in the PDF file, counting the first page as 1, which can differ from the printed page number."
+					},
+					{
+						"name": "section",
+						"type": "string",
+						"description": "Article, section, or heading."
+					},
+					{
+						"name": "quote",
+						"type": "string",
+						"description": "The passage, verbatim."
+					}
+				],
+				"foreignKeys": [
+					{
+						"fields": [
+							"institution_id"
+						],
+						"reference": {
+							"resource": "institutions",
+							"fields": [
+								"institution_id"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "chart_picks",
+			"path": "chart_picks.csv",
+			"type": "table",
+			"format": "csv",
+			"mediatype": "text/csv",
+			"encoding": "utf-8",
+			"description": "The figure the website shows for each institution and academic year, with how it was derived; reason says why that rate represents the institution. The website shows the University of California's campuses separately, so it has a row for each campus.",
+			"schema": {
+				"fields": [
+					{
+						"name": "institution_id",
+						"type": "string",
+						"description": "The institution's identifier, as in institutions.csv."
+					},
+					{
+						"name": "campus",
+						"type": "string",
+						"description": "The campus whose rent and cost of attendance the website compares with the figure: the main campus, or for the University of California, each of its campuses."
+					},
+					{
+						"name": "academic_year",
+						"type": "string",
+						"description": "Academic year."
+					},
+					{
+						"name": "annual_usd",
+						"type": "number",
+						"description": "Pay for the year, as stated or derived."
+					},
+					{
+						"name": "monthly_usd",
+						"type": "number",
+						"description": "Annual pay divided by the months it covers, or the stated monthly rate."
+					},
+					{
+						"name": "months",
+						"type": "number",
+						"description": "Months the annual figure covers; empty when no source states it."
+					},
+					{
+						"name": "stated_unit",
+						"type": "string",
+						"description": "The unit in which the source states the underlying rate, as in rates.csv per."
+					},
+					{
+						"name": "stated_amount_usd",
+						"type": "number",
+						"description": "The underlying rate as stated, when annual_usd was derived from it."
+					},
+					{
+						"name": "derivation",
+						"type": "string",
+						"description": "How annual_usd was derived from the stated rate, when it was."
+					},
+					{
+						"name": "academic_year_amount_usd",
+						"type": "number",
+						"description": "Appointment pay before summer pay was added."
+					},
+					{
+						"name": "summer_amount_usd",
+						"type": "number",
+						"description": "Stated summer pay added to make a 12-month total."
+					},
+					{
+						"name": "summer_months",
+						"type": "number",
+						"description": "Months of the added summer pay."
+					},
+					{
+						"name": "summer_basis",
+						"type": "string",
+						"description": "How and why the summer pay was added."
+					},
+					{
+						"name": "basis",
+						"type": "string",
+						"description": "As in rates.csv."
+					},
+					{
+						"name": "component",
+						"type": "string",
+						"description": "As in rates.csv."
+					},
+					{
+						"name": "positions",
+						"type": "string",
+						"description": "As in rates.csv."
+					},
+					{
+						"name": "tier",
+						"type": "string",
+						"description": "As in rates.csv."
+					},
+					{
+						"name": "agreement_kind",
+						"type": "string",
+						"description": "union-contract or university-policy."
+					},
+					{
+						"name": "agreement_name",
+						"type": "string",
+						"description": "Agreement or policy the rate comes from."
+					},
+					{
+						"name": "source_url",
+						"type": "string",
+						"description": "Link to the document that states the rate, opening at the cited page for PDFs."
+					},
+					{
+						"name": "reason",
+						"type": "string",
+						"description": "Why this rate represents the institution; empty where the default applies (the lowest doctoral minimum pay)."
+					}
+				],
+				"primaryKey": [
+					"institution_id",
+					"campus",
+					"academic_year"
+				],
+				"foreignKeys": [
+					{
+						"fields": [
+							"institution_id"
+						],
+						"reference": {
+							"resource": "institutions",
+							"fields": [
+								"institution_id"
+							]
+						}
+					}
+				]
+			}
+		}
+	]
+}
