@@ -614,34 +614,6 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			},
 			downloads: {
 				heading: "Download the data",
-				csvLink: (year) => `Pay and living costs for ${year} (CSV)`,
-				csvFile: (year) => `graduate-worker-pay-${year}.csv`,
-				csvHeader: [
-					"School",
-					"Academic year",
-					"Pay per year (USD)",
-					"Appointment length (months)",
-					"Pay per month (USD)",
-					"Kind of figure",
-					"Set by",
-					"Source URL",
-					"Campus for the rent figure",
-					"One-bedroom rent per month (USD)",
-					"Rent as a share of yearly pay (1 = 100 percent)",
-					"Living costs per month, from the cost of attendance (USD)",
-					"Pay as a share of living costs (1 = 100 percent)",
-					"Other costs not listed separately, left out of living costs (USD)",
-					"Pay and living costs compared per",
-					"Rate as the source states it, per",
-					"Calculated from the stated rate",
-					"Summer pay included in the yearly figure (USD)",
-					"Data status",
-					"School ID",
-				],
-				csvContract: "Union contract",
-				csvPolicy: "University policy",
-				csvYes: "Yes",
-				csvStatus: (label, reasons) => (reasons ? `${label}: ${reasons}` : label),
 				suggestedCredit: "Suggested credit",
 				copy: "Copy",
 				copyName: "Copy the suggested credit",
@@ -1256,34 +1228,6 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			},
 			downloads: {
 				heading: "下载数据",
-				csvLink: (year) => `${year}学年工资和生活成本（CSV）`,
-				csvFile: (year) => `graduate-worker-pay-${year}.csv`,
-				csvHeader: [
-					"学校",
-					"学年",
-					"每年工资（美元）",
-					"雇佣期（月数）",
-					"每月工资（美元）",
-					"数字性质",
-					"依据",
-					"来源网址",
-					"租金数字所属校区",
-					"一居室每月租金（美元）",
-					"租金占年度工资比例（1 = 100%）",
-					"就读费用中的每月生活成本（美元）",
-					"工资占生活成本比例（1 = 100%）",
-					"未单独列出、未计入生活成本的其他费用（美元）",
-					"工资与生活成本的比较单位",
-					"来源所列工资标准的单位",
-					"由来源所列工资标准折算",
-					"年度数字所含暑期工资（美元）",
-					"数据状态",
-					"学校ID",
-				],
-				csvContract: "工会合同",
-				csvPolicy: "校方政策",
-				csvYes: "是",
-				csvStatus: (label, reasons) => (reasons ? `${label}：${reasons}` : label),
 				suggestedCredit: "建议署名",
 				copy: "复制",
 				copyName: "复制建议署名",
@@ -3216,7 +3160,6 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		]);
 		const tableHeading = element(headingLevel(3), { id: "table-heading", class: "section-heading", tabindex: "-1", text: strings.tableHeading });
 		const table = buildTable();
-		const csvLink = element("a", { class: "csv-link button-link" });
 		const downloads = downloadsSection(page.downloads);
 		const aboutData = aboutSection(page.aboutData);
 		const aboutNetwork = networkSection();
@@ -3631,7 +3574,6 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				heading,
 				downloads.text ? element("p", {}, sectionLinker()(downloads.text)) : null,
 				element("ul", { class: "download-links" }, [
-					element("li", {}, csvLink),
 					...downloads.links.map((link) => element("li", {}, element("a", { class: "button-link", href: link.url, text: link.label }))),
 				]),
 				downloads.license ? licenseBadge(downloads.license) : null,
@@ -3706,64 +3648,6 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			]);
 			return { section, heading };
 		}
-		function updateCsvLink() {
-			const year = state.year;
-			const quote = (value) => {
-				let field = value === null || value === undefined ? "" : String(value);
-				if (/^[=+\-@\t\r]/.test(field)) field = `'${field}`;
-				return /[",\r\n]/.test(field) ? `"${field.replaceAll('"', '""')}"` : field;
-			};
-			const round = (value, places = 2) => (value === null || value === undefined ? null : Math.round(value * 10 ** places) / 10 ** places);
-			const yearly = (figure) => figure.annual ?? (figure.monthly || 0) * 12;
-			const current = data.institutions.filter((institution) => !institution.excluded && institution.pay[year]).sort((first, second) => yearly(second.pay[year]) - yearly(first.pay[year]));
-			const lagging =
-				year === currentYear
-					? data.institutions
-							.filter((institution) => !institution.excluded && !institution.pay[year] && statusOf(institution).latestYear)
-							.sort((first, second) => yearly(second.pay[statusOf(second).latestYear]) - yearly(first.pay[statusOf(first).latestYear]))
-					: [];
-			const rows = [...current.map((institution) => [institution, year]), ...lagging.map((institution) => [institution, statusOf(institution).latestYear])].map(([institution, figureYear]) => {
-				const figure = institution.pay[figureYear];
-				const [citation] = knownCitations(institution, figure.sources);
-				const source = citation ? citationLink(institution, citation).url : null;
-				const costs = institution.living_costs[figureYear];
-				const [rent] = costs ? costs.rents : [];
-				const budget = costs ? costs.budgets.find((candidate) => candidate.monthly !== null) : null;
-				const compared = budget && budget.pay_share !== null ? budget.pay_share_basis?.per || "month" : null;
-				const status = payStatusOf(institution);
-				const statusText =
-					year >= currentYear
-						? strings.downloads.csvStatus(status.state === "check" ? strings.status.check : strings.status.current, status.reasons.map(reasonText).join(strings.clauseSeparator) || null)
-						: null;
-				return [
-					institution.name,
-					figureYear,
-					round(figure.annual),
-					figure.months,
-					round(figure.monthly),
-					strings.basis[figure.basis] || figure.basis,
-					figure.agreement_kind === "union-contract" ? strings.downloads.csvContract : strings.downloads.csvPolicy,
-					source,
-					rent ? campusText(rent.campus) : null,
-					rent ? rent.one_bedroom : null,
-					rent ? round(rent.rent_share, 4) : null,
-					budget ? round(budget.monthly) : null,
-					budget ? round(budget.pay_share, 4) : null,
-					budget ? budget.unitemized : null,
-					compared ? strings.units[compared] || compared : null,
-					figure.stated ? strings.units[figure.stated] || figure.stated : null,
-					calculatedIn(figure, "year") ? strings.downloads.csvYes : null,
-					figure.summer ? figure.summer.amount : null,
-					statusText,
-					institution.id,
-				];
-			});
-			const csv = `﻿${[strings.downloads.csvHeader, ...rows].map((row) => row.map(quote).join(",")).join("\r\n")}\r\n`;
-			if (csvLink.href.startsWith("blob:")) URL.revokeObjectURL(csvLink.href);
-			csvLink.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
-			csvLink.download = strings.downloads.csvFile(year);
-			csvLink.textContent = strings.downloads.csvLink(year);
-		}
 		function purposeSection(purpose) {
 			if (!purpose) return null;
 			const link = sectionLinker();
@@ -3788,7 +3672,6 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			updateHeader();
 			renderChart();
 			table.update();
-			updateCsvLink();
 		}
 		function renderChart() {
 			if (state.view === "rent") renderRentChart();
