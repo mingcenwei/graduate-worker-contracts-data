@@ -2,9 +2,9 @@
 	"$schema": "https://datapackage.org/profiles/2.0/datapackage.json",
 	"name": "graduate-worker-contracts",
 	"title": "Graduate worker contracts and funding policies at US universities",
-	"description": "Pay rates, summer funding, tuition and fee waivers, health insurance, raises, and union events for graduate student workers at US universities, from union contracts and, where no contract sets pay, published university funding policies. Every fact cites the document, page, and passage it comes from.",
-	"version": "2026-10-16",
-	"created": "2026-10-17T04:07:38+00:00",
+	"description": "Pay rates, summer funding, tuition and fee waivers, health insurance, raises, unions, and union events for graduate student workers at US universities, from union contracts and, where no contract sets pay, published university funding policies. Every fact cites the document, page, and passage it comes from.",
+	"version": "2026-10-17",
+	"created": "2026-10-17T08:07:01+00:00",
 	"homepage": "https://academic-union-network.org",
 	"licenses": [
 		{
@@ -527,13 +527,92 @@
 			}
 		},
 		{
+			"name": "unions",
+			"path": "unions.csv",
+			"type": "table",
+			"format": "csv",
+			"mediatype": "text/csv",
+			"encoding": "utf-8",
+			"description": "One row per union of the graduate workers whose pay the website shows, recognized or not, as it names itself. Its founding and its recognition are in events.csv.",
+			"schema": {
+				"fields": [
+					{
+						"name": "fact_id",
+						"type": "string",
+						"description": "Identifier of the fact: the institution id, the table name, and the fact's position among the institution's rows in that table (for agreements, the agreement id), separated by '/'."
+					},
+					{
+						"name": "institution_id",
+						"type": "string",
+						"description": "The institution's identifier, as in institutions.csv."
+					},
+					{
+						"name": "name",
+						"type": "string",
+						"description": "The union's full name, as it writes it."
+					},
+					{
+						"name": "short_name",
+						"type": "string",
+						"description": "The short name the union goes by, if any."
+					},
+					{
+						"name": "affiliation",
+						"type": "string",
+						"description": "The national union and local it belongs to, if any; empty means none recorded."
+					},
+					{
+						"name": "website",
+						"type": "string",
+						"description": "The union's own website (a social-media page only where it has no website)."
+					},
+					{
+						"name": "represents",
+						"type": "string",
+						"description": "Whom the union represents, in the source's words."
+					},
+					{
+						"name": "campuses",
+						"type": "string",
+						"description": "Campuses where it represents workers, separated by '; '; empty means all."
+					},
+					{
+						"name": "recognized",
+						"type": "boolean",
+						"description": "True if the university recognizes the union or a labor board has certified it, false if neither; empty means not stated."
+					},
+					{
+						"name": "note",
+						"type": "string",
+						"description": "Clarifications, including what was searched when a fact could not be found."
+					}
+				],
+				"primaryKey": [
+					"fact_id"
+				],
+				"foreignKeys": [
+					{
+						"fields": [
+							"institution_id"
+						],
+						"reference": {
+							"resource": "institutions",
+							"fields": [
+								"institution_id"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
 			"name": "events",
 			"path": "events.csv",
 			"type": "table",
 			"format": "csv",
 			"mediatype": "text/csv",
 			"encoding": "utf-8",
-			"description": "One row per union event: elections, recognition, bargaining, strike threats, strikes, ratification and expiration.",
+			"description": "One row per union event: founding, elections, recognition, bargaining, strike threats, strikes, ratification and expiration.",
 			"schema": {
 				"fields": [
 					{
@@ -554,7 +633,7 @@
 					{
 						"name": "kind",
 						"type": "string",
-						"description": "election, recognition, bargaining, strike-threat, strike, ratification, expiration, or other."
+						"description": "founding (the union was founded), election, recognition, bargaining, strike-threat, strike, ratification, expiration, or other."
 					},
 					{
 						"name": "start",

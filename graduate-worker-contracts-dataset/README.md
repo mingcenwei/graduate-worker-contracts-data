@@ -1,10 +1,10 @@
 # Graduate worker contracts and funding policies at US universities
 
-Version 2026-10-16, published by the Academic Union Network (https://academic-union-network.org) under the Creative
+Version 2026-10-17, published by the Academic Union Network (https://academic-union-network.org) under the Creative
 Commons CC0 1.0 public domain dedication.
 
-Pay rates, summer funding, tuition and fee waivers, health insurance, raises, and union events for graduate
-student workers at 39 US universities. The figures come from union contracts and, where no contract sets pay,
+Pay rates, summer funding, tuition and fee waivers, health insurance, raises, unions, and union events for
+graduate student workers at 38 US universities. The figures come from union contracts and, where no contract sets pay,
 from the universities' published pay tables and funding policies, with a few from university announcements, union
 summaries, and news reports. Every fact cites the document, page, and passage it comes from, so each one can be
 checked against its source.
@@ -16,7 +16,8 @@ checked against its source.
 - `agreements.csv`: One row per union contract or university policy that facts belong to.
 - `rates.csv`: One row per pay rate as the source states it: hourly stays hourly, monthly stays monthly, with the appointment alongside. Annualized and converted monthly figures appear only in chart_picks.csv, for the rates the website charts.
 - `terms.csv`: One row per benefit term in scope: summer funding, tuition and fee waivers, health insurance, and general increases (raises). A term with absent set to true records that the cited documents have no provision on the topic.
-- `events.csv`: One row per union event: elections, recognition, bargaining, strike threats, strikes, ratification and expiration.
+- `unions.csv`: One row per union of the graduate workers whose pay the website shows, recognized or not, as it names itself. Its founding and its recognition are in events.csv.
+- `events.csv`: One row per union event: founding, elections, recognition, bargaining, strike threats, strikes, ratification and expiration.
 - `living_costs.csv`: One row per item of a university's published cost of attendance for graduate students: the school's own published figure for what a graduate student needs for a year, from its financial aid office. Items of one budget share its name.
 - `fair_market_rents.csv`: For each campus and academic year, the Fair Market Rents that the U.S. Department of Housing and Urban Development (HUD) sets for the campus's area: the monthly rent, utilities included, that 40 percent of similar rentals in the area cost no more than. HUD fiscal year N is listed under academic year (N-1)-N.
 - `citations.csv`: One row per cited passage. Every fact cites at least one; at least one quote states each figure. Absences cite the document without a quote.
@@ -38,6 +39,8 @@ comma-separated values (CSV) files are UTF-8 with a header row; lists within a c
   source's own dates.
 - **Absences are explicit.** A term with `absent` true means the cited document has no provision on the topic, and
   `searched` says what was checked. A topic with no row at all has not been researched for that institution.
+- **Unions.** `unions.csv` lists the unions of the graduate workers whose pay the website shows, recognized or not,
+  with their websites; `events.csv` holds their founding, recognition, and later history.
 - **Identifiers.** `fact_id` combines the institution id, the table, and the fact's position (or, for agreements,
   its id). Positions can change between versions, so match facts across versions by their content.
 
@@ -48,7 +51,7 @@ dataset (CC0 1.0, https://creativecommons.org/publicdomain/zero/1.0/). The short
 `citations.csv` remain their authors' and are included only so that each fact can be verified. Credit is
 appreciated but not required. The website suggests this line:
 
-> Data: Academic Union Network, “Graduate worker contracts and funding policies at US universities,” version 2026-10-16, https://academic-union-network.org/contract-tracker/
+> Data: Academic Union Network, “Graduate worker contracts and funding policies at US universities,” version 2026-10-17, https://academic-union-network.org/contract-tracker/
 
 ## About this data, from the website
 
