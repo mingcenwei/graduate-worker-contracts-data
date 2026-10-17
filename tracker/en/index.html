@@ -34,6 +34,8 @@
 		--page-border: rgba(255, 255, 255, 0.12); --page-control-border: #8d8b84; --page-link: #8ab8f2; }
 }
 html, body { margin: 0; background: var(--page-surface); color: var(--page-text); }
+/* The browser hides [hidden] with a plain display: none, which any display rule below would override. */
+[hidden] { display: none !important; }
 body { font-family: "Noto Sans", system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5; }
 :lang(zh) body, body:lang(zh) { font-family: "AUN CJK Punctuation", "Noto Sans", "PingFang SC", "Noto Sans SC",
 	"Microsoft YaHei", system-ui, sans-serif; }
