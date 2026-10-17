@@ -141,11 +141,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			timelineHint: "Select a school to see its contracts, events and sources. With a keyboard, the arrow keys move between schools.",
 			tableHeading: "Table of all schools",
 			aboutDataHeading: "About this data",
-			footnote: ({ count, updated, earliest, latest }) => {
-				let sources = "";
-				if (earliest) sources = earliest === latest ? `; sources checked on ${earliest}` : `; sources checked between ${earliest} and ${latest}`;
-				return `${count} schools.${updated ? ` Data updated ${updated}${sources}.` : ""}`;
-			},
+			footnote: ({ count, updated }) => `${count} schools.${updated ? ` Data updated ${updated}.` : ""}`,
 			previewHintPointer: "Click for details and sources",
 			previewHintKeyboard: "Press Enter for details and sources; the arrow keys move between items",
 			closeDetails: "Close details",
@@ -795,11 +791,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			timelineHint: "选择学校，即可查看其合同、事件和来源。使用键盘时，可用方向键在学校之间移动。",
 			tableHeading: "全部学校一览表",
 			aboutDataHeading: "关于数据",
-			footnote: ({ count, updated, earliest, latest }) => {
-				let sources = "";
-				if (earliest) sources = earliest === latest ? `；来源核对于${earliest}` : `；来源核对于${earliest}至${latest}之间`;
-				return `共${count}所学校。${updated ? `数据更新于${updated}${sources}。` : ""}`;
-			},
+			footnote: ({ count, updated }) => `共${count}所学校。${updated ? `数据更新于${updated}。` : ""}`,
 			previewHintPointer: "点击查看详情和来源",
 			previewHintKeyboard: "按回车键查看详情和来源；方向键可在各项之间移动",
 			closeDetails: "关闭详情",
@@ -1430,6 +1422,12 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		if (!month) return new Date(Date.UTC(year, end ? 11 : 0, end ? 31 : 1));
 		if (!day) return new Date(Date.UTC(year, end ? month : month - 1, end ? 0 : 1));
 		return new Date(Date.UTC(year, month - 1, day));
+	}
+	function readerDate(moment) {
+		const time = typeof moment === "string" ? new Date(moment) : null;
+		if (!time || Number.isNaN(time.getTime())) return "";
+		const pad = (number) => String(number).padStart(2, "0");
+		return `${time.getFullYear()}-${pad(time.getMonth() + 1)}-${pad(time.getDate())}`;
 	}
 	function academicYearOf(text) {
 		const date = parseDate(text, true);
@@ -2451,7 +2449,6 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			.map((institution) => normalizeInstitution(institution, strings, language));
 		let years = asArray(raw.years).filter((year) => typeof year === "string" && YEAR_PATTERN.test(year));
 		if (!years.length) years = [...new Set(institutions.flatMap((institution) => Object.keys(institution.pay)))];
-		const retrieved = asObject(raw.sources_retrieved);
 		const systems = Object.fromEntries(
 			Object.entries(asObject(raw.systems))
 				.filter(([id, system]) => asText(id) && isObject(system) && asText(system.name))
@@ -2459,10 +2456,9 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		);
 		return {
 			today,
-			generated: asText(raw.generated),
+			generated: readerDate(raw.updated_at) || asText(raw.generated),
 			current_year: asText(raw.current_year) && YEAR_PATTERN.test(raw.current_year) ? raw.current_year : currentAcademicYear(),
 			default_year: asText(raw.default_year),
-			sources_retrieved: asText(retrieved.earliest) && asText(retrieved.latest) ? retrieved : null,
 			years: [...years].sort(),
 			institutions,
 			systems,
@@ -3787,13 +3783,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			return { section, heading };
 		}
 		function footnoteText() {
-			const retrieved = data.sources_retrieved;
-			return strings.footnote({
-				count: data.institutions.length,
-				updated: formatDate(data.generated),
-				earliest: retrieved ? formatDate(retrieved.earliest) : null,
-				latest: retrieved ? formatDate(retrieved.latest) : null,
-			});
+			return strings.footnote({ count: data.institutions.length, updated: formatDate(data.generated) });
 		}
 		function render() {
 			popups.closeAll();

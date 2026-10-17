@@ -1,6 +1,6 @@
 # Graduate worker contracts and funding policies at US universities
 
-Version 2026-10-17, published by the Academic Union Network (https://academic-union-network.org) under the Creative
+Version 2026-10-16, published by the Academic Union Network (https://academic-union-network.org) under the Creative
 Commons CC0 1.0 public domain dedication.
 
 Pay rates, summer funding, tuition and fee waivers, health insurance, raises, and union events for graduate
@@ -48,7 +48,7 @@ dataset (CC0 1.0, https://creativecommons.org/publicdomain/zero/1.0/). The short
 `citations.csv` remain their authors' and are included only so that each fact can be verified. Credit is
 appreciated but not required. The website suggests this line:
 
-> Data: Academic Union Network, “Graduate worker contracts and funding policies at US universities,” version 2026-10-17, https://academic-union-network.org/contract-tracker/
+> Data: Academic Union Network, “Graduate worker contracts and funding policies at US universities,” version 2026-10-16, https://academic-union-network.org/contract-tracker/
 
 ## About this data, from the website
 
