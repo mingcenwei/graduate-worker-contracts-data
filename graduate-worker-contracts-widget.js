@@ -1423,12 +1423,6 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		if (!day) return new Date(Date.UTC(year, end ? month : month - 1, end ? 0 : 1));
 		return new Date(Date.UTC(year, month - 1, day));
 	}
-	function readerDate(moment) {
-		const time = typeof moment === "string" ? new Date(moment) : null;
-		if (!time || Number.isNaN(time.getTime())) return "";
-		const pad = (number) => String(number).padStart(2, "0");
-		return `${time.getFullYear()}-${pad(time.getMonth() + 1)}-${pad(time.getDate())}`;
-	}
 	function academicYearOf(text) {
 		const date = parseDate(text, true);
 		const start = date.getUTCMonth() >= 6 ? date.getUTCFullYear() : date.getUTCFullYear() - 1;
@@ -2456,7 +2450,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		);
 		return {
 			today,
-			generated: readerDate(raw.updated_at) || asText(raw.generated),
+			generated: asText(raw.generated),
 			current_year: asText(raw.current_year) && YEAR_PATTERN.test(raw.current_year) ? raw.current_year : currentAcademicYear(),
 			default_year: asText(raw.default_year),
 			years: [...years].sort(),
