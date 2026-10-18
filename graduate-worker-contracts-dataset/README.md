@@ -4,7 +4,7 @@ Version 2026-10-18, published by the Academic Union Network (https://academic-un
 Commons CC0 1.0 public domain dedication.
 
 Pay rates, summer funding, tuition and fee waivers, health insurance, raises, unions, and union events for
-graduate student workers at 38 US universities. The figures come from union contracts and, where no contract sets pay,
+graduate student workers at 39 US universities. The figures come from union contracts and, where no contract sets pay,
 from the universities' published pay tables and funding policies, with a few from university announcements, union
 summaries, and news reports. Every fact cites the document, page, and passage it comes from, so each one can be
 checked against its source.
