@@ -805,6 +805,8 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				efforts: (count) => `Efforts to form a union (${count})`,
 				about: "About the union",
 				aboutNamed: (name) => `About ${name}`,
+				lawHeading: "State law",
+				aboutLaw: "About this law",
 				title: (name, shortName) => (shortName ? `${name} (${shortName})` : name),
 				affiliation: "Affiliation",
 				represents: "Represents",
@@ -1667,6 +1669,8 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				efforts: (count) => `组建工会的努力（${count}）`,
 				about: "关于该工会",
 				aboutNamed: (name) => `关于${name}`,
+				lawHeading: "州法律",
+				aboutLaw: "关于这项法律",
 				title: (name, shortName) => (shortName ? `${name} (${shortName})` : name),
 				affiliation: "隶属",
 				represents: "代表对象",
@@ -2867,6 +2871,11 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		}
 		return byYear;
 	}
+	function normalizeLawNote(raw, language) {
+		if (!isObject(raw)) return null;
+		const sentence = translated(raw.text, raw.translations, "text", language);
+		return sentence.text ? { text: sentence.text, text_language: sentence.language, sources: asArray(raw.sources) } : null;
+	}
 	function normalizeLivingCosts(raw, language) {
 		const budgetName = (budget) => {
 			const name = translated(budget.budget, budget.translations, "budget", language);
@@ -3041,6 +3050,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			own_month_years: ownMonthYears,
 			appointments,
 			no_figure: normalizeNoFigure(raw.no_figure, language),
+			bargaining_law: normalizeLawNote(raw.bargaining_law, language),
 			term_views: asArray(raw.term_views).map((view) => (isObject(view) ? normalizeTermView(view, strings, language) : null)),
 			terms: asObject(raw.terms),
 			other_terms: asObject(raw.other_terms),
@@ -6920,34 +6930,43 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		function unionBlock(institution, { listEvents = true, expand = abbreviationExpander() } = {}) {
 			const text = strings.union;
 			const unions = institution.unions;
-			if (!unions.length) {
-				const events = sortedEvents(institution);
-				if (!events.length) return [element("p", { class: "union-summary muted", text: text.none })];
-				if (!listEvents) return [element("p", { class: "union-summary", text: `${text.noneWithEvents}${strings.sentenceSeparator}${text.eventsBelow}` })];
-				return [
-					element("p", { class: "union-summary", text: text.noneWithEvents }),
-					disclosure(
-						{ class: "panel-section" },
-						() => text.efforts(events.length),
-						events.map((event) => eventBlock(institution, event, expand, false)),
-					),
-				];
-			}
-			return unions.flatMap((union) => {
-				const affiliation = union.affiliation && !union.name.toLowerCase().includes(union.affiliation.toLowerCase()) ? union.affiliation : null;
-				const website = union.website ? safeLink(union.website, text.website, strings.newTabWithTitle(text.website, union.name)) : null;
-				const line = element("p", { class: "union-summary" }, [
-					element("strong", { text: strings.runIn(text.heading) }),
-					...fillSlots(text.title(slot(0), union.short_name && !union.name.includes(union.short_name) ? slot(1) : null), [expand(union.name), english(union.short_name)]),
-					affiliation ? [strings.separator, expand(affiliation)] : null,
-					website ? [strings.separator, website] : null,
-				]);
-				const about = disclosure({ class: "panel-section" }, () => (unions.length > 1 ? text.aboutNamed(unionShortName(union)) : text.about), [
-					union.represents ? definitionList([[text.represents, inLanguage(union.represents_language === "en" ? capitalizeFirst(union.represents) : union.represents, union.represents_language)]]) : null,
-					citationBlock(institution, union.sources, strings.sourceHeadings, false),
-				]);
-				return [line, about];
-			});
+			const lines = (() => {
+				if (!unions.length) {
+					const events = sortedEvents(institution);
+					if (!events.length) return [element("p", { class: "union-summary muted", text: text.none })];
+					if (!listEvents) return [element("p", { class: "union-summary", text: `${text.noneWithEvents}${strings.sentenceSeparator}${text.eventsBelow}` })];
+					return [
+						element("p", { class: "union-summary", text: text.noneWithEvents }),
+						disclosure(
+							{ class: "panel-section" },
+							() => text.efforts(events.length),
+							events.map((event) => eventBlock(institution, event, expand, false)),
+						),
+					];
+				}
+				return unions.flatMap((union) => {
+					const affiliation = union.affiliation && !union.name.toLowerCase().includes(union.affiliation.toLowerCase()) ? union.affiliation : null;
+					const website = union.website ? safeLink(union.website, text.website, strings.newTabWithTitle(text.website, union.name)) : null;
+					const line = element("p", { class: "union-summary" }, [
+						element("strong", { text: strings.runIn(text.heading) }),
+						...fillSlots(text.title(slot(0), union.short_name && !union.name.includes(union.short_name) ? slot(1) : null), [expand(union.name), english(union.short_name)]),
+						affiliation ? [strings.separator, expand(affiliation)] : null,
+						website ? [strings.separator, website] : null,
+					]);
+					const about = disclosure({ class: "panel-section" }, () => (unions.length > 1 ? text.aboutNamed(unionShortName(union)) : text.about), [
+						union.represents ? definitionList([[text.represents, inLanguage(union.represents_language === "en" ? capitalizeFirst(union.represents) : union.represents, union.represents_language)]]) : null,
+						citationBlock(institution, union.sources, strings.sourceHeadings, false),
+					]);
+					return [line, about];
+				});
+			})();
+			const law = institution.bargaining_law;
+			if (!law) return lines;
+			return [
+				...lines,
+				element("p", { class: "union-summary" }, [element("strong", { text: strings.runIn(text.lawHeading) }), inLanguage(law.text, law.text_language)]),
+				disclosure({ class: "panel-section" }, () => text.aboutLaw, [citationBlock(institution, law.sources, strings.sourceHeadings, false)]),
+			];
 		}
 		function contractYears(contract) {
 			const starting = (year) => `${year}-${String((year + 1) % 100).padStart(2, "0")}`;
