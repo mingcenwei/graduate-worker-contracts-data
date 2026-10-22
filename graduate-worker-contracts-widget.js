@@ -1,5 +1,5 @@
 (() => {
-const WIDGET_CSS = "/* Light theme tokens. The series colours are the dataviz palette's first two slots, validated for the light surface;\n   the dark theme below re-steps them for its surface. The contents list in the page's margin sits on the host page,\n   not on the widget's card, so it takes the tokens of the surface under it (data-surface, set by the script). */\n:host,\n.contents.side[data-surface=\"light\"] {\n\t--surface: #ffffff;\n\t--text-primary: #0b0b0b;\n\t--text-secondary: #52514e;\n\t--text-muted: #6f6d68;\n\t--gridline: #e1e0d9;\n\t--baseline: #c3c2b7;\n\t/* Chart gridlines and baselines are the text colour at these opacities (#e1e0d9 and #c3c2b7 on white), so Dark\n\t   Reader, which turns any solid stroke light, leaves them as faint as they are here. */\n\t--gridline-opacity: 0.12;\n\t--baseline-opacity: 0.25;\n\t--border: rgba(11, 11, 11, 0.1);\n\t--series-contract: #2a78d6;\n\t--series-contract-light: #86b6ef;\n\t--series-contract-continuing: #b7d3f6;\n\t--series-policy: #eb6834;\n\t--series-policy-light: #f3a07c;\n\t--series-superseded: #c3c2b7;\n\t--focus: #2a78d6;\n\t--link: #1c5cab;\n\t--selected: rgba(42, 120, 214, 0.08);\n\t/* The highlighter mark behind a highlighted school's name in the charts and the timelines. */\n\t--highlight-mark: rgba(42, 120, 214, 0.2);\n\t--notice: #fdf4e3;\n\t--panel-surface: #ffffff;\n\t--panel-shadow: 0 6px 24px rgba(11, 11, 11, 0.14);\n\t/* Living-cost marks sit on the bars and off them, so they take the strongest ink, with a halo of the surface. */\n\t--living-mark: #0b0b0b;\n\t/* The \u25b2 beside rent above 30 percent of pay in a details panel. */\n\t--burden: #b3261e;\n\t/* Controls: a border with 3:1 contrast or more against the surface, and a quiet hover fill. */\n\t--control-border: #6f6d68;\n\t--control-surface: #ffffff;\n\t--control-hover: #eeede7;\n\t--chevron: #6f6d68;\n\t/* The faint band behind every other timeline row. */\n\t--band: rgba(11, 11, 11, 0.03);\n\t/* The tint behind the inline contents list, which sets it apart from the controls. */\n\t--contents-surface: #f5f4f0;\n}\n\n:host {\n\t/* Status colours are fixed in both themes and always come with an icon shape and text. */\n\t--status-good: #0ca30c;\n\t--status-warning: #fab219;\n\t/* The type scale: five sizes. */\n\t--size-title: 24px;\n\t--size-section: 19px;\n\t--size-body: 15px;\n\t--size-label: 13px;\n\t--size-small: 12px;\n\tdisplay: block;\n}\n\n/* Dark theme: the same roles stepped for a dark surface, the series colours re-validated against it. */\n.root[data-theme=\"dark\"],\n.contents.side[data-surface=\"dark\"] {\n\tcolor-scheme: dark;\n\t--surface: #1a1a19;\n\t--text-primary: #f0efec;\n\t--text-secondary: #c3c2b7;\n\t--text-muted: #a19f97;\n\t--gridline: #2c2c2a;\n\t--baseline: #5a5953;\n\t--gridline-opacity: 0.085;\n\t--baseline-opacity: 0.3;\n\t--border: rgba(255, 255, 255, 0.12);\n\t--series-contract: #3987e5;\n\t/* The summer end of a bar is lighter than the bar in both themes (\"the lighter end of the bar\"): here the series\n\t   colour 40 percent of the way to the text colour, 1.6:1 against the bar and 7.3:1 or more against the surface. */\n\t--series-contract-light: #82b1e8;\n\t--series-contract-continuing: #2a4a72;\n\t--series-policy: #d95926;\n\t--series-policy-light: #e29575;\n\t--series-superseded: #5a5953;\n\t--focus: #6aa6ee;\n\t--link: #8ab8f2;\n\t--selected: rgba(57, 135, 229, 0.18);\n\t--highlight-mark: rgba(57, 135, 229, 0.36);\n\t--notice: #3a3020;\n\t--panel-surface: #242422;\n\t--panel-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);\n\t--living-mark: #f0efec;\n\t--burden: #ff8a80;\n\t--control-border: #8d8b84;\n\t--control-surface: #242422;\n\t--control-hover: #30302d;\n\t--chevron: #a19f97;\n\t--band: rgba(255, 255, 255, 0.035);\n\t--contents-surface: #222220;\n}\n\n/* The theme's rules for the host element (a div) beat :host, so the typography is set on the root instead. Line\n   height, letter spacing and word spacing are inherited from the mount, whose line height the snippet sets in the page,\n   so a reader's own text-spacing settings reach the widget. */\n.root {\n\tposition: relative;\n\tcolor-scheme: light;\n\tfont-family: \"Noto Sans\", \"Noto Sans SC\", system-ui, -apple-system, \"Segoe UI\", sans-serif;\n\tfont-size: var(--size-body);\n\tfont-weight: 400;\n\tfont-style: normal;\n\tline-height: inherit;\n\ttext-align: left;\n\ttext-transform: none;\n\ttext-indent: 0;\n\twhite-space: normal;\n\tcolor: var(--text-primary);\n\tbackground: var(--surface);\n\tpadding: 4px 0 12px;\n}\n\n/* Chinese: the site's Noto Sans for Latin text, then the platforms' Simplified Chinese fonts (macOS and iOS, Android\n   and Linux, Windows). First comes \"AUN CJK Punctuation\", which the script defines in the document (a shadow root\n   ignores @font-face) from the same Chinese fonts for the curly quotes, the dash and the ellipsis alone, so they are\n   drawn full width as in Chinese text, not with Noto Sans's narrow Latin forms. English text keeps those. */\n.root:lang(zh) {\n\tfont-family: \"AUN CJK Punctuation\", \"Noto Sans\", \"PingFang SC\", \"Noto Sans SC\", \"Microsoft YaHei\", system-ui, -apple-system, \"Segoe UI\", sans-serif;\n}\n\n.root:lang(zh) :lang(en) {\n\tfont-family: \"Noto Sans\", \"PingFang SC\", \"Noto Sans SC\", \"Microsoft YaHei\", system-ui, -apple-system, \"Segoe UI\", sans-serif;\n}\n\n/* On a dark page or a dark system setting the widget is its own dark panel. */\n.root[data-theme=\"dark\"] {\n\tborder-radius: 12px;\n\tpadding: 20px;\n}\n\n.root[data-theme=\"dark\"][data-layout=\"narrow\"] {\n\tpadding: 14px 10px;\n\tborder-radius: 8px;\n}\n\n/* On the standalone page the page itself takes the theme, so the widget needs no panel of its own in either, and\n   switching the theme leaves the layout where it is. */\n.root[data-standalone][data-theme] {\n\tpadding: 4px 0 12px;\n\tborder-radius: 0;\n}\n\n* {\n\tbox-sizing: border-box;\n}\n\n[hidden] {\n\tdisplay: none !important;\n}\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n\tfont-weight: 600;\n}\n\n/* Headings take their size from their class, not their level, which is one higher on the standalone page (its\n   title is the page's h1) than in the block (an h2 under the WordPress page's h1). */\n.section-heading:focus,\n.chart-heading:focus,\n.contents:focus {\n\toutline: none;\n}\n\n.block-heading,\n.panel-title {\n\tfont-size: 1em;\n\tmargin: 0;\n}\n\np {\n\tmargin: 0 0 8px;\n}\n\na {\n\tcolor: var(--link);\n}\n\n/* Header: the title with the theme switch and the contents list, the computed lead, the byline (the network's logo\n   and name, and the data's date), and the dek that says what minimum pay is. */\n.widget-header {\n\tmargin-bottom: 8px;\n}\n\n.title-row {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: center;\n\tjustify-content: space-between;\n\tgap: 8px 16px;\n\tmargin-bottom: 6px;\n}\n\n/* The theme switch and the contents list's button, together at the title row's end, or on a line under the title. */\n.title-tools {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: center;\n\tgap: 8px 16px;\n}\n\n.title {\n\tfont-size: var(--size-title);\n\tline-height: 1.2;\n\tmargin: 0;\n}\n\n.lead {\n\tfont-size: var(--size-section);\n\tline-height: 1.35;\n\tfont-weight: 500;\n\tmargin: 0 0 10px;\n\tmax-width: 46em;\n\ttext-wrap: pretty;\n}\n\n/* Under the lead: the button to the rent view, which the lead speaks of. While the chart shows that view the place\n   stays empty, as tall as the button, so the controls below do not move. */\n.lead-action {\n\tmin-height: 32px;\n\tmargin: -2px 0 12px;\n}\n\n.root[data-layout=\"narrow\"] .lead-action {\n\tmin-height: 44px;\n}\n\n.lead-action .action-cue {\n\tflex: none;\n}\n\n.byline {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: center;\n\tgap: 4px 0;\n\tmargin: 0 0 12px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n/* The network's logo beside its name, centred on the line, whether the name is a link (in the WordPress block) or\n   text (on the standalone page, whose header links the network). */\n.byline :is(a, .byline-name) {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tgap: 8px;\n\tcolor: var(--text-secondary);\n\ttext-decoration: none;\n}\n\n.byline a:hover span {\n\ttext-decoration: underline;\n\ttext-underline-offset: 3px;\n}\n\n.byline-separator {\n\tmargin: 0 6px;\n}\n\n/* On phones the date takes its own line, so the separator would dangle. */\n.root[data-layout=\"narrow\"] .byline-separator {\n\tdisplay: none;\n}\n\n.root[data-layout=\"narrow\"] .byline .updated {\n\tflex-basis: 100%;\n}\n\n.byline .logo {\n\tflex: none;\n\twidth: 28px;\n\theight: 28px;\n\tborder-radius: 50%;\n}\n\n/* Under the lead while only the chosen schools show: the finding is still that of all schools. */\n.widget-header .coverage-note {\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n\tmargin: -4px 0 10px;\n}\n\n.dek {\n\tcolor: var(--text-secondary);\n\tmax-width: 46em;\n\tmargin-bottom: 12px;\n}\n\n.stale-note,\n.preview-status,\n.status-title {\n\tdisplay: flex;\n\talign-items: center;\n\tgap: 6px;\n}\n\n/* A note that can wrap keeps its icon on its first line. */\n.stale-note {\n\talign-items: flex-start;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n.stale-note .status-icon {\n\tmargin-top: 2px;\n}\n\n.link-button {\n\tfont: inherit;\n\tfont-size: var(--size-label);\n\tcolor: var(--link);\n\tbackground: none;\n\tborder: none;\n\tpadding: 0;\n\tmin-height: 24px;\n\ttext-decoration: underline;\n\ttext-underline-offset: 3px;\n\tcursor: pointer;\n}\n\n/* The theme control: a small segmented switch beside the title. */\n.theme-control {\n\tdisplay: flex;\n\talign-items: center;\n\tgap: 8px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n.segmented.compact button {\n\tfont-size: var(--size-small);\n\tmin-height: 28px;\n\tpadding: 3px 10px;\n}\n\n/* The status icon: a check mark on green for data up to date, a clock on amber for data that may be out of date. */\n.status-icon {\n\tflex: none;\n\tvertical-align: -2px;\n\tforced-color-adjust: none;\n}\n\n.status-current .status-disc {\n\tfill: var(--status-good);\n}\n\n.status-check .status-disc {\n\tfill: var(--status-warning);\n\tstroke: var(--text-secondary);\n\tstroke-width: 0.75;\n}\n\n.status-ink {\n\tfill: none;\n\tstroke-width: 1.6;\n\tstroke-linecap: round;\n\tstroke-linejoin: round;\n}\n\n.status-current .status-ink {\n\tstroke: #ffffff;\n}\n\n.status-check .status-ink {\n\tstroke: #0b0b0b;\n}\n\n/* Under the chart, beside its latest rates: the schools whose data may be out of date. */\n.status-summary {\n\tmargin: 12px 0 0;\n}\n\n.to-check-list {\n\tmargin: 8px 0;\n\tpadding-left: 20px;\n}\n\n.to-check-list li {\n\tmargin: 4px 0;\n}\n\n.reason {\n\tmargin-right: 6px;\n}\n\n.status-block {\n\tmargin: 8px 0;\n\tpadding: 8px 10px;\n\tborder-left: 3px solid var(--baseline);\n}\n\n.status-block.check {\n\tborder-left-color: var(--status-warning);\n}\n\n.status-block .status-title {\n\tfont-size: 1em;\n\tmargin: 0 0 4px;\n}\n\n.status-block .reasons {\n\tmargin: 4px 0;\n\tpadding-left: 0;\n\tlist-style: none;\n}\n\n.status-block .reasons li {\n\tmargin: 3px 0;\n}\n\n/* The contents list: inline, an \"On this page\" disclosure beside the theme switch whose links drop down under it in\n   a panel over the page; or a panel fixed in the page's left margin when the viewport leaves room (the script sets\n   its position and keeps it open there). */\n/* A link back to the list puts it below the window's top edge, so the focused link's ring shows whole. */\n.contents {\n\tfont-size: var(--size-label);\n\tscroll-margin-top: var(--scroll-offset, 16px);\n}\n\n.contents:not(.side) {\n\tposition: relative;\n}\n\n.contents:not(.side) .contents-disclosure > ul {\n\tposition: absolute;\n\tz-index: 30;\n\tright: 0;\n\ttop: calc(100% + 6px);\n\twidth: max-content;\n\tmax-width: min(22em, calc(100vw - 32px));\n\tpadding: 6px 14px;\n\tbackground: var(--panel-surface);\n\tborder: 1px solid var(--border);\n\tborder-radius: 8px;\n\tbox-shadow: var(--panel-shadow);\n}\n\n/* In the margin, the list's name is a quiet heading over its links, in the disclosure's place. */\n.contents-label {\n\tmargin: 0 0 6px;\n\tfont-size: var(--size-small);\n\tfont-weight: 600;\n\tcolor: var(--text-secondary);\n}\n\n.contents:not(.side) .contents-label,\n.contents.side .contents-disclosure > summary {\n\tdisplay: none;\n}\n\n.contents ul {\n\tmargin: 0;\n\tpadding: 0;\n\tlist-style: none;\n}\n\n\n.contents a {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tmin-height: 24px;\n}\n\n.contents a[aria-current=\"location\"] {\n\tfont-weight: 600;\n\tcolor: var(--text-primary);\n}\n\n/* Inline, each link is a \u2193 and its underlined name, the whole row its target. */\n.contents:not(.side) a {\n\tdisplay: flex;\n\talign-items: baseline;\n\tgap: 6px;\n\tmin-height: 32px;\n\tpadding: 6px 0;\n\ttext-decoration: none;\n}\n\n.contents:not(.side) .contents-text {\n\ttext-decoration: underline;\n\ttext-decoration-thickness: 1px;\n\ttext-underline-offset: 3px;\n}\n\n@media (hover: hover) {\n\t.contents:not(.side) a:hover .contents-text {\n\t\ttext-decoration-thickness: 2px;\n\t}\n}\n\n.contents-cue {\n\tflex: none;\n}\n\n.contents.side .contents-cue {\n\tdisplay: none;\n}\n\n.contents.side {\n\tposition: fixed;\n\tz-index: 10;\n\tmargin: 0;\n\tpadding: 10px 0 10px 12px;\n\tborder-left: 1px solid var(--gridline);\n\tcolor: var(--text-primary);\n\ttransition: opacity 0.15s ease;\n}\n\n.contents.side[data-surface=\"light\"] {\n\tcolor-scheme: light;\n}\n\n/* Where the page's colour under the list leaves its links short of 4.5:1 contrast with either palette, the list takes\n   its palette's surface as a backdrop. */\n.contents.side.backdrop {\n\tpadding-right: 10px;\n\tbackground: var(--surface);\n\tborder: 1px solid var(--border);\n\tborder-radius: 6px;\n}\n\n.contents.side a {\n\tposition: relative;\n\tdisplay: flex;\n\tpadding: 2px 0;\n}\n\n/* The current section: a bar over the list's rule beside its link. */\n.contents.side a[aria-current=\"location\"]::before {\n\tcontent: \"\";\n\tposition: absolute;\n\tleft: -13px;\n\ttop: 2px;\n\tbottom: 2px;\n\twidth: 2px;\n\tbackground: var(--text-primary);\n}\n\n.contents.side.out-of-view:not(:focus-within) {\n\topacity: 0;\n\tpointer-events: none;\n}\n\n/* On phones each link is a 44 px row at body size. */\n.root[data-layout=\"narrow\"] .contents:not(.side) ul {\n\tfont-size: var(--size-body);\n}\n\n.root[data-layout=\"narrow\"] .contents:not(.side) a {\n\talign-items: center;\n\tmin-height: 44px;\n\tpadding: 4px 0;\n}\n\n/* \"Back to contents\" at the end of each section: a small button, hidden (and out of the tab order) while the contents\n   list sits in the margin, where it is always in view. */\n.back-row {\n\tmargin: 10px 0 0;\n}\n\n.root.side-contents .back-row {\n\tdisplay: none;\n}\n\n.back-to-contents {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tgap: 6px;\n\tmin-height: 28px;\n\tpadding: 2px 10px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-primary);\n\ttext-decoration: none;\n\tbackground: var(--control-surface);\n\tborder: 1px solid var(--control-border);\n\tborder-radius: 6px;\n}\n\n@media (hover: hover) {\n\t.back-to-contents:hover {\n\t\tbackground: var(--control-hover);\n\t}\n}\n\n/* With the button above it, a section's heading needs less space before it. */\n.root:not(.side-contents) .back-row + .section-heading,\n.root:not(.side-contents) .back-row + :is(.page-section, .landmark-section) > .section-heading:first-child {\n\tmargin-top: 24px;\n}\n\n@media (prefers-reduced-motion: reduce) {\n\t.contents.side {\n\t\ttransition: none;\n\t}\n}\n\n/* Section headings: a step up from body text, with space and a hairline above. */\n.section-heading {\n\tfont-size: var(--size-section);\n\tline-height: 1.3;\n\tmargin: 40px 0 12px;\n\tpadding-top: 16px;\n\tborder-top: 1px solid var(--gridline);\n\tscroll-margin-top: var(--scroll-offset, 16px);\n}\n\n/* The chart's heading is a section heading like its sibling h3s, without the rule above. */\n.chart-heading {\n\tfont-size: var(--size-section);\n\tmargin: 20px 0 4px;\n\tscroll-margin-top: var(--scroll-offset, 16px);\n}\n\n/* On phones the lead and the chart's heading are a step smaller and the controls closer, so the chart's first row\n   shows on the first screen. */\n.root[data-layout=\"narrow\"] :is(.lead, .chart-heading) {\n\tfont-size: 17px;\n}\n\n.root[data-layout=\"narrow\"] .chart-heading {\n\tmargin-top: 16px;\n}\n\n.root[data-layout=\"narrow\"] .controls {\n\tmargin-top: 14px;\n}\n\n.chart-summary {\n\ttext-wrap: pretty;\n}\n\n/* Under the per-year view's heading: where to compare appointments of different lengths. */\n.view-note {\n\tmargin: 0 0 8px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n\tmax-width: 46em;\n\ttext-wrap: pretty;\n}\n\n/* Why a chart has no rows, in place of the chart. */\n.chart-empty {\n\tmargin: 8px 0 12px;\n\tfont-size: 14px;\n\tcolor: var(--text-secondary);\n\tmax-width: 46em;\n\ttext-wrap: pretty;\n}\n\n.subtitle {\n\tcolor: var(--text-secondary);\n}\n\n/* The page's foot: how many schools the page covers, and the notice from the page text. */\n.colophon {\n\tmargin-top: 32px;\n\tpadding-top: 16px;\n\tborder-top: 1px solid var(--gridline);\n}\n\n.colophon .footnote {\n\tmargin: 0 0 6px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n.page-notice {\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n\tmargin: 0;\n\tmax-width: 46em;\n}\n\n.network-links {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 4px 18px;\n\tmargin: 0 0 8px;\n\tpadding: 0;\n\tlist-style: none;\n\tfont-size: var(--size-label);\n}\n\n/* On phones, a list of one link to a line, at body size. */\n.root[data-layout=\"narrow\"] .network-links {\n\tflex-direction: column;\n\tgap: 0;\n\tfont-size: var(--size-body);\n}\n\n/* The license badge and the suggested credit, under the download links. */\n.license a {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tgap: 8px;\n}\n\n.license-icons {\n\tdisplay: inline-flex;\n\tgap: 2px;\n}\n\n.license-icon {\n\tdisplay: block;\n\tforced-color-adjust: none;\n}\n\n.suggested-credit {\n\tmargin: 4px 0 8px;\n}\n\n.page-section .credit-label {\n\tmargin: 0 0 4px;\n\tcolor: var(--text-primary);\n\tfont-weight: 600;\n}\n\n.credit-row {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: center;\n\tgap: 6px 10px;\n}\n\n.page-section .credit-text {\n\tmargin: 0;\n\tpadding: 4px 10px;\n\tborder-left: 3px solid var(--baseline);\n\tcolor: var(--text-primary);\n\tmax-width: 100%;\n}\n\n.copy-status {\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n.page-section p {\n\tcolor: var(--text-secondary);\n\tmax-width: 46em;\n}\n\n.page-section strong {\n\tcolor: var(--text-primary);\n}\n\n.download-links {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 8px;\n\tmargin: 4px 0 12px;\n\tpadding: 0;\n\tlist-style: none;\n}\n\n.purpose ul {\n\tmargin: 0 0 8px;\n\tpadding-left: 20px;\n\tmax-width: 46em;\n\tcolor: var(--text-secondary);\n}\n\n.purpose li {\n\tmargin: 3px 0;\n}\n\n/* Loading and failure messages, which stand in for the widget so the page never shows a blank gap. */\n.message {\n\tmargin: 0;\n\tcolor: var(--text-secondary);\n}\n\n.muted {\n\tcolor: var(--text-muted);\n}\n\n/* A hidden sample of label text: its size changes with the reader's text spacing, which redraws the charts. */\n.spacing-probe {\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\tvisibility: hidden;\n\tpointer-events: none;\n\twhite-space: nowrap;\n\tfont-size: var(--size-label);\n}\n\n.visually-hidden,\n.skip-link:not(:focus) {\n\tposition: absolute;\n\twidth: 1px;\n\theight: 1px;\n\tmargin: -1px;\n\tpadding: 0;\n\toverflow: hidden;\n\tclip: rect(0 0 0 0);\n\tclip-path: inset(50%);\n\twhite-space: nowrap;\n\tborder: 0;\n}\n\n/* Shown over the header when focused, so nothing moves. */\n.skip-link {\n\tposition: absolute;\n\ttop: 4px;\n\tleft: 0;\n\tz-index: 40;\n\tfont: inherit;\n\tcolor: var(--link);\n\tbackground: var(--panel-surface);\n\tborder: 1px solid var(--border);\n\tborder-radius: 6px;\n\tpadding: 4px 10px;\n\tcursor: pointer;\n}\n\nbutton {\n\tfont: inherit;\n\tcolor: inherit;\n}\n\n/* A reader's text spacing reaches the text in controls too, which browsers otherwise reset. */\nbutton,\nselect,\ninput {\n\tletter-spacing: inherit;\n\tword-spacing: inherit;\n}\n\n.controls {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 12px 20px;\n\talign-items: flex-start;\n\tmargin: 20px 0 8px;\n}\n\n.controls label,\n.sort-control,\n.filter-control {\n\tcolor: var(--text-secondary);\n\tfont-size: var(--size-label);\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 4px 8px;\n\talign-items: center;\n\tmax-width: 100%;\n}\n\n.view-control {\n\tdisplay: flex;\n\tmin-width: 0;\n\tmax-width: 100%;\n}\n\n/* In the chart's \"How to read\", only the shown view's description. */\n.view-descriptions {\n\tmargin: 0 0 8px;\n}\n\n.view-description {\n\tmargin: 0;\n\ttext-wrap: pretty;\n}\n\n.view-description:not(.shown) {\n\tdisplay: none;\n}\n\n/* One style for every control: the year, sort and filter selects, the view and theme switches, the download links,\n   the Copy button and the disclosures' summaries. */\nselect,\n.segmented button,\n.copy-button,\n.button-link,\n.disclosure > summary,\n.close-end {\n\tfont: inherit;\n\tfont-size: 14px;\n\tline-height: 1.3;\n\tcolor: var(--text-primary);\n\tbackground: var(--control-surface);\n\tborder: 1px solid var(--control-border);\n\tborder-radius: 6px;\n\tpadding: 5px 12px;\n\tmin-height: 32px;\n\tmax-width: 100%;\n\tcursor: pointer;\n}\n\n.button-link,\n.disclosure > summary {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tgap: 8px;\n\ttext-decoration: none;\n}\n\n/* Hover fills only where a pointer hovers: touch browsers keep :hover on the last control tapped. */\n@media (hover: hover) {\n\t.copy-button:hover,\n\t.button-link:hover,\n\t.disclosure > summary:hover,\n\t.close-end:hover,\n\t.segmented button:not([aria-pressed=\"true\"]):hover,\n\tselect:hover {\n\t\tbackground: var(--control-hover);\n\t}\n}\n\n.page-section .button-link {\n\tcolor: var(--text-primary);\n}\n\n/* Disclosures: a chevron that points right when closed and down when open. */\n.disclosure > summary {\n\tlist-style: none;\n}\n\n.disclosure > summary::-webkit-details-marker {\n\tdisplay: none;\n}\n\n.disclosure > summary::before,\n.chevron {\n\tcontent: \"\";\n\tflex: none;\n\tdisplay: inline-block;\n\twidth: 6px;\n\theight: 6px;\n\tborder-right: 2px solid var(--chevron);\n\tborder-bottom: 2px solid var(--chevron);\n\ttransform: rotate(-45deg);\n}\n\n.disclosure > summary::before {\n\tmargin: 0 2px 0 0;\n\ttransition: transform 0.15s ease;\n}\n\n.disclosure[open] > summary::before {\n\ttransform: rotate(45deg);\n}\n\n@media (prefers-reduced-motion: reduce) {\n\t.disclosure > summary::before {\n\t\ttransition: none;\n\t}\n}\n\n/* The chevron after a chart row's value, a timeline row's name and a table cell's text: it shows at rest that\n   selecting them opens details. */\n.chevron {\n\tmargin: 0 1px 1px 7px;\n\tvertical-align: middle;\n}\n\n.pay-row:focus-visible .chevron,\n.timeline-row:focus-visible .chevron,\n.cell-button:focus-visible .chevron,\n[aria-expanded=\"true\"] .chevron {\n\tborder-color: var(--text-primary);\n}\n\n@media (hover: hover) {\n\t.pay-row:hover .chevron,\n\t.timeline-row:hover .chevron,\n\t.cell-button:hover .chevron {\n\t\tborder-color: var(--text-primary);\n\t}\n}\n\n.chart-hint {\n\tmargin: 8px 0 0;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n\tmax-width: 46em;\n\ttext-wrap: pretty;\n}\n\n.segmented {\n\tdisplay: inline-flex;\n}\n\n.segmented button {\n\tborder-radius: 0;\n\twhite-space: nowrap;\n}\n\n.segmented button:first-child {\n\tborder-radius: 6px 0 0 6px;\n}\n\n.segmented button:last-child {\n\tborder-radius: 0 6px 6px 0;\n}\n\n.segmented button + button {\n\tborder-left: none;\n}\n\n/* The pressed button is tinted in the accent colour, edged in it (its left edge too, which the button before it\n   draws), and carries a bar along its bottom edge: a cue that survives a recolouring of the tint (Dark Reader's) and\n   changes no width. It is not inverted, since a black \"Auto\" or \"Light\" read as the dark theme being on. */\n.segmented button[aria-pressed=\"true\"] {\n\tbackground: color-mix(in srgb, var(--focus) 16%, var(--control-surface));\n\tcolor: var(--text-primary);\n\tborder-color: var(--focus);\n\tbox-shadow:\n\t\tinset 0 -3px 0 0 var(--focus),\n\t\t-1px 0 0 0 var(--focus);\n}\n\n.segmented button[aria-pressed=\"true\"]:first-child {\n\tbox-shadow: inset 0 -3px 0 0 var(--focus);\n}\n\n/* On phones the view switch spans the width, its three buttons sharing it without wrapping. */\n.root[data-layout=\"narrow\"] .view-control,\n.root[data-layout=\"narrow\"] .view-control .segmented {\n\twidth: 100%;\n}\n\n.root[data-layout=\"narrow\"] .view-control {\n\tflex-basis: 100%;\n}\n\n/* Labels may wrap inside the buttons, so the switch fits at 320 px and at 400% zoom. */\n.root[data-layout=\"narrow\"] .view-control .segmented button {\n\tflex: 1 1 0;\n\tmin-width: 0;\n\tpadding: 5px 6px;\n\twhite-space: normal;\n}\n\n/* Highlighting schools: a disclosure with a search box and checkboxes, and a chip per highlighted school. On wide\n   layouts it sits at the controls row's right edge. */\n.highlight-control {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\tgap: 8px;\n\tmax-width: 100%;\n}\n\n.root[data-layout=\"wide\"] .highlight-control {\n\tmargin-left: auto;\n}\n\n.picker {\n\tmargin-top: 8px;\n\tpadding: 10px;\n\tborder: 1px solid var(--gridline);\n\tborder-radius: 8px;\n\tbackground: var(--panel-surface);\n\twidth: min(420px, 100%);\n}\n\n/* Its label starts at the left like every other label (the controls row centres its labels' items). */\n.controls .picker-label {\n\tdisplay: flex;\n\tflex-direction: column;\n\talign-items: stretch;\n\tgap: 4px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n.picker-search {\n\tfont: inherit;\n\tfont-size: 14px;\n\tcolor: var(--text-primary);\n\tbackground: var(--control-surface);\n\tborder: 1px solid var(--control-border);\n\tborder-radius: 6px;\n\tpadding: 5px 8px;\n\tmin-height: 32px;\n\twidth: 100%;\n}\n\n.picker-list {\n\tmax-height: 260px;\n\toverflow-y: auto;\n\tmargin: 8px 0;\n\tpadding: 0;\n\tlist-style: none;\n\tfont-size: 14px;\n}\n\n.picker-list label {\n\tdisplay: flex;\n\talign-items: center;\n\tgap: 8px;\n\tmin-height: 28px;\n\tcursor: pointer;\n}\n\n.picker-list input {\n\twidth: 16px;\n\theight: 16px;\n\taccent-color: var(--series-contract);\n}\n\n.chips {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 6px;\n\tmargin: 0;\n\tpadding: 0;\n\tlist-style: none;\n}\n\n/* While the picker is open the chips follow it, below, as they do in the tab order. */\n.highlight-control:has(> details[open]) > .chips {\n\tflex-basis: 100%;\n}\n\n.chip {\n\tfont-size: var(--size-label);\n\tmin-height: 32px;\n\tpadding: 3px 10px;\n\tborder: 1px solid var(--control-border);\n\tborder-radius: 16px;\n\tbackground: var(--selected);\n\tcolor: var(--text-primary);\n\tcursor: pointer;\n}\n\n/* How to show the chosen schools: a two-way switch like the chart's views, after its label and over the current\n   choice's description, on a line of its own under the chips, outside the panel, so the state stays in view with the\n   panel closed. On phones its two buttons share the width. */\n.choice-mode {\n\tflex-basis: 100%;\n\tdisplay: flex;\n\tflex-direction: column;\n\tgap: 4px;\n\tmin-width: 0;\n}\n\n.choice-switch {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: center;\n\tgap: 4px 8px;\n}\n\n.choice-mode-label,\n.choice-description,\n.choice-hint {\n\tmargin: 0;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n.root[data-layout=\"narrow\"] .choice-mode .segmented {\n\tdisplay: flex;\n\twidth: 100%;\n}\n\n.root[data-layout=\"narrow\"] .choice-mode .segmented button {\n\tflex: 1 1 0;\n\tmin-width: 0;\n\tpadding-inline: 8px;\n\twhite-space: normal;\n}\n\n/* \"Only chosen schools\" before any school is chosen: muted, with no hover fill, and the hint under it says why. */\n.segmented button[aria-disabled=\"true\"] {\n\tcolor: var(--text-muted);\n\tcursor: not-allowed;\n}\n\n@media (hover: hover) {\n\t.segmented button[aria-disabled=\"true\"]:hover {\n\t\tbackground: var(--control-surface);\n\t}\n}\n\n/* On phones the button that opens the panel spans the width, so its label can grow with the count and nothing\n   beside it moves. */\n.root[data-layout=\"narrow\"] .highlight-control,\n.root[data-layout=\"narrow\"] .highlight-picker,\n.root[data-layout=\"narrow\"] .highlight-picker > summary {\n\twidth: 100%;\n}\n\n/* While only the chosen schools show: the line under each section's heading that says how many, with its Show all\n   button, on the tint of the chosen schools' chips. */\n.choice-note {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: center;\n\twidth: fit-content;\n\tmax-width: 100%;\n\tmargin: 0 0 10px;\n\tpadding: 2px 10px;\n\tborder-radius: 6px;\n\tbackground: var(--selected);\n\tfont-size: 14px;\n\tcolor: var(--text-primary);\n}\n\n.choice-note .link-button {\n\tfont-size: inherit;\n}\n\n.choice-note-separator {\n\twhite-space: pre;\n}\n\n.notice {\n\tbackground: var(--notice);\n\tborder-radius: 6px;\n\tpadding: 6px 10px;\n\tfont-size: 14px;\n\tmax-width: 46em;\n\ttext-wrap: pretty;\n}\n\n.legend {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 6px 18px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n\tmargin: 0 0 8px;\n\tpadding: 0;\n\tlist-style: none;\n}\n\n.legend-item {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tgap: 6px;\n}\n\n/* On phones, one item to a line: every key takes the same box, so the labels share one left edge. The over-time\n   view's legend of school names wraps them instead. */\n.root[data-layout=\"narrow\"] .legend:not(.names) {\n\tflex-direction: column;\n\talign-items: flex-start;\n}\n\n.root[data-layout=\"narrow\"] .legend-item > :first-child {\n\tflex: none;\n\twidth: 30px;\n}\n\n.key {\n\tflex: none;\n\toverflow: visible;\n}\n\n/* The asterisk of a calculated figure, as the value labels show it, in a key's box. */\n.key-glyph {\n\tdisplay: inline-block;\n\twidth: 24px;\n\ttext-align: center;\n\tfont-size: var(--size-body);\n\tfont-weight: 600;\n\tline-height: 1;\n\tcolor: var(--text-primary);\n}\n\n/* Pay chart and timeline rows: a name column and a track. On narrow layouts the name sits above the track. */\n.pay-list,\n.timeline-list {\n\tlist-style: none;\n\tmargin: 0;\n\tpadding: 0;\n}\n\n.pay-list > li,\n.timeline-list > li {\n\tmargin: 0;\n\tpadding: 0;\n}\n\n.pay-row,\n.timeline-row,\n.axis-row {\n\tdisplay: grid;\n\tgrid-template-columns: var(--name-column, 150px) minmax(0, 1fr);\n\tcolumn-gap: 10px;\n\talign-items: center;\n\twidth: 100%;\n}\n\n.pay-row,\n.timeline-row {\n\tposition: relative;\n\tbackground: none;\n\tborder: none;\n\tpadding: 0;\n\tmargin: 0;\n\ttext-align: left;\n\tcursor: pointer;\n\tborder-radius: 4px;\n}\n\n.pay-row {\n\tmin-height: 34px;\n}\n\n.root[data-layout=\"wide\"] .pay-row .name {\n\talign-self: end;\n\tline-height: 14px;\n\tpadding-bottom: 4px;\n}\n\n/* Names are semibold, so they stand above the muted union line under them. They wrap between words rather than being\n   cut off, also when a reader's text spacing widens them; only a word wider than the whole column breaks. */\n.pay-row .name,\n.timeline-row .name {\n\tfont-size: var(--size-label);\n\tfont-weight: 600;\n\tcolor: var(--text-secondary);\n\ttext-align: right;\n\toverflow-wrap: break-word;\n}\n\n.name-text {\n\tdisplay: inline;\n}\n\n.name-text .status-icon {\n\tmargin-left: 4px;\n}\n\n.track {\n\tdisplay: block;\n\tline-height: 0;\n}\n\n.track svg {\n\tdisplay: block;\n\toverflow: visible;\n\tforced-color-adjust: none;\n}\n\n/* A wide row's value label sits on a backing of the surface colour, so gridlines and the median and 30 percent lines\n   pass behind it. The backing is a background, which Dark Reader darkens exactly as it darkens the widget's own. */\n.pay-row .value {\n\tposition: absolute;\n\ttop: 0;\n\tmargin-left: -3px;\n\tpadding: 0 3px;\n\tborder-radius: 3px;\n\tbackground: var(--surface);\n\tfont-size: var(--size-label);\n\tline-height: 16px;\n\twhite-space: nowrap;\n\tfont-variant-numeric: tabular-nums;\n\tcolor: var(--text-primary);\n\tpointer-events: none;\n}\n\n.pay-row[aria-expanded=\"true\"] .value {\n\tbackground: linear-gradient(var(--selected), var(--selected)), var(--surface);\n}\n\n@media (hover: hover) {\n\t.pay-row:hover .value {\n\t\tbackground: linear-gradient(var(--selected), var(--selected)), var(--surface);\n\t}\n}\n\n.tag {\n\tcolor: var(--text-muted);\n}\n\n/* A label's parts (amount, length, tags, pay per month): each whole on one line with the separator that follows it.\n   The separator box is as wide as \" \u00b7 \", so the label measures as its text does. The last part's separator is a\n   spacer, which only phones keep (see below). */\n.segment {\n\twhite-space: nowrap;\n}\n\n.separator {\n\tdisplay: inline-block;\n\twidth: 0.8em;\n\ttext-align: center;\n\tcolor: var(--text-muted);\n}\n\n.separator.end {\n\tdisplay: none;\n}\n\n.label-clip,\n.label-parts {\n\tdisplay: contents;\n}\n\n/* The yearly chart's pay per month, after the rest of the label in muted text. Where the whole label would crowd the\n   row, it takes a line of its own under the rest, without the separator. */\n.monthly {\n\tcolor: var(--text-muted);\n\twhite-space: nowrap;\n}\n\n.value.wrapped .monthly {\n\tdisplay: block;\n}\n\n/* The rent chart's pay, in that place, in the label's own colour. */\n.monthly.plain {\n\tcolor: inherit;\n}\n\n.value.wrapped .before-monthly {\n\tvisibility: hidden;\n}\n\n.pay-row:focus-visible .bar,\n.pay-row:focus-visible .soft-bar {\n\tfilter: brightness(1.12);\n}\n\n/* The timeline's rows alternate a faint band, so each row's stacked marks read as its own. */\n:where(.timeline-list > li:nth-child(even)) > .timeline-row {\n\tbackground: var(--band);\n}\n\n.pay-row[aria-expanded=\"true\"],\n.timeline-row[aria-expanded=\"true\"] {\n\tbackground: var(--selected);\n}\n\n@media (hover: hover) {\n\t.pay-row:hover .bar,\n\t.pay-row:hover .soft-bar {\n\t\tfilter: brightness(1.12);\n\t}\n\n\t.pay-row:hover,\n\t.timeline-row:hover {\n\t\tbackground: var(--selected);\n\t}\n}\n\n/* Highlighted schools keep their strength and their names are marked as with a highlighter, in the tint of the\n   highlight chips (every name is already semibold, so weight cannot mark them); the rest fade: their marks (and\n   clocks) to a third of their strength, their names, values and the timeline's notes to the muted ink, which keeps\n   4.5:1 contrast (set after the narrow layout's rules below). The mark reaches 3 px past the name on either side\n   without moving it. */\n.pay-row.faded .track,\n.timeline-row.faded .track svg > :not(.track-note),\n:is(.pay-row, .timeline-row).faded .name .status-icon {\n\topacity: 0.35;\n}\n\n:is(.pay-row, .timeline-row).highlighted .name-text {\n\tmargin-inline: -3px;\n\tpadding-inline: 3px;\n\tborder-radius: 3px;\n\tbackground: var(--highlight-mark);\n\tcolor: var(--text-primary);\n\t-webkit-box-decoration-break: clone;\n\tbox-decoration-break: clone;\n}\n\ntr.highlighted .school-name {\n\tfont-weight: 700;\n\tcolor: var(--text-primary);\n}\n\ntr.highlighted th,\ntr.highlighted td {\n\tbackground: var(--selected);\n}\n\n.pay-row:focus-visible,\n.timeline-row:focus-visible,\n.cell-button:focus-visible,\n.sort-button:focus-visible,\nselect:focus-visible,\n.picker-search:focus-visible,\n.picker-list input:focus-visible,\n.segmented button:focus-visible,\nsummary:focus-visible,\n.skip-link:focus-visible,\n.close:focus-visible,\n.close-end:focus-visible,\n.copy-button:focus-visible,\n.button-link:focus-visible,\n.link-button:focus-visible,\n.chip:focus-visible,\n.root a:focus-visible {\n\toutline: 2px solid var(--focus);\n\toutline-offset: 2px;\n}\n\n.pay-row:focus-visible,\n.timeline-row:focus-visible {\n\toutline-offset: -2px;\n}\n\n/* On narrow rows the name starts at the button's edge, so the ring sits outside it. */\n.root[data-layout=\"narrow\"] .pay-row:focus-visible,\n.root[data-layout=\"narrow\"] .timeline-row:focus-visible {\n\toutline-offset: 2px;\n}\n\n/* On phones the name sits above the bar with the value label beside it; the label takes at most 55% of the width and\n   wraps, so the name keeps room for its longest word. */\n.root[data-layout=\"narrow\"] .pay-row,\n.root[data-layout=\"narrow\"] .timeline-row,\n.root[data-layout=\"narrow\"] .axis-row {\n\tgrid-template-columns: minmax(0, 1fr) fit-content(55%);\n\tgrid-template-areas: \"name value\" \"track track\";\n\tcolumn-gap: 8px;\n}\n\n.root[data-layout=\"narrow\"] .pay-row {\n\theight: auto;\n\talign-items: start;\n\tpadding: 4px 0 6px;\n\trow-gap: 2px;\n}\n\n.root[data-layout=\"narrow\"] .timeline-row {\n\tpadding: 4px 0;\n}\n\n.root[data-layout=\"narrow\"] .pay-row .name,\n.root[data-layout=\"narrow\"] .timeline-row .name {\n\tgrid-area: name;\n\ttext-align: left;\n\tcolor: var(--text-primary);\n}\n\n/* On phones a label's parts are right-aligned, every one followed by its separator (the last one's hidden), and the\n   parts are clipped one separator short of the right edge, so a separator that ends a line falls outside and none is\n   left dangling. */\n.root[data-layout=\"narrow\"] .pay-row .value .label-clip {\n\tdisplay: block;\n\toverflow: hidden;\n}\n\n.root[data-layout=\"narrow\"] .pay-row .value .label-parts {\n\tdisplay: block;\n\tmargin-right: -0.8em;\n}\n\n.root[data-layout=\"narrow\"] .pay-row .value .separator.end {\n\tdisplay: inline-block;\n\tvisibility: hidden;\n}\n\n/* A long label wraps in balanced lines, its chevron kept at the end of the last one. */\n.root[data-layout=\"narrow\"] .pay-row .value {\n\tgrid-area: value;\n\tposition: relative;\n\tmargin: 0;\n\tpadding: 0 15px 0 0;\n\tbackground: none;\n\ttext-align: right;\n\twhite-space: normal;\n\ttext-wrap: balance;\n}\n\n.root[data-layout=\"narrow\"] .pay-row .value .chevron {\n\tposition: absolute;\n\tright: 3px;\n\tbottom: 6px;\n\tmargin: 0;\n}\n\n.root[data-layout] .pay-row.faded :is(.name, .value),\n.root[data-layout] .timeline-row.faded .name {\n\tcolor: var(--text-muted);\n}\n\n.root[data-layout=\"narrow\"] .track {\n\tgrid-area: track;\n}\n\n.root[data-layout=\"narrow\"] .axis-row .name {\n\tdisplay: none;\n}\n\n/* A chart's or the timelines' row: the row's button, and its unions laid over its name column, linked to their\n   websites (a button cannot hold a link). The button takes the list item's grid (subgrid), so the name, the unions\n   and the track keep their places: the unions under the name, in its column, on wide layouts (the bars keep their\n   width); on a line of their own under the name on phones. Every row keeps that line, held by an empty placeholder\n   where a school has no union, and a union's label stays on it, ending in an ellipsis where the column is too narrow,\n   so no row is shorter or taller than the rest and the bars are evenly spaced.\n   A bar chart's rows all take the height of its tallest (one whose value label wraps, or on phones whose name or\n   label takes more lines), the room left over going above the name, so each bar keeps its place at its row's foot.\n   For that the list is the grid: each item takes three of its rows (subgrid), the first sized alike in every item\n   (1fr), then the unions' line and a row for the details panel that opens inline on phones, which is empty\n   otherwise, so an open panel lengthens its own item alone. Phones add the track's row before the panel's. */\n.pay-list {\n\tdisplay: grid;\n\tgrid-template-columns: minmax(0, 1fr);\n\tgrid-auto-rows: 1fr auto auto;\n}\n\n.root[data-layout=\"narrow\"] .pay-list {\n\tgrid-auto-rows: 1fr auto auto auto;\n}\n\n:is(.pay-list, .timeline-list) > li.row-item {\n\tdisplay: grid;\n\tgrid-template-columns: var(--name-column, 150px) minmax(0, 1fr);\n\tgrid-template-rows: 1fr auto;\n\tcolumn-gap: 10px;\n}\n\n.pay-list > li.row-item {\n\tgrid-row: span 3;\n\tgrid-template-rows: subgrid;\n}\n\n.root[data-layout=\"narrow\"] .pay-list > li.row-item {\n\tgrid-row: span 4;\n}\n\n/* The median's divider takes a slim track of its own, after the rows' tracks of the schools at or above the median\n   (--rows-above of them); the rows below take the implicit tracks, which repeat the pattern from its start, so every\n   row keeps the same height. */\n.pay-list[data-median-after] {\n\tgrid-template-rows: repeat(var(--rows-above), 1fr auto auto) auto;\n}\n\n.root[data-layout=\"narrow\"] .pay-list[data-median-after] {\n\tgrid-template-rows: repeat(var(--rows-above), 1fr auto auto auto) auto;\n}\n\n.root .pay-list[data-median-after=\"0\"] {\n\tgrid-template-rows: auto;\n}\n\n/* The divider: its label where the schools' names are, and a dotted rule like the median line across the bars'\n   column. */\n.pay-list > li.median-divider {\n\tpadding: 2px 0;\n\tfont-size: var(--size-small);\n\tline-height: 16px;\n\tcolor: var(--text-secondary);\n\tfont-variant-numeric: tabular-nums;\n}\n\n.median-divider-line {\n\tdisplay: grid;\n\tgrid-template-columns: var(--name-column, 150px) minmax(0, 1fr);\n\tcolumn-gap: 10px;\n\talign-items: center;\n}\n\n.median-divider-label {\n\ttext-align: right;\n}\n\n.median-rule {\n\tdisplay: block;\n\toverflow: visible;\n\tforced-color-adjust: none;\n}\n\n/* On phones the label leads the line, and the divider keeps some room from the bar above and the name below. */\n.root[data-layout=\"narrow\"] .pay-list > li.median-divider {\n\tpadding: 8px 0 6px;\n}\n\n.root[data-layout=\"narrow\"] .median-divider-line {\n\tgrid-template-columns: auto minmax(0, 1fr);\n\tcolumn-gap: 8px;\n}\n\n.root[data-layout=\"narrow\"] .median-divider-label {\n\ttext-align: left;\n}\n\n/* The button spans the name's and the unions' rows (and the track's on phones), not the panel's. */\n:is(.pay-list, .timeline-list) > li.row-item > :is(.pay-row, .timeline-row) {\n\tgrid-column: 1 / -1;\n\tgrid-row: 1 / span 2;\n\tgrid-template-columns: subgrid;\n\tgrid-template-rows: subgrid;\n\tgrid-template-areas: none;\n}\n\n.root[data-layout=\"narrow\"] :is(.pay-list, .timeline-list) > li.row-item > :is(.pay-row, .timeline-row) {\n\tgrid-row: 1 / span 3;\n}\n\n/* A details panel that opens inline (on phones) takes the item's full width, under the row. */\n:is(.pay-list, .timeline-list) > li.row-item > .panel:not(.floating) {\n\tgrid-column: 1 / -1;\n}\n\n:is(.pay-list, .timeline-list) > li.row-item > :is(.pay-row, .timeline-row) .name {\n\tgrid-column: 1;\n\tgrid-row: 1;\n\talign-self: end;\n}\n\n.timeline-list > li.row-item > .timeline-row .track {\n\tgrid-column: 2;\n\tgrid-row: 1 / -1;\n\talign-self: center;\n}\n\n.pay-list > li.row-item > .pay-row .track {\n\tgrid-column: 2;\n\tgrid-row: 1;\n\talign-self: end;\n}\n\n/* A wide row's value label sits in the track's grid area, its foot at the top of the bar (the script sets how far\n   above the track's foot that is). Both ends of the area are given: a positioned item's missing end would be the\n   row's edge. */\n.root[data-layout=\"wide\"] .pay-list > li.row-item > .pay-row .value {\n\tgrid-column: 2 / 3;\n\tgrid-row: 1 / 2;\n\ttop: auto;\n}\n\n.union-links {\n\tgrid-column: 1;\n\tgrid-row: 2;\n\tdisplay: flex;\n\tjustify-content: flex-end;\n\tjustify-self: end;\n\talign-self: start;\n\tposition: relative;\n\tz-index: 1;\n\tmin-width: 0;\n\tmax-width: 100%;\n\tpadding-bottom: 4px;\n\tfont-size: var(--size-small);\n\tline-height: 16px;\n\tcolor: var(--text-muted);\n\twhite-space: nowrap;\n}\n\n.union-links.placeholder {\n\tpointer-events: none;\n}\n\n/* A union's label is a target of at least 24 px (44 px on phones); on wide layouts it reaches 4 px past its 16 px\n   line above and below, so the row grows only by the line. A label without a link takes the same box, so its row is\n   as tall as the rest. */\n.union-links > :is(a, .union-name),\n.union-line a {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tmin-width: 0;\n\tmin-height: 24px;\n}\n\n.union-links > :is(a, .union-name) > span {\n\tmin-width: 0;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n}\n\n.root[data-layout=\"wide\"] .union-links > :is(a, .union-name) {\n\tmargin-block: -4px;\n}\n\n.root[data-layout=\"narrow\"] :is(.pay-list, .timeline-list) > li.row-item {\n\tgrid-template-columns: minmax(0, 1fr) fit-content(55%);\n\tcolumn-gap: 8px;\n\trow-gap: 2px;\n}\n\n.root[data-layout=\"narrow\"] .timeline-list > li.row-item {\n\tgrid-template-rows: 1fr auto auto;\n}\n\n.root[data-layout=\"narrow\"] :is(.pay-list, .timeline-list) > li.row-item > :is(.pay-row, .timeline-row) .name {\n\tgrid-column: 1;\n\tgrid-row: 1;\n\talign-self: end;\n}\n\n.root[data-layout=\"narrow\"] .pay-list > li.row-item > .pay-row .value {\n\tgrid-column: 2;\n\tgrid-row: 1;\n\talign-self: end;\n}\n\n.root[data-layout=\"narrow\"] :is(.pay-list, .timeline-list) > li.row-item > :is(.pay-row, .timeline-row) .track {\n\tgrid-column: 1 / -1;\n\tgrid-row: 3;\n}\n\n.root[data-layout=\"narrow\"] .union-links {\n\tgrid-column: 1 / -1;\n\tgrid-row: 2;\n\tjustify-content: flex-start;\n\tjustify-self: start;\n\tpadding-bottom: 0;\n}\n\n.root[data-layout=\"narrow\"] :is(.union-links > :is(a, .union-name), .union-line a) {\n\tmin-height: 44px;\n}\n\n/* In the bar charts and the timelines a union is a quiet link under the school's name, which stays the strongest text\n   in its column: the muted ink (4.5:1 in both themes) with a thin dotted underline, turning to the link colour with a\n   solid underline on hover and keyboard focus. The table and the details keep the usual link style. */\n.union-links a {\n\tcolor: var(--text-muted);\n\ttext-decoration-line: underline;\n\ttext-decoration-style: dotted;\n\ttext-decoration-thickness: 1px;\n\ttext-underline-offset: 2px;\n}\n\n.union-links a:is(:hover, :focus-visible) {\n\tcolor: var(--link);\n\ttext-decoration-style: solid;\n}\n\n/* A faded row's unions fade with its name. */\n:is(.pay-row, .timeline-row).faded ~ .union-links,\n:is(.pay-row, .timeline-row).faded ~ .union-links a {\n\tcolor: var(--text-muted);\n}\n\n.axis-title {\n\tfont-size: var(--size-small);\n\tcolor: var(--text-muted);\n\tmargin: 2px 0 10px;\n}\n\n.track text {\n\tfont-size: var(--size-small);\n\tfill: var(--text-muted);\n\tfont-variant-numeric: tabular-nums;\n}\n\n.track .reference-label {\n\tfill: var(--text-secondary);\n}\n\n.gridline {\n\tstroke: currentColor;\n\tstroke-opacity: var(--gridline-opacity);\n\tstroke-width: 1;\n}\n\n.baseline,\n.tick {\n\tstroke: currentColor;\n\tstroke-opacity: var(--baseline-opacity);\n\tstroke-width: 1;\n}\n\n.bar.series-contract {\n\tfill: var(--series-contract);\n}\n\n.bar.series-policy {\n\tfill: var(--series-policy);\n}\n\n.bar.summer {\n\tstroke-width: 1;\n}\n\n.bar.summer.series-contract {\n\tfill: var(--series-contract-light);\n\tstroke: var(--series-contract);\n}\n\n.bar.summer.series-policy {\n\tfill: var(--series-policy-light);\n\tstroke: var(--series-policy);\n}\n\n/* The 12-month outline: hollow, with a fine dashed edge in muted ink, the same after both kinds of bar, so it never\n   reads as pay (which is always tinted, summer pay included). */\n.extension {\n\tfill: none;\n\tstroke: var(--text-muted);\n\tstroke-width: 1;\n\tstroke-dasharray: 3 2;\n}\n\n.soft-bar {\n\tstroke-width: 1;\n}\n\n/* An estimate's or qualifying amount's bar: hollow, edged and dotted in its series colour, so it reads apart from\n   minimum pay's solid bars and from university policy's stripes. */\n.soft-bar.series-contract {\n\tstroke: var(--series-contract);\n}\n\n.soft-bar.series-policy {\n\tstroke: var(--series-policy);\n}\n\n.hatch-dot.series-contract {\n\tfill: var(--series-contract);\n}\n\n.hatch-dot.series-policy {\n\tfill: var(--series-policy);\n}\n\n.hatch-ground {\n\tfill: none;\n}\n\n/* University policy's hatch: light stripes over the bar's fill, edged in the series colour so the bar's edge keeps its\n   contrast. */\n.policy-hatch {\n\tstroke: var(--series-policy);\n\tstroke-width: 1;\n}\n\n.policy-stripe {\n\tstroke: #ffffff;\n\tstroke-opacity: 0.5;\n\tstroke-width: 1.5;\n}\n\n/* Living costs on the bars: a dot for rent, a vertical line for living costs from the cost of attendance, the dashed\n   30 percent line on the rent chart, and the dotted median on the pay chart. A living-cost mark is inked like the\n   timeline's event marks: filled in a text colour, or hollow with no fill, so a recolouring that keeps text readable\n   keeps them apart. Unlike those, it keeps a halo of the surface, which sets it off from the pale end of a bar with\n   summer pay (where ink alone would show at about 2:1 in the dark theme); where Dark Reader recolours the halo as\n   text, it merges with the fill, and the mark still reads as filled. */\n.living-mark {\n\tfill: var(--living-mark);\n\tstroke: var(--surface);\n\tstroke-width: 2;\n\tpaint-order: stroke;\n}\n\n/* A partial estimate (its budget leaves some costs unitemized) is hollow. */\n.living-mark.partial {\n\tfill: none;\n\tstroke: var(--living-mark);\n\tstroke-width: 1.5;\n\tpaint-order: normal;\n}\n\n.burden-line {\n\tstroke: var(--living-mark);\n\tstroke-width: 1.5;\n\tstroke-dasharray: 4 3;\n}\n\n.median-line {\n\tstroke: var(--text-secondary);\n\tstroke-width: 1;\n\tstroke-dasharray: 1 3;\n\tstroke-linecap: round;\n}\n\n.flag {\n\tcolor: var(--burden);\n}\n\n/* The network's credit inside a chart's frame. */\n.credit {\n\tdisplay: block;\n\toverflow: visible;\n\tmargin-top: 2px;\n}\n\n.credit text {\n\tfont-size: var(--size-small);\n\tfill: var(--text-muted);\n}\n\n/* \"How to read this chart\" (and this table), above what it explains: the summary is a control like the others; what\n   it opens is quiet text at the label size. */\n.how-to-read {\n\tmargin: 0 0 12px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n.how-to-read > :not(summary, .label-key) {\n\tmax-width: 46em;\n}\n\n.how-to-read[open] > summary {\n\tmargin-bottom: 8px;\n}\n\n.how-to-read > p {\n\tmargin: 0 0 8px;\n}\n\n.how-to-read > .legend {\n\tmargin: 8px 0;\n}\n\n.how-to-read .notes {\n\tmargin: 8px 0;\n\tpadding-left: 18px;\n}\n\n.how-to-read .notes li {\n\tmargin: 4px 0;\n\ttext-wrap: pretty;\n}\n\n.how-to-read :is(.legend, .notes, .coverage-note):empty {\n\tdisplay: none;\n}\n\n/* A page section's parts behind disclosures (About this data, and the rest of a section's text). */\n.page-section .section-more {\n\tmargin: 8px 0;\n}\n\n.page-section .section-more > p {\n\tmargin: 8px 0 4px;\n}\n\n.soft-block {\n\tmargin: 16px 0 8px;\n\tpadding-top: 12px;\n\tborder-top: 1px solid var(--gridline);\n}\n\n.soft-block .block-heading {\n\tmargin-bottom: 4px;\n}\n\n.soft-block > p {\n\tfont-size: var(--size-label);\n\tmax-width: 46em;\n\ttext-wrap: pretty;\n}\n\n.not-charted {\n\tmargin: 12px 0 0;\n\tfont-size: 14px;\n\tcolor: var(--text-secondary);\n}\n\n.not-charted ul {\n\tmargin: 8px 0 0;\n\tpadding: 0;\n\tlist-style: none;\n}\n\n.not-charted li {\n\tmargin: 6px 0;\n}\n\n/* Timeline */\n.timeline-details > .subtitle {\n\tmargin-top: 10px;\n}\n\n.contract-bar {\n\tstroke-width: 1;\n}\n\n.contract-bar.status-current {\n\tfill: var(--series-contract);\n\tstroke: var(--series-contract);\n}\n\n.contract-bar.status-expired-continuing {\n\tfill: var(--series-contract-continuing);\n\tstroke: var(--series-contract);\n}\n\n/* While an expired contract's terms still apply, a line runs through its bar and on to the date of the data: a cue\n   besides the paler fill that tells it from a contract in effect. */\n.continuing-line {\n\tstroke: var(--series-contract);\n\tstroke-width: 2;\n}\n\n/* \"Expired, no successor yet\" is hollow: an outline with nothing inside, which no restyling of colours can fill. */\n.contract-bar.status-expired {\n\tfill: none;\n\tstroke: var(--series-contract);\n\tstroke-width: 1.5;\n}\n\n/* Superseded and unknown contracts are thin grey bars (contractBarMarks), so they differ from the rest without colour.\n   Their edge is solid: a dashed outline means 12 months at the same rate in the bar charts. */\n.contract-bar.status-superseded,\n.contract-bar.status-unknown {\n\tfill: var(--series-superseded);\n\tstroke: var(--text-muted);\n}\n\n/* An event's mark is drawn in one colour, a text colour, and nothing else: filled, its fill and edge alike, or hollow,\n   an edge with nothing inside. So whatever recolours the page's text (Dark Reader, which treats every fill and stroke\n   as text, or forced colours) recolours the whole mark, and filled stays filled and hollow hollow. A halo or a hollow\n   inside painted in the surface colour would not: restyled as text, it no longer matches the surface behind it, and\n   the marks look swapped. */\n.marker {\n\tfill: var(--text-primary);\n\tstroke: var(--text-primary);\n\tstroke-width: 1;\n}\n\n.marker-other {\n\tfill: var(--text-secondary);\n\tstroke: var(--text-secondary);\n}\n\n/* A mark whose place is approximate (a date known only to the year, or an event off the scale): hollow. */\n.marker.hollow {\n\tfill: none;\n\tstroke: var(--text-primary);\n\tstroke-width: 1.5;\n}\n\n.as-of {\n\tstroke: var(--text-muted);\n\tstroke-width: 1;\n}\n\n.track .track-note,\n.key .track-note {\n\tfont-size: var(--size-small);\n\tfill: var(--text-muted);\n}\n\n/* Table */\n.table-details > summary {\n\tmargin-bottom: 8px;\n}\n\n/* The table's one-line introduction, then its \"How to read this table\". */\n.table-intro {\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n\tmax-width: 52em;\n\tmargin: 0 0 8px;\n}\n\n.table-explainer {\n\tmax-width: 52em;\n}\n\n.table-controls {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 8px 20px;\n\tmargin: 8px 0;\n}\n\n/* The key to the Union contract and benefit columns' labels, just above the table: each label in bold, then what it\n   means, in two columns where there is room. */\n.label-key {\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n\tmargin: 12px 0;\n}\n\n.label-key .key-heading {\n\tfont-size: var(--size-label);\n\tfont-weight: 600;\n\tcolor: var(--text-primary);\n\tmargin: 0 0 6px;\n}\n\n.key-groups {\n\tdisplay: grid;\n\tgrid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n\tgap: 4px 28px;\n}\n\n.key-group-title {\n\tfont-weight: 600;\n\tmargin: 0 0 2px;\n}\n\n.label-key dl {\n\tmargin: 0;\n}\n\n.label-key dl > div {\n\tmargin: 0 0 3px;\n}\n\n.label-key dt {\n\tdisplay: inline;\n\tfont-weight: 600;\n\tcolor: var(--text-primary);\n}\n\n.label-key dd {\n\tdisplay: inline;\n\tmargin: 0;\n}\n\n/* The table is drawn as cards (cards on the disclosure) on phones and wherever its columns do not fit; then \"Sort by\"\n   does the headings' job. */\n.table-details:not(.cards) .sort-control,\n.table-details:not(.cards) .narrow-only,\n.table-details.cards .wide-only {\n\tdisplay: none;\n}\n\n/* On cards both controls put their label above the select. */\n.table-details.cards .table-controls label {\n\tflex-direction: column;\n\talign-items: flex-start;\n}\n\n.table-wrap {\n\toverflow-x: auto;\n}\n\n/* Where the table fits without scrolling sideways, its heading row stays in view as the page scrolls, with a rule\n   along its bottom edge (a box shadow does not paint on collapsed-border cells). */\n.table-details:not(.cards) .table-wrap.fits {\n\toverflow: visible;\n}\n\n.table-details:not(.cards) .table-wrap.fits thead th {\n\tposition: sticky;\n\ttop: var(--sticky-top, 0px);\n\tz-index: 2;\n\tbackground: var(--surface);\n}\n\n.table-details:not(.cards) .table-wrap.fits thead th::after {\n\tcontent: \"\";\n\tposition: absolute;\n\tleft: 0;\n\tright: 0;\n\tbottom: -1px;\n\theight: 1px;\n\tbackground: var(--baseline);\n}\n\ntable {\n\tborder-collapse: collapse;\n\twidth: 100%;\n\tfont-size: 14px;\n}\n\ncaption {\n\ttext-align: left;\n\tpadding-bottom: 8px;\n\tfont-weight: 600;\n\tcolor: var(--text-primary);\n}\n\nth,\ntd {\n\ttext-align: left;\n\tpadding: 8px;\n\tborder-bottom: 1px solid var(--gridline);\n\tvertical-align: top;\n}\n\nth {\n\tcolor: var(--text-secondary);\n\tfont-weight: 600;\n}\n\ntbody th .school-name {\n\tcolor: var(--text-primary);\n}\n\n.status-line {\n\tdisplay: block;\n\tmargin-top: 2px;\n}\n\n/* The school's unions under its name, linked to their websites. */\n.union-line {\n\tdisplay: block;\n\tfont-size: var(--size-small);\n\tfont-weight: 400;\n\tcolor: var(--text-secondary);\n}\n\n.status-marker {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tgap: 4px;\n\tfont-size: var(--size-small);\n\tfont-weight: 400;\n\tcolor: var(--text-secondary);\n}\n\ntd.number {\n\ttext-align: right;\n\tfont-variant-numeric: tabular-nums;\n}\n\n/* Headings over figures align with them, at the right. */\nth.number,\ntd.number .cell-button,\nth.number .sort-button {\n\ttext-align: right;\n}\n\n/* A school's name and a contract's status break only between words (in Chinese, at a comma: \u5df2\u5230\u671f\uff0c/\u6761\u6b3e\u7ee7\u7eed\u9002\u7528),\n   so narrow columns don't split them between any two characters; in Chinese the same holds for the benefit labels,\n   the notes where a figure is missing and the headings. */\ntbody th .school-name,\ntd.contract .main,\n.root:lang(zh) :is(td .main, td .muted, th .sort-button, tr.divider td) {\n\tword-break: keep-all;\n}\n\n/* Amounts and shares stay whole; the parts of a label may wrap between them. */\n.nowrap {\n\twhite-space: nowrap;\n}\n\n.share-bar {\n\tdisplay: block;\n\tmargin: 3px 0 0 auto;\n\tforced-color-adjust: none;\n}\n\n.share-track {\n\tfill: var(--gridline);\n}\n\n.share-fill {\n\tfill: var(--text-muted);\n}\n\n/* The part of a rent share past HUD's 30 percent line, in the colour of the details' \u25b2 for the same. */\n.share-fill.over {\n\tfill: var(--burden);\n}\n\n.share-tick {\n\tstroke: var(--text-primary);\n\tstroke-width: 1.5;\n}\n\n/* The key to the bars' mark: a small bar and its words, under the rent column's heading, which stays in view, and on\n   cards, which hide the headings, under each bar. */\n.share-key {\n\tdisplay: flex;\n\talign-items: flex-start;\n\tjustify-content: flex-end;\n\tgap: 4px;\n\tmargin-top: 4px;\n\tcolor: var(--text-muted);\n\tfont-size: var(--size-small);\n\tfont-weight: 400;\n\tline-height: 1.3;\n}\n\n.share-glyph {\n\tflex: none;\n\tmargin-top: 2px;\n\tforced-color-adjust: none;\n}\n\n/* Chinese breaks the key only between words: after its colon, or at its hint (U+200B). */\n.root:lang(zh) .share-key {\n\tword-break: keep-all;\n}\n\n/* On cards the key labels the bar's own mark: the mark's line runs down from the bar to the words. */\n.table-details.cards .share-key {\n\tjustify-content: flex-start;\n\tmargin: 0 0 0 calc(var(--share-line) - 0.75px);\n\tpadding: 2px 0 0 4px;\n\tborder-left: 1.5px solid var(--text-primary);\n}\n\n.table-details.cards .share-key .share-glyph {\n\tdisplay: none;\n}\n\n/* On the table the heading's key serves every row. */\n.table-details:not(.cards) td .share-key {\n\tdisplay: none;\n}\n\ntr.divider td {\n\tcolor: var(--text-muted);\n\tfont-size: var(--size-label);\n\tborder-bottom: 2px solid var(--baseline);\n\tpadding-top: 16px;\n}\n\n.sort-button {\n\tmin-height: 24px;\n\tbackground: none;\n\tborder: none;\n\tpadding: 0;\n\tcursor: pointer;\n\ttext-align: left;\n\tfont-weight: 600;\n}\n\n@media (hover: hover) {\n\t.sort-button:hover {\n\t\ttext-decoration: underline;\n\t\ttext-underline-offset: 3px;\n\t}\n}\n\n/* The sort mark is joined to the heading's last word by a no-break space, so it never takes a line alone. */\nth[aria-sort=\"none\"] .sort-button::after {\n\tcontent: \"\\00a0\u2195\" / \"\";\n\tcolor: var(--text-muted);\n\tfont-weight: 400;\n}\n\nth[aria-sort=\"ascending\"] .sort-button::after {\n\tcontent: \"\\00a0\u25b2\" / \"\";\n}\n\nth[aria-sort=\"descending\"] .sort-button::after {\n\tcontent: \"\\00a0\u25bc\" / \"\";\n}\n\n/* Column headings sort on the table; on cards, where the heading row is hidden, they are plain text, so no Tab stop\n   lands on an invisible button. */\n.table-details:not(.cards) .header-text,\n.table-details.cards .sort-button {\n\tdisplay: none;\n}\n\n.cell-button {\n\tmin-height: 24px;\n\tbackground: none;\n\tborder: none;\n\tpadding: 0;\n\ttext-align: left;\n\tcursor: pointer;\n\tborder-radius: 2px;\n}\n\n.cell-button:focus-visible .main,\n.cell-button[aria-expanded=\"true\"] .main {\n\ttext-decoration: underline;\n\ttext-underline-offset: 3px;\n}\n\n@media (hover: hover) {\n\t.cell-button:hover .main {\n\t\ttext-decoration: underline;\n\t\ttext-underline-offset: 3px;\n\t}\n}\n\n/* The conditions a benefit depends on, in up to three lines; the preview and the details give them in full. */\n.cell-button .scope {\n\tdisplay: -webkit-box;\n\t-webkit-line-clamp: 3;\n\t-webkit-box-orient: vertical;\n\toverflow: hidden;\n\tcolor: var(--text-muted);\n\tfont-size: var(--size-small);\n\tmax-width: 22em;\n}\n\n/* Chinese breaks between any two characters, so keep a lone one off the last line. */\n.root:lang(zh) .cell-button .scope {\n\ttext-wrap: pretty;\n}\n\n/* Cards: on phones, and wherever the table's columns do not fit its box (a tablet in portrait). The column headings\n   stay in the accessibility tree, hidden visually. A card is the school's name, then one line per column, its label\n   beside its value: one column of lines on phones, two where there is room. */\n.table-details.cards .table-wrap > table,\n.table-details.cards .table-wrap > table > tbody,\n.table-details.cards .table-wrap > table > tbody > tr,\n.table-details.cards .table-wrap > table > tbody > tr > th,\n.table-details.cards .table-wrap > table > caption {\n\tdisplay: block;\n\twidth: 100%;\n}\n\n.table-details.cards thead {\n\tposition: absolute;\n\twidth: 1px;\n\theight: 1px;\n\toverflow: hidden;\n\tclip: rect(0 0 0 0);\n\tclip-path: inset(50%);\n}\n\n.table-details.cards .table-wrap > table > tbody > tr {\n\tdisplay: grid;\n\tgrid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));\n\tcolumn-gap: 24px;\n\tborder-bottom: 1px solid var(--gridline);\n\tpadding: 10px 0;\n}\n\n.table-details.cards tbody th {\n\tgrid-column: 1 / -1;\n\tmargin-bottom: 2px;\n}\n\n.table-details.cards .table-wrap > table > tbody > tr > td {\n\tdisplay: grid;\n\tgrid-template-columns: minmax(0, 38%) minmax(0, 1fr);\n\tcolumn-gap: 10px;\n\talign-items: center;\n\tmin-height: 44px;\n\ttext-align: left;\n}\n\n.table-details.cards th,\n.table-details.cards td {\n\tborder: none;\n\tpadding: 0;\n}\n\n.table-details.cards td::before {\n\tcontent: attr(data-label) / \"\";\n\tcolor: var(--text-muted);\n\tfont-size: var(--size-small);\n\tline-height: 1.3;\n}\n\n.root:lang(zh) .table-details.cards td::before {\n\tword-break: keep-all;\n}\n\n/* A details panel that opens inside a card's line takes the whole line. */\n.table-details.cards td > .panel {\n\tgrid-column: 1 / -1;\n}\n\n.table-details.cards .cell-button {\n\twidth: 100%;\n\tmin-height: 44px;\n}\n\n.table-details.cards td.number .cell-button {\n\ttext-align: left;\n}\n\n.table-details.cards .share-bar {\n\tmargin-left: 0;\n}\n\n.table-details.cards .table-wrap > table > tbody > tr.divider {\n\tdisplay: block;\n}\n\n.table-details.cards .table-wrap > table > tbody > tr.divider > td {\n\tdisplay: block;\n\tmin-height: 0;\n}\n\n.table-details.cards tr.divider td::before {\n\tcontent: none;\n}\n\n/* Hover previews and details panels. A preview touches its row and can be hovered, so the pointer can move into it. */\n.preview {\n\tposition: absolute;\n\tz-index: 30;\n\twidth: max-content;\n\tmax-width: min(300px, calc(100% - 16px));\n\tbackground: var(--panel-surface);\n\tborder: 1px solid var(--border);\n\tborder-radius: 8px;\n\tbox-shadow: var(--panel-shadow);\n\tpadding: 8px 10px;\n\tfont-size: var(--size-label);\n\tline-height: 1.4;\n\tcursor: pointer;\n}\n\n.preview p {\n\tmargin: 0 0 3px;\n}\n\n.preview .preview-title {\n\tcolor: var(--text-secondary);\n}\n\n.preview .preview-value {\n\tfont-weight: 600;\n\tfont-variant-numeric: tabular-nums;\n}\n\n.preview .hint {\n\tcolor: var(--text-muted);\n\tfont-size: var(--size-small);\n\tmargin: 4px 0 0;\n}\n\n.clamp {\n\tdisplay: -webkit-box;\n\t-webkit-line-clamp: 3;\n\t-webkit-box-orient: vertical;\n\toverflow: hidden;\n}\n\n.panel {\n\tbackground: var(--panel-surface);\n\tcolor: var(--text-primary);\n\tborder: 1px solid var(--border);\n\tborder-radius: 10px;\n\tpadding: 10px 14px 12px;\n\tmargin: 6px 0 10px;\n\tfont-size: var(--size-label);\n\tfont-weight: 400;\n\tline-height: 1.45;\n\ttext-align: left;\n\twhite-space: normal;\n\tcursor: auto;\n}\n\n.panel.floating {\n\tposition: absolute;\n\tz-index: 20;\n\tmargin: 0;\n\twidth: min(460px, calc(100% - 16px));\n\tmax-height: 75vh;\n\toverflow: auto;\n\tbox-shadow: var(--panel-shadow);\n}\n\n.panel-header {\n\tdisplay: flex;\n\talign-items: flex-start;\n\tjustify-content: space-between;\n\tgap: 12px;\n\tmargin-bottom: 4px;\n}\n\n.panel-header .panel-title {\n\tfont-size: 15px;\n\tpadding-top: 4px;\n}\n\n.close {\n\tflex: none;\n\tbackground: none;\n\tborder: 1px solid transparent;\n\tborder-radius: 6px;\n\tmin-width: 32px;\n\tmin-height: 32px;\n\tfont-size: 1.4em;\n\tline-height: 1;\n\tcolor: var(--text-secondary);\n\tcursor: pointer;\n}\n\n@media (hover: hover) {\n\t.close:hover {\n\t\tborder-color: var(--border);\n\t}\n}\n\n.panel-footer {\n\tmargin: 12px 0 0;\n}\n\n.panel-value {\n\tfont-size: 15px;\n\tfont-weight: 600;\n\tmargin-bottom: 6px;\n}\n\n.panel-value .muted {\n\tfont-size: var(--size-label);\n\tfont-weight: 400;\n}\n\n/* What a label means, under it in a preview or a details panel, as the table's key says. */\n.label-meaning {\n\tcolor: var(--text-secondary);\n}\n\n.preview .label-meaning {\n\tfont-size: var(--size-small);\n}\n\n/* The terms take a column of one width in every list, so lists stacked in a panel line up. */\n.panel dl {\n\tmargin: 8px 0;\n\tdisplay: grid;\n\tgrid-template-columns: 10.5em minmax(0, 1fr);\n\tgap: 2px 10px;\n}\n\n.panel dl:lang(zh) {\n\tgrid-template-columns: 8em minmax(0, 1fr);\n}\n\n/* On phones each term sits above its value, so values keep the panel's width. */\n.root[data-layout=\"narrow\"] .panel dl:not(.lines) {\n\tgrid-template-columns: minmax(0, 1fr);\n\tgap: 0;\n}\n\n.root[data-layout=\"narrow\"] .panel dl:not(.lines) dd {\n\tmargin-bottom: 6px;\n}\n\n.panel dt {\n\tcolor: var(--text-muted);\n}\n\n.panel dd {\n\tmargin: 0;\n\tmin-width: 0;\n\toverflow-wrap: anywhere;\n}\n\n/* A budget's lines: the label wraps, the amount stays whole at the right. */\n.panel dl.lines {\n\tgrid-template-columns: minmax(0, 1fr) auto;\n}\n\n.panel dl.lines dd {\n\ttext-align: right;\n\twhite-space: nowrap;\n\tfont-variant-numeric: tabular-nums;\n\toverflow-wrap: normal;\n}\n\n/* Under a line's amount: which end of a range is used, or the amount the source states per term. */\n.panel dl.lines .line-note {\n\tdisplay: block;\n\twhite-space: normal;\n\tfont-size: var(--size-small);\n}\n\n/* Under a line, across the list: its note, which names the columns of the table row its source quotes. */\n.panel dl.lines dd.line-explanation {\n\tgrid-column: 1 / -1;\n\tmargin-bottom: 4px;\n\ttext-align: start;\n\twhite-space: normal;\n\toverflow-wrap: anywhere;\n\tcolor: var(--text-muted);\n\tfont-size: var(--size-small);\n\tfont-variant-numeric: normal;\n}\n\n/* A details panel's pay by appointment: each appointment's titles, its pay, then its level and the link to its source.\n   The charted one is shaded as a selected row is, and says so in words. */\n.appointment-list {\n\tlist-style: none;\n\tmargin: 6px 0;\n\tpadding: 0;\n}\n\n.appointment-list > li {\n\tmargin: 0 -8px;\n\tpadding: 6px 8px;\n\tborder-radius: 6px;\n}\n\n.appointment-list > li + li {\n\tborder-top: 1px solid var(--gridline);\n}\n\n.appointment-list > li.charted,\n.appointment-list > li.charted + li {\n\tborder-top-color: transparent;\n}\n\n.appointment-list > li.charted {\n\tbackground: var(--selected);\n}\n\n.appointment-list p {\n\tmargin: 0;\n}\n\n.appointment-name {\n\tfont-weight: 600;\n}\n\n.appointment-charted {\n\tdisplay: inline-block;\n\tmargin-inline-start: 8px;\n\twhite-space: nowrap;\n\tfont-size: var(--size-small);\n\tfont-weight: 400;\n\tcolor: var(--text-secondary);\n}\n\n.appointment-pay {\n\tfont-variant-numeric: tabular-nums;\n}\n\n.appointment-meta {\n\talign-items: center;\n\tfont-size: var(--size-small);\n}\n\n.appointment-tier {\n\tcolor: var(--text-secondary);\n}\n\n/* A preview's short list of the year's appointments, the charted one in bold. */\n.preview .preview-subheading {\n\tmargin-top: 6px;\n\tcolor: var(--text-secondary);\n}\n\n.preview-appointments {\n\tlist-style: none;\n\tmargin: 0 0 3px;\n\tpadding: 0;\n\tfont-variant-numeric: tabular-nums;\n}\n\n.preview-appointments .charted {\n\tfont-weight: 600;\n}\n\n/* Sections behind disclosures inside a panel span its width. */\n.panel details.panel-section {\n\tmargin: 10px 0;\n}\n\n.panel details.panel-section > summary,\n.panel details.budget > summary {\n\tdisplay: flex;\n\twidth: 100%;\n\tfont-size: var(--size-label);\n\tfont-variant-numeric: tabular-nums;\n}\n\n.panel details.panel-section[open] > summary {\n\tmargin-bottom: 6px;\n}\n\n.panel details.budget {\n\tmargin: 6px 0;\n}\n\n.panel details.budget[open] {\n\tpadding-bottom: 6px;\n\tborder-bottom: 1px solid var(--gridline);\n}\n\n/* A union's line in a details panel, above its \"About the union\". */\n.panel .union-summary {\n\tmargin: 12px 0 6px;\n}\n\n/* A contract's or a union event's sources, under it: a disclosure as wide as its name, not the panel. */\n.panel details.item-sources {\n\tmargin: 6px 0 2px;\n}\n\n.panel details.item-sources > summary {\n\tdisplay: inline-flex;\n\twidth: auto;\n}\n\n.group-heading,\n.sources-heading {\n\tfont-size: 1em;\n\tfont-weight: 600;\n\tmargin: 12px 0 4px;\n}\n\n.item {\n\tborder-top: 1px solid var(--gridline);\n\tpadding-top: 8px;\n\tmargin-top: 8px;\n}\n\n.item-title {\n\tfont-size: 1em;\n\tfont-weight: 600;\n\tmargin: 0 0 2px;\n}\n\n.source {\n\tmargin-bottom: 8px;\n}\n\n.source-title {\n\tmargin: 0;\n}\n\n.source blockquote {\n\tmargin: 6px 0;\n\tpadding: 4px 10px;\n\tborder-left: 3px solid var(--baseline);\n\tcolor: var(--text-secondary);\n\tfont-style: italic;\n}\n\n.links {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 4px 14px;\n}\n\n/* Targets of at least 24 px everywhere, and 44 px on phones. */\n.links a,\n.network-links a,\n.living-wage a,\n.license a,\n.reason a {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tmin-height: 24px;\n}\n\n/* On phones a reason's link takes a line of its own, so its 44 px target leaves the sentence's lines even. */\n.root[data-layout=\"narrow\"] .reason a {\n\tdisplay: flex;\n\twidth: fit-content;\n}\n\n.root[data-layout=\"narrow\"] :is(select, .picker-search, .segmented button, .copy-button, .button-link, .disclosure > summary, .close, .close-end, .skip-link, .cell-button, .timeline-row, .chip) {\n\tmin-height: 44px;\n}\n\n.root[data-layout=\"narrow\"] :is(.links a, .network-links a, .living-wage a, .license a, .byline a, .reason a, .back-to-contents, .link-button) {\n\tmin-height: 44px;\n}\n\n.root[data-layout=\"narrow\"] .picker-list label {\n\tmin-height: 44px;\n}\n\n/* Selects and the search box at 16 px on phones, so iOS doesn't zoom the page when they are tapped. */\n.root[data-layout=\"narrow\"] :is(select, .picker-search) {\n\tfont-size: 16px;\n}\n\n.root[data-layout=\"narrow\"] .close {\n\tmin-width: 44px;\n}\n\n.root[data-layout=\"narrow\"] .cell-button {\n\twidth: 100%;\n}\n\n.trend-wrap {\n\tmargin: 10px 0;\n}\n\n.trend-title {\n\tcolor: var(--text-secondary);\n\tmargin-bottom: 2px;\n}\n\n.trend {\n\tdisplay: block;\n\tmax-width: 100%;\n\toverflow: visible;\n\tforced-color-adjust: none;\n}\n\n.trend text {\n\tfont-size: var(--size-small);\n\tfont-variant-numeric: tabular-nums;\n}\n\n.trend-axis {\n\tfill: var(--text-muted);\n}\n\n.trend-value {\n\tfill: var(--text-secondary);\n}\n\n.trend-value.current,\n.trend-axis.current {\n\tfill: var(--text-primary);\n\tfont-weight: 600;\n}\n\n.trend-baseline {\n\tstroke: currentColor;\n\tstroke-opacity: var(--baseline-opacity);\n\tstroke-width: 1;\n}\n\n.trend-break {\n\tstroke: var(--text-muted);\n\tstroke-width: 1;\n}\n\n.trend-line {\n\tstroke: var(--text-secondary);\n\tstroke-width: 2;\n\tstroke-linecap: round;\n}\n\n.trend-line.scheduled {\n\tstroke-dasharray: 4 3;\n}\n\n.trend-dot {\n\tfill: var(--text-secondary);\n\tstroke: var(--panel-surface);\n\tstroke-width: 2;\n}\n\n.trend-dot.scheduled {\n\tfill: var(--panel-surface);\n\tstroke: var(--text-secondary);\n\tstroke-width: 1.5;\n}\n\n.trend-dot.current.series-contract {\n\tfill: var(--series-contract);\n}\n\n.trend-dot.current.series-policy {\n\tfill: var(--series-policy);\n}\n\n.trend-notes {\n\tmargin: 4px 0 0;\n\tpadding-left: 18px;\n\tcolor: var(--text-secondary);\n}\n\n/* The over-time view: a line for each chosen school, in the dataviz palette's eight categorical colours in their\n   fixed order, each school keeping its colour while it stays chosen. Validated with validate_palette.js against the\n   widget's surfaces: on white, adjacent pairs' colour-blind \u0394E 9.1 at worst and normal-vision \u0394E 19.6; on #1a1a19,\n   8.4 and 19.3, every colour 3:1 or more. Light slots 3 to 5 are under 3:1 against white, and any two lines can cross,\n   so no line relies on colour: each has its own point shape, the legend names every line, up to four have their names\n   at their ends, and the table gives every value. */\n.root {\n\t--line-1: #2a78d6;\n\t--line-2: #eb6834;\n\t--line-3: #1baf7a;\n\t--line-4: #eda100;\n\t--line-5: #e87ba4;\n\t--line-6: #008300;\n\t--line-7: #6250d6;\n\t--line-8: #e34948;\n}\n\n.root[data-theme=\"dark\"] {\n\t--line-1: #3987e5;\n\t--line-2: #d95926;\n\t--line-3: #199e70;\n\t--line-4: #c98500;\n\t--line-5: #d55181;\n\t--line-6: #008300;\n\t--line-7: #9085e9;\n\t--line-8: #e66767;\n}\n\n.ot-slot-1 {\n\t--ot-colour: var(--line-1);\n}\n\n.ot-slot-2 {\n\t--ot-colour: var(--line-2);\n}\n\n.ot-slot-3 {\n\t--ot-colour: var(--line-3);\n}\n\n.ot-slot-4 {\n\t--ot-colour: var(--line-4);\n}\n\n.ot-slot-5 {\n\t--ot-colour: var(--line-5);\n}\n\n.ot-slot-6 {\n\t--ot-colour: var(--line-6);\n}\n\n.ot-slot-7 {\n\t--ot-colour: var(--line-7);\n}\n\n.ot-slot-8 {\n\t--ot-colour: var(--line-8);\n}\n\n/* Its Per year | Per month switch, over the legend. */\n.unit-control {\n\tmargin: 0 0 10px;\n}\n\n/* The chart, with the points' buttons over it. */\n.ot-plot {\n\tposition: relative;\n\tmax-width: 100%;\n\tmargin: 4px 0 8px;\n}\n\n.over-time-chart {\n\tdisplay: block;\n\toverflow: visible;\n\tforced-color-adjust: none;\n}\n\n.over-time-chart text {\n\tfont-size: var(--size-small);\n\tfont-variant-numeric: tabular-nums;\n}\n\n.ot-tick,\n.ot-year {\n\tfill: var(--text-muted);\n}\n\n.ot-year.selected,\n.ot-label {\n\tfill: var(--text-primary);\n\tfont-weight: 600;\n}\n\n.ot-label {\n\tfont-variant-numeric: normal;\n}\n\n.ot-selected {\n\tstroke: var(--text-secondary);\n\tstroke-width: 1;\n}\n\n.ot-crosshair,\n.ot-leader {\n\tstroke: var(--text-muted);\n\tstroke-width: 1;\n}\n\n.ot-line,\n.ot-key-line {\n\tfill: none;\n\tstroke: var(--ot-colour);\n\tstroke-width: 2;\n\tstroke-linecap: round;\n}\n\n.ot-key-line {\n\tstroke: var(--text-secondary);\n}\n\n/* Scheduled years: a dashed line (square ends, so the gaps stay open) into hollow points. */\n.ot-line.scheduled,\n.ot-key-line.scheduled {\n\tstroke-linecap: butt;\n\tstroke-dasharray: 5 3;\n}\n\n/* Points carry a 2 px ring of the surface where they cross a line; the one hovered or focused grows. */\n.ot-point,\n.ot-key-point {\n\tfill: var(--ot-colour);\n\tstroke: var(--surface);\n\tstroke-width: 4;\n\tpaint-order: stroke;\n\tstroke-linejoin: round;\n}\n\n.ot-key-point {\n\tfill: var(--text-secondary);\n}\n\n.ot-point.scheduled {\n\tfill: var(--surface);\n\tstroke: var(--ot-colour);\n\tstroke-width: 1.5;\n\tpaint-order: normal;\n}\n\n.ot-point.active {\n\ttransform-box: fill-box;\n\ttransform-origin: center;\n\ttransform: scale(1.45);\n}\n\n.ot-points {\n\tposition: absolute;\n\tinset: 0;\n}\n\n.ot-point-button {\n\tposition: absolute;\n\twidth: 24px;\n\theight: 24px;\n\tmargin: 0;\n\tpadding: 0;\n\tborder: none;\n\tborder-radius: 50%;\n\tbackground: transparent;\n\tcursor: pointer;\n}\n\n.ot-point-button:focus-visible,\n.ot-point-button[aria-expanded=\"true\"] {\n\toutline: 2px solid var(--focus);\n\toutline-offset: 0;\n}\n\n/* The values as a table: years down, schools across, scrolling sideways on a narrow screen. */\n.ot-table-details {\n\tmargin: 4px 0 12px;\n}\n\n.ot-table-wrap {\n\tmax-width: 100%;\n\tmargin-top: 8px;\n\toverflow-x: auto;\n}\n\n.ot-table {\n\twidth: auto;\n\tfont-size: var(--size-label);\n\tfont-variant-numeric: tabular-nums;\n}\n\n.ot-table caption {\n\tfont-weight: 400;\n\tcolor: var(--text-secondary);\n}\n\n.ot-table th,\n.ot-table td {\n\tpadding: 4px 10px;\n\twhite-space: nowrap;\n}\n\n.ot-table td {\n\ttext-align: right;\n}\n\n.ot-table tbody th {\n\tfont-weight: 400;\n}\n\n.ot-table tr.selected th,\n.ot-table tr.selected td {\n\tbackground: var(--selected);\n}\n\n/* As the charts' other marks (see the note above the bar charts' block below): repeated where Dark Reader leaves them\n   alone, so they keep the theme's palette. */\n@media (forced-colors: none) {\n\t@scope (.root) {\n\t\t.ot-line {\n\t\t\tstroke: var(--ot-colour);\n\t\t}\n\n\t\t.ot-key-line {\n\t\t\tstroke: var(--text-secondary);\n\t\t}\n\n\t\t.ot-point {\n\t\t\tfill: var(--ot-colour);\n\t\t\tstroke: var(--surface);\n\t\t}\n\n\t\t.ot-key-point {\n\t\t\tfill: var(--text-secondary);\n\t\t\tstroke: var(--surface);\n\t\t}\n\n\t\t.ot-point.scheduled {\n\t\t\tfill: var(--surface);\n\t\t\tstroke: var(--ot-colour);\n\t\t}\n\n\t\t.ot-selected {\n\t\t\tstroke: var(--text-secondary);\n\t\t}\n\n\t\t.ot-crosshair,\n\t\t.ot-leader {\n\t\t\tstroke: var(--text-muted);\n\t\t}\n\t}\n}\n\n/* Forced colours: every line in the text colour, told apart by its points' shapes, its name and the legend; the\n   selected year in the highlight colour. */\n@media (forced-colors: active) {\n\t.over-time-chart text,\n\t.ot-year.selected,\n\t.ot-label {\n\t\tfill: CanvasText;\n\t}\n\n\t.ot-line,\n\t.ot-key-line {\n\t\tstroke: CanvasText;\n\t}\n\n\t.ot-point,\n\t.ot-key-point {\n\t\tfill: CanvasText;\n\t\tstroke: Canvas;\n\t}\n\n\t.ot-point.scheduled {\n\t\tfill: Canvas;\n\t\tstroke: CanvasText;\n\t}\n\n\t.ot-selected {\n\t\tstroke: Highlight;\n\t}\n\n\t.ot-crosshair,\n\t.ot-leader {\n\t\tstroke: GrayText;\n\t}\n}\n\n/* Living costs in a details panel. A school's other campuses, which the charts leave out, follow its own. */\n.item-title.other-campuses {\n\tmargin-top: 10px;\n}\n\n.campus-rents dd {\n\tfont-variant-numeric: tabular-nums;\n}\n\n.campus-rents .area {\n\tdisplay: block;\n\tcolor: var(--text-muted);\n\tfont-size: var(--size-small);\n}\n\n.living-wage {\n\tmargin: 6px 0;\n}\n\n.living-wage p {\n\tmargin: 0 0 2px;\n}\n\n/* Other campuses' counties: wrapped in a line on wide layouts, one to a line (each a 44 px target) on phones. */\n.county-links {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 0 14px;\n\tmargin: 0;\n\tpadding: 0;\n\tlist-style: none;\n}\n\n.root[data-layout=\"narrow\"] .county-links {\n\tdisplay: block;\n}\n\n.budget-name {\n\tmargin: 6px 0 0;\n\tcolor: var(--text-secondary);\n}\n\n/* Where Dark Reader darkens the page (a site without its own dark mode; the standalone page and sites with one lock it\n   out), it restyles the colours in the widget's shadow root as it does the page's, treating every fill and stroke as\n   text: dark fills turn light and pale ones bright, which inverts the charts' encodings (a pale summer segment or a\n   contract whose terms still apply would outshine one in force). So the marks' colours are repeated here inside\n   @scope, which Dark Reader 4.9 does not restyle and whose rules outrank its overrides by scoping proximity, so the\n   marks keep the palette of the theme the widget shows: dark with Auto, which follows Dark Reader there, or the\n   reader's explicit choice. Browsers without @scope use the rules above, which mean the same. Gridlines and baselines\n   are faint strokes of the text colour, and the timeline's event marks and the per-month view's living-cost marks are\n   inked in a text colour (hollow ones have no fill), so they are left out of this block: Dark Reader recolours them as\n   it does the text, which keeps them readable on the surface it gives the widget whichever theme the widget shows,\n   the light one included. Forced colours use their own rules below. */\n@media (forced-colors: none) {\n\t@scope (.root) {\n\t\t.bar.series-contract {\n\t\t\tfill: var(--series-contract);\n\t\t}\n\n\t\t.bar.series-policy {\n\t\t\tfill: var(--series-policy);\n\t\t}\n\n\t\t.bar.summer.series-contract {\n\t\t\tfill: var(--series-contract-light);\n\t\t\tstroke: var(--series-contract);\n\t\t}\n\n\t\t.bar.summer.series-policy {\n\t\t\tfill: var(--series-policy-light);\n\t\t\tstroke: var(--series-policy);\n\t\t}\n\n\t\t.extension {\n\t\t\tfill: none;\n\t\t\tstroke: var(--text-muted);\n\t\t}\n\n\t\t.soft-bar.series-contract {\n\t\t\tstroke: var(--series-contract);\n\t\t}\n\n\t\t.soft-bar.series-policy {\n\t\t\tstroke: var(--series-policy);\n\t\t}\n\n\t\t.hatch-dot.series-contract {\n\t\t\tfill: var(--series-contract);\n\t\t}\n\n\t\t.hatch-dot.series-policy {\n\t\t\tfill: var(--series-policy);\n\t\t}\n\n\t\t.policy-hatch {\n\t\t\tstroke: var(--series-policy);\n\t\t}\n\n\t\t.policy-stripe {\n\t\t\tstroke: #ffffff;\n\t\t}\n\n\t\t.burden-line {\n\t\t\tstroke: var(--living-mark);\n\t\t}\n\n\t\t.median-line {\n\t\t\tstroke: var(--text-secondary);\n\t\t}\n\n\t\t.contract-bar.status-current {\n\t\t\tfill: var(--series-contract);\n\t\t\tstroke: var(--series-contract);\n\t\t}\n\n\t\t.contract-bar.status-expired-continuing {\n\t\t\tfill: var(--series-contract-continuing);\n\t\t\tstroke: var(--series-contract);\n\t\t}\n\n\t\t.continuing-line {\n\t\t\tstroke: var(--series-contract);\n\t\t}\n\n\t\t.contract-bar.status-expired {\n\t\t\tfill: none;\n\t\t\tstroke: var(--series-contract);\n\t\t}\n\n\t\t.contract-bar.status-superseded,\n\t\t.contract-bar.status-unknown {\n\t\t\tfill: var(--series-superseded);\n\t\t\tstroke: var(--text-muted);\n\t\t}\n\n\t\t.as-of,\n\t\t.trend-break {\n\t\t\tstroke: var(--text-muted);\n\t\t}\n\n\t\t.trend-line {\n\t\t\tstroke: var(--text-secondary);\n\t\t}\n\n\t\t.trend-dot {\n\t\t\tfill: var(--text-secondary);\n\t\t\tstroke: var(--panel-surface);\n\t\t}\n\n\t\t.trend-dot.scheduled {\n\t\t\tfill: var(--panel-surface);\n\t\t\tstroke: var(--text-secondary);\n\t\t}\n\n\t\t.trend-dot.current.series-contract {\n\t\t\tfill: var(--series-contract);\n\t\t}\n\n\t\t.trend-dot.current.series-policy {\n\t\t\tfill: var(--series-policy);\n\t\t}\n\n\t\t.share-track {\n\t\t\tfill: var(--gridline);\n\t\t}\n\n\t\t.share-fill {\n\t\t\tfill: var(--text-muted);\n\t\t}\n\n\t\t.share-fill.over {\n\t\t\tfill: var(--burden);\n\t\t}\n\n\t\t.share-tick {\n\t\t\tstroke: var(--text-primary);\n\t\t}\n\n\t\t.status-current .status-disc {\n\t\t\tfill: var(--status-good);\n\t\t}\n\n\t\t.status-check .status-disc {\n\t\t\tfill: var(--status-warning);\n\t\t\tstroke: var(--text-secondary);\n\t\t}\n\n\t\t.status-current .status-ink {\n\t\t\tstroke: #ffffff;\n\t\t}\n\n\t\t.status-check .status-ink {\n\t\t\tstroke: #0b0b0b;\n\t\t}\n\n\t\t/* The highlighter mark is translucent, so it reads on whatever surface Dark Reader gives the widget. */\n\t\t:is(.pay-row, .timeline-row).highlighted .name-text {\n\t\t\tbackground: var(--highlight-mark);\n\t\t}\n\t}\n}\n\n/* Chinese text: no italics, which browsers fake by slanting the glyphs. Quotes in English (lang=\"en\") keep them. */\n.source blockquote:lang(zh) {\n\tfont-style: normal;\n}\n\n@media (forced-colors: active) {\n\t.segmented button[aria-pressed=\"true\"] {\n\t\tforced-color-adjust: none;\n\t\tbackground: Highlight;\n\t\tcolor: HighlightText;\n\t\tborder-color: Highlight;\n\t}\n\n\t.segmented button[aria-disabled=\"true\"] {\n\t\tcolor: GrayText;\n\t}\n\n\t/* The line over a section that shows only the chosen schools keeps an edge where its tint is dropped. */\n\t.choice-note {\n\t\tborder: 1px solid CanvasText;\n\t}\n\n\t.track text,\n\t.trend text,\n\t.trend-value.current,\n\t.trend-axis.current {\n\t\tfill: CanvasText;\n\t}\n\n\t.gridline,\n\t.baseline,\n\t.tick,\n\t.trend-baseline {\n\t\tstroke: CanvasText;\n\t\tstroke-opacity: 0.3;\n\t}\n\n\t.as-of,\n\t.trend-break,\n\t.burden-line,\n\t.median-line,\n\t.share-tick {\n\t\tstroke: CanvasText;\n\t}\n\n\t.living-mark {\n\t\tfill: CanvasText;\n\t\tstroke: Canvas;\n\t}\n\n\t/* A rent share's bar: grey up to HUD's line, and the text colour past it. */\n\t.share-fill {\n\t\tfill: GrayText;\n\t}\n\n\t.share-fill.over {\n\t\tfill: CanvasText;\n\t}\n\n\t.living-mark.partial,\n\t.contract-bar.status-expired {\n\t\tfill: none;\n\t\tstroke: CanvasText;\n\t}\n\n\t.continuing-line {\n\t\tstroke: CanvasText;\n\t}\n\n\t.share-track {\n\t\tfill: Canvas;\n\t\tstroke: CanvasText;\n\t\tstroke-width: 0.5;\n\t}\n\n\t.credit text {\n\t\tfill: CanvasText;\n\t}\n\n\t.track .track-note,\n\t.key .track-note {\n\t\tfill: CanvasText;\n\t}\n\n\t.marker {\n\t\tfill: CanvasText;\n\t\tstroke: CanvasText;\n\t}\n\n\t.marker.hollow {\n\t\tfill: none;\n\t\tstroke: CanvasText;\n\t}\n\n\t.trend-line {\n\t\tstroke: CanvasText;\n\t}\n\n\t.hatch-ground {\n\t\tfill: none;\n\t}\n\n\t.contents a[aria-current=\"location\"] {\n\t\ttext-decoration: underline;\n\t}\n\n\t.pay-row[aria-expanded=\"true\"],\n\t.timeline-row[aria-expanded=\"true\"] {\n\t\toutline: 1px solid Highlight;\n\t}\n\n\t/* A highlighted school's name takes the system's highlight colours, as selected text does. */\n\t:is(.pay-row, .timeline-row).highlighted .name-text {\n\t\tforced-color-adjust: none;\n\t\tbackground: Highlight;\n\t\tcolor: HighlightText;\n\t}\n}\n";
+const WIDGET_CSS = "/* Light theme tokens. The series colours are the dataviz palette's first two slots, validated for the light surface;\n   the dark theme below re-steps them for its surface. The contents list in the page's margin sits on the host page,\n   not on the widget's card, so it takes the tokens of the surface under it (data-surface, set by the script). */\n:host,\n.contents.side[data-surface=\"light\"] {\n\t--surface: #ffffff;\n\t--text-primary: #0b0b0b;\n\t--text-secondary: #52514e;\n\t--text-muted: #6f6d68;\n\t--gridline: #e1e0d9;\n\t--baseline: #c3c2b7;\n\t/* Chart gridlines and baselines are the text colour at these opacities (#e1e0d9 and #c3c2b7 on white), so Dark\n\t   Reader, which turns any solid stroke light, leaves them as faint as they are here. */\n\t--gridline-opacity: 0.12;\n\t--baseline-opacity: 0.25;\n\t--border: rgba(11, 11, 11, 0.1);\n\t--series-contract: #2a78d6;\n\t--series-contract-light: #86b6ef;\n\t--series-contract-continuing: #b7d3f6;\n\t--series-policy: #eb6834;\n\t--series-policy-light: #f3a07c;\n\t--series-superseded: #c3c2b7;\n\t--focus: #2a78d6;\n\t--link: #1c5cab;\n\t--selected: rgba(42, 120, 214, 0.08);\n\t/* The highlighter mark behind a highlighted school's name in the charts and the timelines. */\n\t--highlight-mark: rgba(42, 120, 214, 0.2);\n\t--notice: #fdf4e3;\n\t--panel-surface: #ffffff;\n\t--panel-shadow: 0 6px 24px rgba(11, 11, 11, 0.14);\n\t/* Living-cost marks sit on the bars and off them, so they take the strongest ink, with a halo of the surface. */\n\t--living-mark: #0b0b0b;\n\t/* The \u25b2 beside rent above 30 percent of pay in a details panel. */\n\t--burden: #b3261e;\n\t/* Controls: a border with 3:1 contrast or more against the surface, and a quiet hover fill. */\n\t--control-border: #6f6d68;\n\t--control-surface: #ffffff;\n\t--control-hover: #eeede7;\n\t--chevron: #6f6d68;\n\t/* The faint band behind every other timeline row. */\n\t--band: rgba(11, 11, 11, 0.03);\n\t/* The tint behind the inline contents list, which sets it apart from the controls. */\n\t--contents-surface: #f5f4f0;\n}\n\n:host {\n\t/* Status colours are fixed in both themes and always come with an icon shape and text. */\n\t--status-good: #0ca30c;\n\t--status-warning: #fab219;\n\t/* The type scale: five sizes. */\n\t--size-title: 24px;\n\t--size-section: 19px;\n\t--size-body: 15px;\n\t--size-label: 13px;\n\t--size-small: 12px;\n\tdisplay: block;\n}\n\n/* Dark theme: the same roles stepped for a dark surface, the series colours re-validated against it. */\n.root[data-theme=\"dark\"],\n.contents.side[data-surface=\"dark\"] {\n\tcolor-scheme: dark;\n\t--surface: #1a1a19;\n\t--text-primary: #f0efec;\n\t--text-secondary: #c3c2b7;\n\t--text-muted: #a19f97;\n\t--gridline: #2c2c2a;\n\t--baseline: #5a5953;\n\t--gridline-opacity: 0.085;\n\t--baseline-opacity: 0.3;\n\t--border: rgba(255, 255, 255, 0.12);\n\t--series-contract: #3987e5;\n\t/* The summer end of a bar is lighter than the bar in both themes (\"the lighter end of the bar\"): here the series\n\t   colour 40 percent of the way to the text colour, 1.6:1 against the bar and 7.3:1 or more against the surface. */\n\t--series-contract-light: #82b1e8;\n\t--series-contract-continuing: #2a4a72;\n\t--series-policy: #d95926;\n\t--series-policy-light: #e29575;\n\t--series-superseded: #5a5953;\n\t--focus: #6aa6ee;\n\t--link: #8ab8f2;\n\t--selected: rgba(57, 135, 229, 0.18);\n\t--highlight-mark: rgba(57, 135, 229, 0.36);\n\t--notice: #3a3020;\n\t--panel-surface: #242422;\n\t--panel-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);\n\t--living-mark: #f0efec;\n\t--burden: #ff8a80;\n\t--control-border: #8d8b84;\n\t--control-surface: #242422;\n\t--control-hover: #30302d;\n\t--chevron: #a19f97;\n\t--band: rgba(255, 255, 255, 0.035);\n\t--contents-surface: #222220;\n}\n\n/* The theme's rules for the host element (a div) beat :host, so the typography is set on the root instead. Line\n   height, letter spacing and word spacing are inherited from the mount, whose line height the snippet sets in the page,\n   so a reader's own text-spacing settings reach the widget. */\n.root {\n\tposition: relative;\n\tcolor-scheme: light;\n\tfont-family: \"Noto Sans\", \"Noto Sans SC\", system-ui, -apple-system, \"Segoe UI\", sans-serif;\n\tfont-size: var(--size-body);\n\tfont-weight: 400;\n\tfont-style: normal;\n\tline-height: inherit;\n\ttext-align: left;\n\ttext-transform: none;\n\ttext-indent: 0;\n\twhite-space: normal;\n\tcolor: var(--text-primary);\n\tbackground: var(--surface);\n\tpadding: 4px 0 12px;\n}\n\n/* Chinese: the site's Noto Sans for Latin text, then the platforms' Simplified Chinese fonts (macOS and iOS, Android\n   and Linux, Windows). First comes \"AUN CJK Punctuation\", which the script defines in the document (a shadow root\n   ignores @font-face) from the same Chinese fonts for the curly quotes, the dash and the ellipsis alone, so they are\n   drawn full width as in Chinese text, not with Noto Sans's narrow Latin forms. English text keeps those. */\n.root:lang(zh) {\n\tfont-family: \"AUN CJK Punctuation\", \"Noto Sans\", \"PingFang SC\", \"Noto Sans SC\", \"Microsoft YaHei\", system-ui, -apple-system, \"Segoe UI\", sans-serif;\n}\n\n.root:lang(zh) :lang(en) {\n\tfont-family: \"Noto Sans\", \"PingFang SC\", \"Noto Sans SC\", \"Microsoft YaHei\", system-ui, -apple-system, \"Segoe UI\", sans-serif;\n}\n\n/* On a dark page or a dark system setting the widget is its own dark panel. */\n.root[data-theme=\"dark\"] {\n\tborder-radius: 12px;\n\tpadding: 20px;\n}\n\n.root[data-theme=\"dark\"][data-layout=\"narrow\"] {\n\tpadding: 14px 10px;\n\tborder-radius: 8px;\n}\n\n/* On the standalone page the page itself takes the theme, so the widget needs no panel of its own in either, and\n   switching the theme leaves the layout where it is. */\n.root[data-standalone][data-theme] {\n\tpadding: 4px 0 12px;\n\tborder-radius: 0;\n}\n\n* {\n\tbox-sizing: border-box;\n}\n\n[hidden] {\n\tdisplay: none !important;\n}\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n\tfont-weight: 600;\n}\n\n/* Headings take their size from their class, not their level, which is one higher on the standalone page (its\n   title is the page's h1) than in the block (an h2 under the WordPress page's h1). */\n.section-heading:focus,\n.chart-heading:focus,\n.contents:focus {\n\toutline: none;\n}\n\n.block-heading,\n.panel-title {\n\tfont-size: 1em;\n\tmargin: 0;\n}\n\np {\n\tmargin: 0 0 8px;\n}\n\na {\n\tcolor: var(--link);\n}\n\n/* Header: the title with the theme switch and the contents list, the computed lead, the byline (the network's logo\n   and name, and the data's date), and the dek that says what minimum pay is. */\n.widget-header {\n\tmargin-bottom: 8px;\n}\n\n.title-row {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: center;\n\tjustify-content: space-between;\n\tgap: 8px 16px;\n\tmargin-bottom: 6px;\n}\n\n/* The theme switch and the contents list's button, together at the title row's end, or on a line under the title. */\n.title-tools {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: center;\n\tgap: 8px 16px;\n}\n\n.title {\n\tfont-size: var(--size-title);\n\tline-height: 1.2;\n\tmargin: 0;\n}\n\n.lead {\n\tfont-size: var(--size-section);\n\tline-height: 1.35;\n\tfont-weight: 500;\n\tmargin: 0 0 10px;\n\tmax-width: 46em;\n\ttext-wrap: pretty;\n}\n\n/* Under the lead: the button to the rent view, which the lead speaks of. While the chart shows that view the place\n   stays empty, as tall as the button, so the controls below do not move. */\n.lead-action {\n\tmin-height: 32px;\n\tmargin: -2px 0 12px;\n}\n\n.root[data-layout=\"narrow\"] .lead-action {\n\tmin-height: 44px;\n}\n\n.lead-action .action-cue {\n\tflex: none;\n}\n\n.byline {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: center;\n\tgap: 4px 0;\n\tmargin: 0 0 12px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n/* The network's logo beside its name, centred on the line, whether the name is a link (in the WordPress block) or\n   text (on the standalone page, whose header links the network). */\n.byline :is(a, .byline-name) {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tgap: 8px;\n\tcolor: var(--text-secondary);\n\ttext-decoration: none;\n}\n\n.byline a:hover span {\n\ttext-decoration: underline;\n\ttext-underline-offset: 3px;\n}\n\n.byline-separator {\n\tmargin: 0 6px;\n}\n\n/* On phones the date takes its own line, so the separator would dangle. */\n.root[data-layout=\"narrow\"] .byline-separator {\n\tdisplay: none;\n}\n\n.root[data-layout=\"narrow\"] .byline .updated {\n\tflex-basis: 100%;\n}\n\n.byline .logo {\n\tflex: none;\n\twidth: 28px;\n\theight: 28px;\n\tborder-radius: 50%;\n}\n\n/* Under the lead while only the chosen schools show: the finding is still that of all schools. */\n.widget-header .coverage-note {\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n\tmargin: -4px 0 10px;\n}\n\n.dek {\n\tcolor: var(--text-secondary);\n\tmax-width: 46em;\n\tmargin-bottom: 12px;\n}\n\n.stale-note,\n.preview-status,\n.status-title {\n\tdisplay: flex;\n\talign-items: center;\n\tgap: 6px;\n}\n\n/* A note that can wrap keeps its icon on its first line. */\n.stale-note {\n\talign-items: flex-start;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n.stale-note .status-icon {\n\tmargin-top: 2px;\n}\n\n.link-button {\n\tfont: inherit;\n\tfont-size: var(--size-label);\n\tcolor: var(--link);\n\tbackground: none;\n\tborder: none;\n\tpadding: 0;\n\tmin-height: 24px;\n\ttext-decoration: underline;\n\ttext-underline-offset: 3px;\n\tcursor: pointer;\n}\n\n/* The theme control: a small segmented switch beside the title. */\n.theme-control {\n\tdisplay: flex;\n\talign-items: center;\n\tgap: 8px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n.segmented.compact button {\n\tfont-size: var(--size-small);\n\tmin-height: 28px;\n\tpadding: 3px 10px;\n}\n\n/* The status icon: a check mark on green for data up to date, a clock on amber for data that may be out of date. */\n.status-icon {\n\tflex: none;\n\tvertical-align: -2px;\n\tforced-color-adjust: none;\n}\n\n.status-current .status-disc {\n\tfill: var(--status-good);\n}\n\n.status-check .status-disc {\n\tfill: var(--status-warning);\n\tstroke: var(--text-secondary);\n\tstroke-width: 0.75;\n}\n\n.status-ink {\n\tfill: none;\n\tstroke-width: 1.6;\n\tstroke-linecap: round;\n\tstroke-linejoin: round;\n}\n\n.status-current .status-ink {\n\tstroke: #ffffff;\n}\n\n.status-check .status-ink {\n\tstroke: #0b0b0b;\n}\n\n/* Under the chart, beside its latest rates: the schools whose data may be out of date. */\n.status-summary {\n\tmargin: 12px 0 0;\n}\n\n.to-check-list {\n\tmargin: 8px 0;\n\tpadding-left: 20px;\n}\n\n.to-check-list li {\n\tmargin: 4px 0;\n}\n\n.reason {\n\tmargin-right: 6px;\n}\n\n.status-block {\n\tmargin: 8px 0;\n\tpadding: 8px 10px;\n\tborder-left: 3px solid var(--baseline);\n}\n\n.status-block.check {\n\tborder-left-color: var(--status-warning);\n}\n\n.status-block .status-title {\n\tfont-size: 1em;\n\tmargin: 0 0 4px;\n}\n\n.status-block .reasons {\n\tmargin: 4px 0;\n\tpadding-left: 0;\n\tlist-style: none;\n}\n\n.status-block .reasons li {\n\tmargin: 3px 0;\n}\n\n/* The contents list: inline, an \"On this page\" disclosure beside the theme switch whose links drop down under it in\n   a panel over the page; or a panel fixed in the page's left margin when the viewport leaves room (the script sets\n   its position and keeps it open there). */\n/* A link back to the list puts it below the window's top edge, so the focused link's ring shows whole. */\n.contents {\n\tfont-size: var(--size-label);\n\tscroll-margin-top: var(--scroll-offset, 16px);\n}\n\n.contents:not(.side) {\n\tposition: relative;\n}\n\n.contents:not(.side) .contents-disclosure > ul {\n\tposition: absolute;\n\tz-index: 30;\n\tright: 0;\n\ttop: calc(100% + 6px);\n\twidth: max-content;\n\tmax-width: min(22em, calc(100vw - 32px));\n\tpadding: 6px 14px;\n\tbackground: var(--panel-surface);\n\tborder: 1px solid var(--border);\n\tborder-radius: 8px;\n\tbox-shadow: var(--panel-shadow);\n}\n\n/* In the margin, the list's name is a quiet heading over its links, in the disclosure's place. */\n.contents-label {\n\tmargin: 0 0 6px;\n\tfont-size: var(--size-small);\n\tfont-weight: 600;\n\tcolor: var(--text-secondary);\n}\n\n.contents:not(.side) .contents-label,\n.contents.side .contents-disclosure > summary {\n\tdisplay: none;\n}\n\n.contents ul {\n\tmargin: 0;\n\tpadding: 0;\n\tlist-style: none;\n}\n\n\n.contents a {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tmin-height: 24px;\n}\n\n.contents a[aria-current=\"location\"] {\n\tfont-weight: 600;\n\tcolor: var(--text-primary);\n}\n\n/* Inline, each link is a \u2193 and its underlined name, the whole row its target. */\n.contents:not(.side) a {\n\tdisplay: flex;\n\talign-items: baseline;\n\tgap: 6px;\n\tmin-height: 32px;\n\tpadding: 6px 0;\n\ttext-decoration: none;\n}\n\n.contents:not(.side) .contents-text {\n\ttext-decoration: underline;\n\ttext-decoration-thickness: 1px;\n\ttext-underline-offset: 3px;\n}\n\n@media (hover: hover) {\n\t.contents:not(.side) a:hover .contents-text {\n\t\ttext-decoration-thickness: 2px;\n\t}\n}\n\n.contents-cue {\n\tflex: none;\n}\n\n.contents.side .contents-cue {\n\tdisplay: none;\n}\n\n.contents.side {\n\tposition: fixed;\n\tz-index: 10;\n\tmargin: 0;\n\tpadding: 10px 0 10px 12px;\n\tborder-left: 1px solid var(--gridline);\n\tcolor: var(--text-primary);\n\ttransition: opacity 0.15s ease;\n}\n\n.contents.side[data-surface=\"light\"] {\n\tcolor-scheme: light;\n}\n\n/* Where the page's colour under the list leaves its links short of 4.5:1 contrast with either palette, the list takes\n   its palette's surface as a backdrop. */\n.contents.side.backdrop {\n\tpadding-right: 10px;\n\tbackground: var(--surface);\n\tborder: 1px solid var(--border);\n\tborder-radius: 6px;\n}\n\n.contents.side a {\n\tposition: relative;\n\tdisplay: flex;\n\tpadding: 2px 0;\n}\n\n/* The current section: a bar over the list's rule beside its link. */\n.contents.side a[aria-current=\"location\"]::before {\n\tcontent: \"\";\n\tposition: absolute;\n\tleft: -13px;\n\ttop: 2px;\n\tbottom: 2px;\n\twidth: 2px;\n\tbackground: var(--text-primary);\n}\n\n.contents.side.out-of-view:not(:focus-within) {\n\topacity: 0;\n\tpointer-events: none;\n}\n\n/* On phones each link is a 44 px row at body size. */\n.root[data-layout=\"narrow\"] .contents:not(.side) ul {\n\tfont-size: var(--size-body);\n}\n\n.root[data-layout=\"narrow\"] .contents:not(.side) a {\n\talign-items: center;\n\tmin-height: 44px;\n\tpadding: 4px 0;\n}\n\n/* \"Back to contents\" at the end of each section: a small button, hidden (and out of the tab order) while the contents\n   list sits in the margin, where it is always in view. */\n.back-row {\n\tmargin: 10px 0 0;\n}\n\n.root.side-contents .back-row {\n\tdisplay: none;\n}\n\n.back-to-contents {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tgap: 6px;\n\tmin-height: 28px;\n\tpadding: 2px 10px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-primary);\n\ttext-decoration: none;\n\tbackground: var(--control-surface);\n\tborder: 1px solid var(--control-border);\n\tborder-radius: 6px;\n}\n\n@media (hover: hover) {\n\t.back-to-contents:hover {\n\t\tbackground: var(--control-hover);\n\t}\n}\n\n/* With the button above it, a section's heading needs less space before it. */\n.root:not(.side-contents) .back-row + .section-heading,\n.root:not(.side-contents) .back-row + :is(.page-section, .landmark-section) > .section-heading:first-child {\n\tmargin-top: 24px;\n}\n\n@media (prefers-reduced-motion: reduce) {\n\t.contents.side {\n\t\ttransition: none;\n\t}\n}\n\n/* Section headings: a step up from body text, with space and a hairline above. */\n.section-heading {\n\tfont-size: var(--size-section);\n\tline-height: 1.3;\n\tmargin: 40px 0 12px;\n\tpadding-top: 16px;\n\tborder-top: 1px solid var(--gridline);\n\tscroll-margin-top: var(--scroll-offset, 16px);\n}\n\n/* The chart's heading is a section heading like its sibling h3s, without the rule above. */\n.chart-heading {\n\tfont-size: var(--size-section);\n\tmargin: 20px 0 4px;\n\tscroll-margin-top: var(--scroll-offset, 16px);\n}\n\n/* On phones the lead and the chart's heading are a step smaller and the controls closer, so the chart's first row\n   shows on the first screen. */\n.root[data-layout=\"narrow\"] :is(.lead, .chart-heading) {\n\tfont-size: 17px;\n}\n\n.root[data-layout=\"narrow\"] .chart-heading {\n\tmargin-top: 16px;\n}\n\n.root[data-layout=\"narrow\"] .controls {\n\tmargin-top: 14px;\n}\n\n.chart-summary {\n\ttext-wrap: pretty;\n}\n\n/* Under the per-year view's heading: where to compare appointments of different lengths. */\n.view-note {\n\tmargin: 0 0 8px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n\tmax-width: 46em;\n\ttext-wrap: pretty;\n}\n\n/* Why a chart has no rows, in place of the chart. */\n.chart-empty {\n\tmargin: 8px 0 12px;\n\tfont-size: 14px;\n\tcolor: var(--text-secondary);\n\tmax-width: 46em;\n\ttext-wrap: pretty;\n}\n\n.subtitle {\n\tcolor: var(--text-secondary);\n}\n\n/* The page's foot: how many schools the page covers, and the notice from the page text. */\n.colophon {\n\tmargin-top: 32px;\n\tpadding-top: 16px;\n\tborder-top: 1px solid var(--gridline);\n}\n\n.colophon .footnote {\n\tmargin: 0 0 6px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n.page-notice {\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n\tmargin: 0;\n\tmax-width: 46em;\n}\n\n.network-links {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 4px 18px;\n\tmargin: 0 0 8px;\n\tpadding: 0;\n\tlist-style: none;\n\tfont-size: var(--size-label);\n}\n\n/* On phones, a list of one link to a line, at body size. */\n.root[data-layout=\"narrow\"] .network-links {\n\tflex-direction: column;\n\tgap: 0;\n\tfont-size: var(--size-body);\n}\n\n/* The license badge and the suggested credit, under the download links. */\n.license a {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tgap: 8px;\n}\n\n.license-icons {\n\tdisplay: inline-flex;\n\tgap: 2px;\n}\n\n.license-icon {\n\tdisplay: block;\n\tforced-color-adjust: none;\n}\n\n.suggested-credit {\n\tmargin: 4px 0 8px;\n}\n\n.page-section .credit-label {\n\tmargin: 0 0 4px;\n\tcolor: var(--text-primary);\n\tfont-weight: 600;\n}\n\n.credit-row {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: center;\n\tgap: 6px 10px;\n}\n\n.page-section .credit-text {\n\tmargin: 0;\n\tpadding: 4px 10px;\n\tborder-left: 3px solid var(--baseline);\n\tcolor: var(--text-primary);\n\tmax-width: 100%;\n}\n\n.copy-status {\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n.page-section p {\n\tcolor: var(--text-secondary);\n\tmax-width: 46em;\n}\n\n.page-section strong {\n\tcolor: var(--text-primary);\n}\n\n.download-links {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 8px;\n\tmargin: 4px 0 12px;\n\tpadding: 0;\n\tlist-style: none;\n}\n\n.purpose ul {\n\tmargin: 0 0 8px;\n\tpadding-left: 20px;\n\tmax-width: 46em;\n\tcolor: var(--text-secondary);\n}\n\n.purpose li {\n\tmargin: 3px 0;\n}\n\n/* Loading and failure messages, which stand in for the widget so the page never shows a blank gap. */\n.message {\n\tmargin: 0;\n\tcolor: var(--text-secondary);\n}\n\n.muted {\n\tcolor: var(--text-muted);\n}\n\n/* A hidden sample of label text: its size changes with the reader's text spacing, which redraws the charts. */\n.spacing-probe {\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\tvisibility: hidden;\n\tpointer-events: none;\n\twhite-space: nowrap;\n\tfont-size: var(--size-label);\n}\n\n.visually-hidden,\n.skip-link:not(:focus) {\n\tposition: absolute;\n\twidth: 1px;\n\theight: 1px;\n\tmargin: -1px;\n\tpadding: 0;\n\toverflow: hidden;\n\tclip: rect(0 0 0 0);\n\tclip-path: inset(50%);\n\twhite-space: nowrap;\n\tborder: 0;\n}\n\n/* Shown over the header when focused, so nothing moves. */\n.skip-link {\n\tposition: absolute;\n\ttop: 4px;\n\tleft: 0;\n\tz-index: 40;\n\tfont: inherit;\n\tcolor: var(--link);\n\tbackground: var(--panel-surface);\n\tborder: 1px solid var(--border);\n\tborder-radius: 6px;\n\tpadding: 4px 10px;\n\tcursor: pointer;\n}\n\nbutton {\n\tfont: inherit;\n\tcolor: inherit;\n}\n\n/* A reader's text spacing reaches the text in controls too, which browsers otherwise reset. */\nbutton,\nselect,\ninput {\n\tletter-spacing: inherit;\n\tword-spacing: inherit;\n}\n\n.controls {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 12px 20px;\n\talign-items: flex-start;\n\tmargin: 20px 0 8px;\n}\n\n.controls label,\n.sort-control,\n.filter-control {\n\tcolor: var(--text-secondary);\n\tfont-size: var(--size-label);\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 4px 8px;\n\talign-items: center;\n\tmax-width: 100%;\n}\n\n.view-control {\n\tdisplay: flex;\n\tmin-width: 0;\n\tmax-width: 100%;\n}\n\n/* In the chart's \"How to read\", only the shown view's description. */\n.view-descriptions {\n\tmargin: 0 0 8px;\n}\n\n.view-description {\n\tmargin: 0;\n\ttext-wrap: pretty;\n}\n\n.view-description:not(.shown) {\n\tdisplay: none;\n}\n\n/* One style for every control: the year, sort and filter selects, the view and theme switches, the download links,\n   the Copy button and the disclosures' summaries. */\nselect,\n.segmented button,\n.copy-button,\n.button-link,\n.disclosure > summary,\n.close-end {\n\tfont: inherit;\n\tfont-size: 14px;\n\tline-height: 1.3;\n\tcolor: var(--text-primary);\n\tbackground: var(--control-surface);\n\tborder: 1px solid var(--control-border);\n\tborder-radius: 6px;\n\tpadding: 5px 12px;\n\tmin-height: 32px;\n\tmax-width: 100%;\n\tcursor: pointer;\n}\n\n.button-link,\n.disclosure > summary {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tgap: 8px;\n\ttext-decoration: none;\n}\n\n/* Hover fills only where a pointer hovers: touch browsers keep :hover on the last control tapped. */\n@media (hover: hover) {\n\t.copy-button:hover,\n\t.button-link:hover,\n\t.disclosure > summary:hover,\n\t.close-end:hover,\n\t.segmented button:not([aria-pressed=\"true\"]):hover,\n\tselect:hover {\n\t\tbackground: var(--control-hover);\n\t}\n}\n\n.page-section .button-link {\n\tcolor: var(--text-primary);\n}\n\n/* Disclosures: a chevron that points right when closed and down when open. */\n.disclosure > summary {\n\tlist-style: none;\n}\n\n.disclosure > summary::-webkit-details-marker {\n\tdisplay: none;\n}\n\n.disclosure > summary::before,\n.chevron {\n\tcontent: \"\";\n\tflex: none;\n\tdisplay: inline-block;\n\twidth: 6px;\n\theight: 6px;\n\tborder-right: 2px solid var(--chevron);\n\tborder-bottom: 2px solid var(--chevron);\n\ttransform: rotate(-45deg);\n}\n\n.disclosure > summary::before {\n\tmargin: 0 2px 0 0;\n\ttransition: transform 0.15s ease;\n}\n\n.disclosure[open] > summary::before {\n\ttransform: rotate(45deg);\n}\n\n@media (prefers-reduced-motion: reduce) {\n\t.disclosure > summary::before {\n\t\ttransition: none;\n\t}\n}\n\n/* The chevron after a chart row's value, a timeline row's name and a table cell's text: it shows at rest that\n   selecting them opens details. */\n.chevron {\n\tmargin: 0 1px 1px 7px;\n\tvertical-align: middle;\n}\n\n.pay-row:focus-visible .chevron,\n.timeline-row:focus-visible .chevron,\n.cell-button:focus-visible .chevron,\n[aria-expanded=\"true\"] .chevron {\n\tborder-color: var(--text-primary);\n}\n\n@media (hover: hover) {\n\t.pay-row:hover .chevron,\n\t.timeline-row:hover .chevron,\n\t.cell-button:hover .chevron {\n\t\tborder-color: var(--text-primary);\n\t}\n}\n\n.chart-hint {\n\tmargin: 8px 0 0;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n\tmax-width: 46em;\n\ttext-wrap: pretty;\n}\n\n.segmented {\n\tdisplay: inline-flex;\n}\n\n.segmented button {\n\tborder-radius: 0;\n\twhite-space: nowrap;\n}\n\n.segmented button:first-child {\n\tborder-radius: 6px 0 0 6px;\n}\n\n.segmented button:last-child {\n\tborder-radius: 0 6px 6px 0;\n}\n\n.segmented button + button {\n\tborder-left: none;\n}\n\n/* The pressed button is tinted in the accent colour, edged in it (its left edge too, which the button before it\n   draws), and carries a bar along its bottom edge: a cue that survives a recolouring of the tint (Dark Reader's) and\n   changes no width. It is not inverted, since a black \"Auto\" or \"Light\" read as the dark theme being on. */\n.segmented button[aria-pressed=\"true\"] {\n\tbackground: color-mix(in srgb, var(--focus) 16%, var(--control-surface));\n\tcolor: var(--text-primary);\n\tborder-color: var(--focus);\n\tbox-shadow:\n\t\tinset 0 -3px 0 0 var(--focus),\n\t\t-1px 0 0 0 var(--focus);\n}\n\n.segmented button[aria-pressed=\"true\"]:first-child {\n\tbox-shadow: inset 0 -3px 0 0 var(--focus);\n}\n\n/* On phones the view switch spans the width, its three buttons sharing it without wrapping. */\n.root[data-layout=\"narrow\"] .view-control,\n.root[data-layout=\"narrow\"] .view-control .segmented {\n\twidth: 100%;\n}\n\n.root[data-layout=\"narrow\"] .view-control {\n\tflex-basis: 100%;\n}\n\n/* Labels may wrap inside the buttons, so the switch fits at 320 px and at 400% zoom. */\n.root[data-layout=\"narrow\"] .view-control .segmented button {\n\tflex: 1 1 0;\n\tmin-width: 0;\n\tpadding: 5px 6px;\n\twhite-space: normal;\n}\n\n/* Highlighting schools: a disclosure with a search box and checkboxes, and a chip per highlighted school. On wide\n   layouts it sits at the controls row's right edge, as wide as its open panel and switch whether open or not, with its\n   button at the right and the chips on a line of their own under it, so that opening the panel or choosing a school\n   moves neither the button nor the list under the pointer. */\n.highlight-control {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\tgap: 8px;\n\tmax-width: 100%;\n}\n\n.root[data-layout=\"wide\"] .highlight-control {\n\tmargin-left: auto;\n\twidth: min(440px, 100%);\n\tjustify-content: flex-end;\n}\n\n.root[data-layout=\"wide\"] .highlight-picker > summary {\n\tdisplay: flex;\n\twidth: fit-content;\n\tmargin-left: auto;\n}\n\n.root[data-layout=\"wide\"] .highlight-control > .chips {\n\tflex-basis: 100%;\n\tjustify-content: flex-end;\n}\n\n.picker {\n\tmargin-top: 8px;\n\tpadding: 10px;\n\tborder: 1px solid var(--gridline);\n\tborder-radius: 8px;\n\tbackground: var(--panel-surface);\n\twidth: min(420px, 100%);\n}\n\n/* Its label starts at the left like every other label (the controls row centres its labels' items). */\n.controls .picker-label {\n\tdisplay: flex;\n\tflex-direction: column;\n\talign-items: stretch;\n\tgap: 4px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n.picker-search {\n\tfont: inherit;\n\tfont-size: 14px;\n\tcolor: var(--text-primary);\n\tbackground: var(--control-surface);\n\tborder: 1px solid var(--control-border);\n\tborder-radius: 6px;\n\tpadding: 5px 8px;\n\tmin-height: 32px;\n\twidth: 100%;\n}\n\n.picker-list {\n\tmax-height: 260px;\n\toverflow-y: auto;\n\tmargin: 8px 0;\n\tpadding: 0;\n\tlist-style: none;\n\tfont-size: 14px;\n}\n\n.picker-list label {\n\tdisplay: flex;\n\talign-items: center;\n\tgap: 8px;\n\tmin-height: 28px;\n\tcursor: pointer;\n}\n\n.picker-list input {\n\twidth: 16px;\n\theight: 16px;\n\taccent-color: var(--series-contract);\n}\n\n.chips {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 6px;\n\tmargin: 0;\n\tpadding: 0;\n\tlist-style: none;\n}\n\n/* While the picker is open the chips follow it, below, as they do in the tab order. */\n.highlight-control:has(> details[open]) > .chips {\n\tflex-basis: 100%;\n}\n\n.chip {\n\tfont-size: var(--size-label);\n\tmin-height: 32px;\n\tpadding: 3px 10px;\n\tborder: 1px solid var(--control-border);\n\tborder-radius: 16px;\n\tbackground: var(--selected);\n\tcolor: var(--text-primary);\n\tcursor: pointer;\n}\n\n/* How to show the chosen schools: a two-way switch like the chart's views, after its label and over the current\n   choice's description, on a line of its own under the chips, outside the panel, so the state stays in view with the\n   panel closed. On phones its two buttons share the width. */\n.choice-mode {\n\tflex-basis: 100%;\n\tdisplay: flex;\n\tflex-direction: column;\n\tgap: 4px;\n\tmin-width: 0;\n}\n\n.choice-switch {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: center;\n\tgap: 4px 8px;\n}\n\n.choice-mode-label,\n.choice-description,\n.choice-hint {\n\tmargin: 0;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n.root[data-layout=\"narrow\"] .choice-mode .segmented {\n\tdisplay: flex;\n\twidth: 100%;\n}\n\n.root[data-layout=\"narrow\"] .choice-mode .segmented button {\n\tflex: 1 1 0;\n\tmin-width: 0;\n\tpadding-inline: 8px;\n\twhite-space: normal;\n}\n\n/* \"Only chosen schools\" before any school is chosen: muted, with no hover fill, and the hint under it says why. */\n.segmented button[aria-disabled=\"true\"] {\n\tcolor: var(--text-muted);\n\tcursor: not-allowed;\n}\n\n@media (hover: hover) {\n\t.segmented button[aria-disabled=\"true\"]:hover {\n\t\tbackground: var(--control-surface);\n\t}\n}\n\n/* On phones the button that opens the panel spans the width, so its label can grow with the count and nothing\n   beside it moves. */\n.root[data-layout=\"narrow\"] .highlight-control,\n.root[data-layout=\"narrow\"] .highlight-picker,\n.root[data-layout=\"narrow\"] .highlight-picker > summary {\n\twidth: 100%;\n}\n\n/* While only the chosen schools show: the line under each section's heading that says how many, with its Show all\n   button, on the tint of the chosen schools' chips. */\n.choice-note {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: center;\n\twidth: fit-content;\n\tmax-width: 100%;\n\tmargin: 0 0 10px;\n\tpadding: 2px 10px;\n\tborder-radius: 6px;\n\tbackground: var(--selected);\n\tfont-size: 14px;\n\tcolor: var(--text-primary);\n}\n\n.choice-note .link-button {\n\tfont-size: inherit;\n}\n\n.choice-note-separator {\n\twhite-space: pre;\n}\n\n.notice {\n\tbackground: var(--notice);\n\tborder-radius: 6px;\n\tpadding: 6px 10px;\n\tfont-size: 14px;\n\tmax-width: 46em;\n\ttext-wrap: pretty;\n}\n\n.legend {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 6px 18px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n\tmargin: 0 0 8px;\n\tpadding: 0;\n\tlist-style: none;\n}\n\n.legend-item {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tgap: 6px;\n}\n\n/* On phones, one item to a line: every key takes the same box, so the labels share one left edge. The over-time\n   view's legend of school names wraps them instead. */\n.root[data-layout=\"narrow\"] .legend:not(.names) {\n\tflex-direction: column;\n\talign-items: flex-start;\n}\n\n.root[data-layout=\"narrow\"] .legend-item > :first-child {\n\tflex: none;\n\twidth: 30px;\n}\n\n.key {\n\tflex: none;\n\toverflow: visible;\n}\n\n/* The asterisk of a calculated figure, as the value labels show it, in a key's box. */\n.key-glyph {\n\tdisplay: inline-block;\n\twidth: 24px;\n\ttext-align: center;\n\tfont-size: var(--size-body);\n\tfont-weight: 600;\n\tline-height: 1;\n\tcolor: var(--text-primary);\n}\n\n/* Pay chart and timeline rows: a name column and a track. On narrow layouts the name sits above the track. */\n.pay-list,\n.timeline-list {\n\tlist-style: none;\n\tmargin: 0;\n\tpadding: 0;\n}\n\n.pay-list > li,\n.timeline-list > li {\n\tmargin: 0;\n\tpadding: 0;\n}\n\n.pay-row,\n.timeline-row,\n.axis-row {\n\tdisplay: grid;\n\tgrid-template-columns: var(--name-column, 150px) minmax(0, 1fr);\n\tcolumn-gap: 10px;\n\talign-items: center;\n\twidth: 100%;\n}\n\n.pay-row,\n.timeline-row {\n\tposition: relative;\n\tbackground: none;\n\tborder: none;\n\tpadding: 0;\n\tmargin: 0;\n\ttext-align: left;\n\tcursor: pointer;\n\tborder-radius: 4px;\n}\n\n.pay-row {\n\tmin-height: 34px;\n}\n\n.root[data-layout=\"wide\"] .pay-row .name {\n\talign-self: end;\n\tline-height: 14px;\n\tpadding-bottom: 4px;\n}\n\n/* Names are semibold, so they stand above the muted union line under them. They wrap between words rather than being\n   cut off, also when a reader's text spacing widens them; only a word wider than the whole column breaks. */\n.pay-row .name,\n.timeline-row .name {\n\tfont-size: var(--size-label);\n\tfont-weight: 600;\n\tcolor: var(--text-secondary);\n\ttext-align: right;\n\toverflow-wrap: break-word;\n}\n\n.name-text {\n\tdisplay: inline;\n}\n\n.name-text .status-icon {\n\tmargin-left: 4px;\n}\n\n.track {\n\tdisplay: block;\n\tline-height: 0;\n}\n\n.track svg {\n\tdisplay: block;\n\toverflow: visible;\n\tforced-color-adjust: none;\n}\n\n/* A wide row's value label sits on a backing of the surface colour, so gridlines and the median and 30 percent lines\n   pass behind it. The backing is a background, which Dark Reader darkens exactly as it darkens the widget's own. */\n.pay-row .value {\n\tposition: absolute;\n\ttop: 0;\n\tmargin-left: -3px;\n\tpadding: 0 3px;\n\tborder-radius: 3px;\n\tbackground: var(--surface);\n\tfont-size: var(--size-label);\n\tline-height: 16px;\n\twhite-space: nowrap;\n\tfont-variant-numeric: tabular-nums;\n\tcolor: var(--text-primary);\n\tpointer-events: none;\n}\n\n.pay-row[aria-expanded=\"true\"] .value {\n\tbackground: linear-gradient(var(--selected), var(--selected)), var(--surface);\n}\n\n@media (hover: hover) {\n\t.pay-row:hover .value {\n\t\tbackground: linear-gradient(var(--selected), var(--selected)), var(--surface);\n\t}\n}\n\n.tag {\n\tcolor: var(--text-muted);\n}\n\n/* A label's parts (amount, length, tags, pay per month): each whole on one line with the separator that follows it.\n   The separator box is as wide as \" \u00b7 \", so the label measures as its text does. The last part's separator is a\n   spacer, which only phones keep (see below). */\n.segment {\n\twhite-space: nowrap;\n}\n\n.separator {\n\tdisplay: inline-block;\n\twidth: 0.8em;\n\ttext-align: center;\n\tcolor: var(--text-muted);\n}\n\n.separator.end {\n\tdisplay: none;\n}\n\n.label-clip,\n.label-parts {\n\tdisplay: contents;\n}\n\n/* The yearly chart's pay per month, after the rest of the label in muted text. Where the whole label would crowd the\n   row, it takes a line of its own under the rest, without the separator. */\n.monthly {\n\tcolor: var(--text-muted);\n\twhite-space: nowrap;\n}\n\n.value.wrapped .monthly {\n\tdisplay: block;\n}\n\n/* The rent chart's pay, in that place, in the label's own colour; tags that follow it (whose figure it is) stay\n   muted. On phones the pay and its tags wrap between parts, as the rest of a label does. */\n.monthly.plain {\n\tcolor: inherit;\n}\n\n.root[data-layout=\"narrow\"] .pay-row .value .monthly {\n\twhite-space: normal;\n}\n\n.value.wrapped .before-monthly {\n\tvisibility: hidden;\n}\n\n.pay-row:focus-visible .bar,\n.pay-row:focus-visible .soft-bar {\n\tfilter: brightness(1.12);\n}\n\n/* The timeline's rows alternate a faint band, so each row's stacked marks read as its own. */\n:where(.timeline-list > li:nth-child(even)) > .timeline-row {\n\tbackground: var(--band);\n}\n\n.pay-row[aria-expanded=\"true\"],\n.timeline-row[aria-expanded=\"true\"] {\n\tbackground: var(--selected);\n}\n\n@media (hover: hover) {\n\t.pay-row:hover .bar,\n\t.pay-row:hover .soft-bar {\n\t\tfilter: brightness(1.12);\n\t}\n\n\t.pay-row:hover,\n\t.timeline-row:hover {\n\t\tbackground: var(--selected);\n\t}\n}\n\n/* Highlighted schools keep their strength and their names are marked as with a highlighter, in the tint of the\n   highlight chips (every name is already semibold, so weight cannot mark them); the rest fade: their marks (and\n   clocks) to a third of their strength, their names, values and the timeline's notes to the muted ink, which keeps\n   4.5:1 contrast (set after the narrow layout's rules below). The mark reaches 3 px past the name on either side\n   without moving it. */\n.pay-row.faded .track,\n.timeline-row.faded .track svg > :not(.track-note),\n:is(.pay-row, .timeline-row).faded .name .status-icon {\n\topacity: 0.35;\n}\n\n:is(.pay-row, .timeline-row).highlighted .name-text {\n\tmargin-inline: -3px;\n\tpadding-inline: 3px;\n\tborder-radius: 3px;\n\tbackground: var(--highlight-mark);\n\tcolor: var(--text-primary);\n\t-webkit-box-decoration-break: clone;\n\tbox-decoration-break: clone;\n}\n\ntr.highlighted .school-name {\n\tfont-weight: 700;\n\tcolor: var(--text-primary);\n}\n\ntr.highlighted th,\ntr.highlighted td {\n\tbackground: var(--selected);\n}\n\n.pay-row:focus-visible,\n.timeline-row:focus-visible,\n.cell-button:focus-visible,\n.sort-button:focus-visible,\nselect:focus-visible,\n.picker-search:focus-visible,\n.picker-list input:focus-visible,\n.segmented button:focus-visible,\nsummary:focus-visible,\n.skip-link:focus-visible,\n.close:focus-visible,\n.close-end:focus-visible,\n.copy-button:focus-visible,\n.button-link:focus-visible,\n.link-button:focus-visible,\n.chip:focus-visible,\n.root a:focus-visible {\n\toutline: 2px solid var(--focus);\n\toutline-offset: 2px;\n}\n\n.pay-row:focus-visible,\n.timeline-row:focus-visible {\n\toutline-offset: -2px;\n}\n\n/* On narrow rows the name starts at the button's edge, so the ring sits outside it. */\n.root[data-layout=\"narrow\"] .pay-row:focus-visible,\n.root[data-layout=\"narrow\"] .timeline-row:focus-visible {\n\toutline-offset: 2px;\n}\n\n/* On phones the name sits above the bar with the value label beside it; the label takes at most 55% of the width and\n   wraps, so the name keeps room for its longest word. */\n.root[data-layout=\"narrow\"] .pay-row,\n.root[data-layout=\"narrow\"] .timeline-row,\n.root[data-layout=\"narrow\"] .axis-row {\n\tgrid-template-columns: minmax(0, 1fr) fit-content(55%);\n\tgrid-template-areas: \"name value\" \"track track\";\n\tcolumn-gap: 8px;\n}\n\n.root[data-layout=\"narrow\"] .pay-row {\n\theight: auto;\n\talign-items: start;\n\tpadding: 4px 0 6px;\n\trow-gap: 2px;\n}\n\n.root[data-layout=\"narrow\"] .timeline-row {\n\tpadding: 4px 0;\n}\n\n.root[data-layout=\"narrow\"] .pay-row .name,\n.root[data-layout=\"narrow\"] .timeline-row .name {\n\tgrid-area: name;\n\ttext-align: left;\n\tcolor: var(--text-primary);\n}\n\n/* On phones a label's parts are right-aligned, every one followed by its separator (the last one's hidden), and the\n   parts are clipped one separator short of the right edge, so a separator that ends a line falls outside and none is\n   left dangling. */\n.root[data-layout=\"narrow\"] .pay-row .value .label-clip {\n\tdisplay: block;\n\toverflow: hidden;\n}\n\n.root[data-layout=\"narrow\"] .pay-row .value .label-parts {\n\tdisplay: block;\n\tmargin-right: -0.8em;\n}\n\n.root[data-layout=\"narrow\"] .pay-row .value .separator.end {\n\tdisplay: inline-block;\n\tvisibility: hidden;\n}\n\n/* A long label wraps in balanced lines, its chevron kept at the end of the last one. */\n.root[data-layout=\"narrow\"] .pay-row .value {\n\tgrid-area: value;\n\tposition: relative;\n\tmargin: 0;\n\tpadding: 0 15px 0 0;\n\tbackground: none;\n\ttext-align: right;\n\twhite-space: normal;\n\ttext-wrap: balance;\n}\n\n/* A long tag takes lines of its own on phones, where it would otherwise squeeze the school's name: it wraps clear of\n   the clipped edge, and a line break, not a separator, sets it apart from the parts around it. */\n.root[data-layout=\"narrow\"] .pay-row .value .segment.long {\n\tdisplay: block;\n\tmargin-right: 0.8em;\n\twhite-space: normal;\n}\n\n.root[data-layout=\"narrow\"] .pay-row .value .segment.long > .separator {\n\tdisplay: none;\n}\n\n.root[data-layout=\"narrow\"] .pay-row .value .chevron {\n\tposition: absolute;\n\tright: 3px;\n\tbottom: 6px;\n\tmargin: 0;\n}\n\n.root[data-layout] .pay-row.faded :is(.name, .value),\n.root[data-layout] .timeline-row.faded .name {\n\tcolor: var(--text-muted);\n}\n\n.root[data-layout=\"narrow\"] .track {\n\tgrid-area: track;\n}\n\n.root[data-layout=\"narrow\"] .axis-row .name {\n\tdisplay: none;\n}\n\n/* A chart's or the timelines' row: the row's button, and its unions laid over its name column, linked to their\n   websites (a button cannot hold a link). The button takes the list item's grid (subgrid), so the name, the unions\n   and the track keep their places: the unions under the name, in its column, on wide layouts (the bars keep their\n   width); on a line of their own under the name on phones. Every row keeps that line, held by an empty placeholder\n   where a school has no union, and a union's label stays on it, ending in an ellipsis where the column is too narrow,\n   so no row is shorter or taller than the rest and the bars are evenly spaced.\n   A bar chart's rows all take the height of its tallest (one whose value label wraps, or on phones whose name or\n   label takes more lines), the room left over going above the name, so each bar keeps its place at its row's foot.\n   For that the list is the grid: each item takes three of its rows (subgrid), the first sized alike in every item\n   (1fr), then the unions' line and a row for the details panel that opens inline on phones, which is empty\n   otherwise, so an open panel lengthens its own item alone. Phones add the track's row before the panel's. */\n.pay-list {\n\tdisplay: grid;\n\tgrid-template-columns: minmax(0, 1fr);\n\tgrid-auto-rows: 1fr auto auto;\n}\n\n.root[data-layout=\"narrow\"] .pay-list {\n\tgrid-auto-rows: 1fr auto auto auto;\n}\n\n:is(.pay-list, .timeline-list) > li.row-item {\n\tdisplay: grid;\n\tgrid-template-columns: var(--name-column, 150px) minmax(0, 1fr);\n\tgrid-template-rows: 1fr auto;\n\tcolumn-gap: 10px;\n}\n\n.pay-list > li.row-item {\n\tgrid-row: span 3;\n\tgrid-template-rows: subgrid;\n}\n\n.root[data-layout=\"narrow\"] .pay-list > li.row-item {\n\tgrid-row: span 4;\n}\n\n/* The median's divider takes a slim track of its own, after the rows' tracks of the schools at or above the median\n   (--rows-above of them); the rows below take the implicit tracks, which repeat the pattern from its start, so every\n   row keeps the same height. */\n.pay-list[data-median-after] {\n\tgrid-template-rows: repeat(var(--rows-above), 1fr auto auto) auto;\n}\n\n.root[data-layout=\"narrow\"] .pay-list[data-median-after] {\n\tgrid-template-rows: repeat(var(--rows-above), 1fr auto auto auto) auto;\n}\n\n.root .pay-list[data-median-after=\"0\"] {\n\tgrid-template-rows: auto;\n}\n\n/* The divider: its label where the schools' names are, and a dotted rule like the median line across the bars'\n   column. */\n.pay-list > li.median-divider {\n\tpadding: 2px 0;\n\tfont-size: var(--size-small);\n\tline-height: 16px;\n\tcolor: var(--text-secondary);\n\tfont-variant-numeric: tabular-nums;\n}\n\n.median-divider-line {\n\tdisplay: grid;\n\tgrid-template-columns: var(--name-column, 150px) minmax(0, 1fr);\n\tcolumn-gap: 10px;\n\talign-items: center;\n}\n\n.median-divider-label {\n\ttext-align: right;\n}\n\n.median-rule {\n\tdisplay: block;\n\toverflow: visible;\n\tforced-color-adjust: none;\n}\n\n/* On phones the label leads the line, and the divider keeps some room from the bar above and the name below. */\n.root[data-layout=\"narrow\"] .pay-list > li.median-divider {\n\tpadding: 8px 0 6px;\n}\n\n.root[data-layout=\"narrow\"] .median-divider-line {\n\tgrid-template-columns: auto minmax(0, 1fr);\n\tcolumn-gap: 8px;\n}\n\n.root[data-layout=\"narrow\"] .median-divider-label {\n\ttext-align: left;\n}\n\n/* The button spans the name's and the unions' rows (and the track's on phones), not the panel's. */\n:is(.pay-list, .timeline-list) > li.row-item > :is(.pay-row, .timeline-row) {\n\tgrid-column: 1 / -1;\n\tgrid-row: 1 / span 2;\n\tgrid-template-columns: subgrid;\n\tgrid-template-rows: subgrid;\n\tgrid-template-areas: none;\n}\n\n.root[data-layout=\"narrow\"] :is(.pay-list, .timeline-list) > li.row-item > :is(.pay-row, .timeline-row) {\n\tgrid-row: 1 / span 3;\n}\n\n/* A details panel that opens inline (on phones) takes the item's full width, under the row. */\n:is(.pay-list, .timeline-list) > li.row-item > .panel:not(.floating) {\n\tgrid-column: 1 / -1;\n}\n\n:is(.pay-list, .timeline-list) > li.row-item > :is(.pay-row, .timeline-row) .name {\n\tgrid-column: 1;\n\tgrid-row: 1;\n\talign-self: end;\n}\n\n.timeline-list > li.row-item > .timeline-row .track {\n\tgrid-column: 2;\n\tgrid-row: 1 / -1;\n\talign-self: center;\n}\n\n.pay-list > li.row-item > .pay-row .track {\n\tgrid-column: 2;\n\tgrid-row: 1;\n\talign-self: end;\n}\n\n/* A wide row's value label sits in the track's grid area, its foot at the top of the bar (the script sets how far\n   above the track's foot that is). Both ends of the area are given: a positioned item's missing end would be the\n   row's edge. */\n.root[data-layout=\"wide\"] .pay-list > li.row-item > .pay-row .value {\n\tgrid-column: 2 / 3;\n\tgrid-row: 1 / 2;\n\ttop: auto;\n}\n\n.union-links {\n\tgrid-column: 1;\n\tgrid-row: 2;\n\tdisplay: flex;\n\tjustify-content: flex-end;\n\tjustify-self: end;\n\talign-self: start;\n\tposition: relative;\n\tz-index: 1;\n\tmin-width: 0;\n\tmax-width: 100%;\n\tpadding-bottom: 4px;\n\tfont-size: var(--size-small);\n\tline-height: 16px;\n\tcolor: var(--text-muted);\n\twhite-space: nowrap;\n}\n\n.union-links.placeholder {\n\tpointer-events: none;\n}\n\n/* A union's label is a target of at least 24 px (44 px on phones); on wide layouts it reaches 4 px past its 16 px\n   line above and below, so the row grows only by the line. A label without a link takes the same box, so its row is\n   as tall as the rest. */\n.union-links > :is(a, .union-name),\n.union-line a {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tmin-width: 0;\n\tmin-height: 24px;\n}\n\n.union-links > :is(a, .union-name) > span {\n\tmin-width: 0;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n}\n\n.root[data-layout=\"wide\"] .union-links > :is(a, .union-name) {\n\tmargin-block: -4px;\n}\n\n.root[data-layout=\"narrow\"] :is(.pay-list, .timeline-list) > li.row-item {\n\tgrid-template-columns: minmax(0, 1fr) fit-content(55%);\n\tcolumn-gap: 8px;\n\trow-gap: 2px;\n}\n\n.root[data-layout=\"narrow\"] .timeline-list > li.row-item {\n\tgrid-template-rows: 1fr auto auto;\n}\n\n.root[data-layout=\"narrow\"] :is(.pay-list, .timeline-list) > li.row-item > :is(.pay-row, .timeline-row) .name {\n\tgrid-column: 1;\n\tgrid-row: 1;\n\talign-self: end;\n}\n\n.root[data-layout=\"narrow\"] .pay-list > li.row-item > .pay-row .value {\n\tgrid-column: 2;\n\tgrid-row: 1;\n\talign-self: end;\n}\n\n.root[data-layout=\"narrow\"] :is(.pay-list, .timeline-list) > li.row-item > :is(.pay-row, .timeline-row) .track {\n\tgrid-column: 1 / -1;\n\tgrid-row: 3;\n}\n\n.root[data-layout=\"narrow\"] .union-links {\n\tgrid-column: 1 / -1;\n\tgrid-row: 2;\n\tjustify-content: flex-start;\n\tjustify-self: start;\n\tpadding-bottom: 0;\n}\n\n.root[data-layout=\"narrow\"] :is(.union-links > :is(a, .union-name), .union-line a) {\n\tmin-height: 44px;\n}\n\n/* In the bar charts and the timelines a union is a quiet link under the school's name, which stays the strongest text\n   in its column: the muted ink (4.5:1 in both themes) with a thin dotted underline, turning to the link colour with a\n   solid underline on hover and keyboard focus. The table and the details keep the usual link style. */\n.union-links a {\n\tcolor: var(--text-muted);\n\ttext-decoration-line: underline;\n\ttext-decoration-style: dotted;\n\ttext-decoration-thickness: 1px;\n\ttext-underline-offset: 2px;\n}\n\n.union-links a:is(:hover, :focus-visible) {\n\tcolor: var(--link);\n\ttext-decoration-style: solid;\n}\n\n/* A faded row's unions fade with its name. */\n:is(.pay-row, .timeline-row).faded ~ .union-links,\n:is(.pay-row, .timeline-row).faded ~ .union-links a {\n\tcolor: var(--text-muted);\n}\n\n.axis-title {\n\tfont-size: var(--size-small);\n\tcolor: var(--text-muted);\n\tmargin: 2px 0 10px;\n}\n\n.track text {\n\tfont-size: var(--size-small);\n\tfill: var(--text-muted);\n\tfont-variant-numeric: tabular-nums;\n}\n\n.track .reference-label {\n\tfill: var(--text-secondary);\n}\n\n.gridline {\n\tstroke: currentColor;\n\tstroke-opacity: var(--gridline-opacity);\n\tstroke-width: 1;\n}\n\n.baseline,\n.tick {\n\tstroke: currentColor;\n\tstroke-opacity: var(--baseline-opacity);\n\tstroke-width: 1;\n}\n\n.bar.series-contract {\n\tfill: var(--series-contract);\n}\n\n.bar.series-policy {\n\tfill: var(--series-policy);\n}\n\n.bar.summer {\n\tstroke-width: 1;\n}\n\n.bar.summer.series-contract {\n\tfill: var(--series-contract-light);\n\tstroke: var(--series-contract);\n}\n\n.bar.summer.series-policy {\n\tfill: var(--series-policy-light);\n\tstroke: var(--series-policy);\n}\n\n/* The 12-month outline: hollow, with a fine dashed edge in muted ink, the same after both kinds of bar, so it never\n   reads as pay (which is always tinted, summer pay included). */\n.extension {\n\tfill: none;\n\tstroke: var(--text-muted);\n\tstroke-width: 1;\n\tstroke-dasharray: 3 2;\n}\n\n.soft-bar {\n\tstroke-width: 1;\n}\n\n/* An estimate's or qualifying amount's bar: hollow, edged and dotted in its series colour, so it reads apart from\n   minimum pay's solid bars and from university policy's stripes. */\n.soft-bar.series-contract {\n\tstroke: var(--series-contract);\n}\n\n.soft-bar.series-policy {\n\tstroke: var(--series-policy);\n}\n\n.hatch-dot.series-contract {\n\tfill: var(--series-contract);\n}\n\n.hatch-dot.series-policy {\n\tfill: var(--series-policy);\n}\n\n.hatch-ground {\n\tfill: none;\n}\n\n/* University policy's hatch: light stripes over the bar's fill, edged in the series colour so the bar's edge keeps its\n   contrast. */\n.policy-hatch {\n\tstroke: var(--series-policy);\n\tstroke-width: 1;\n}\n\n.policy-stripe {\n\tstroke: #ffffff;\n\tstroke-opacity: 0.5;\n\tstroke-width: 1.5;\n}\n\n/* Living costs on the bars: a dot for rent, a vertical line for living costs from the cost of attendance, the dashed\n   30 percent line on the rent chart, and the dotted median on the pay chart. A living-cost mark is inked like the\n   timeline's event marks: filled in a text colour, or hollow with no fill, so a recolouring that keeps text readable\n   keeps them apart. Unlike those, it keeps a halo of the surface, which sets it off from the pale end of a bar with\n   summer pay (where ink alone would show at about 2:1 in the dark theme); where Dark Reader recolours the halo as\n   text, it merges with the fill, and the mark still reads as filled. */\n.living-mark {\n\tfill: var(--living-mark);\n\tstroke: var(--surface);\n\tstroke-width: 2;\n\tpaint-order: stroke;\n}\n\n/* A partial estimate (its budget leaves some costs unitemized) is hollow. */\n.living-mark.partial {\n\tfill: none;\n\tstroke: var(--living-mark);\n\tstroke-width: 1.5;\n\tpaint-order: normal;\n}\n\n.burden-line {\n\tstroke: var(--living-mark);\n\tstroke-width: 1.5;\n\tstroke-dasharray: 4 3;\n}\n\n.median-line {\n\tstroke: var(--text-secondary);\n\tstroke-width: 1;\n\tstroke-dasharray: 1 3;\n\tstroke-linecap: round;\n}\n\n.flag {\n\tcolor: var(--burden);\n}\n\n/* The network's credit inside a chart's frame. */\n.credit {\n\tdisplay: block;\n\toverflow: visible;\n\tmargin-top: 2px;\n}\n\n.credit text {\n\tfont-size: var(--size-small);\n\tfill: var(--text-muted);\n}\n\n/* \"How to read this chart\" (and this table), above what it explains: the summary is a control like the others; what\n   it opens is quiet text at the label size. */\n.how-to-read {\n\tmargin: 0 0 12px;\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n}\n\n.how-to-read > :not(summary, .label-key) {\n\tmax-width: 46em;\n}\n\n.how-to-read[open] > summary {\n\tmargin-bottom: 8px;\n}\n\n.how-to-read > p {\n\tmargin: 0 0 8px;\n}\n\n.how-to-read > .legend {\n\tmargin: 8px 0;\n}\n\n.how-to-read .notes {\n\tmargin: 8px 0;\n\tpadding-left: 18px;\n}\n\n.how-to-read .notes li {\n\tmargin: 4px 0;\n\ttext-wrap: pretty;\n}\n\n.how-to-read :is(.legend, .notes, .coverage-note):empty {\n\tdisplay: none;\n}\n\n/* A page section's parts behind disclosures (About this data, and the rest of a section's text). */\n.page-section .section-more {\n\tmargin: 8px 0;\n}\n\n.page-section .section-more > p {\n\tmargin: 8px 0 4px;\n}\n\n.soft-block {\n\tmargin: 16px 0 8px;\n\tpadding-top: 12px;\n\tborder-top: 1px solid var(--gridline);\n}\n\n.soft-block .block-heading {\n\tmargin-bottom: 4px;\n}\n\n.soft-block > p {\n\tfont-size: var(--size-label);\n\tmax-width: 46em;\n\ttext-wrap: pretty;\n}\n\n.not-charted {\n\tmargin: 12px 0 0;\n\tfont-size: 14px;\n\tcolor: var(--text-secondary);\n}\n\n.not-charted ul {\n\tmargin: 8px 0 0;\n\tpadding: 0;\n\tlist-style: none;\n}\n\n.not-charted li {\n\tmargin: 6px 0;\n}\n\n/* Timeline */\n.timeline-details > .subtitle {\n\tmargin-top: 10px;\n}\n\n.contract-bar {\n\tstroke-width: 1;\n}\n\n.contract-bar.status-current {\n\tfill: var(--series-contract);\n\tstroke: var(--series-contract);\n}\n\n.contract-bar.status-expired-continuing {\n\tfill: var(--series-contract-continuing);\n\tstroke: var(--series-contract);\n}\n\n/* While an expired contract's terms still apply, a line runs through its bar and on to the date of the data: a cue\n   besides the paler fill that tells it from a contract in effect. */\n.continuing-line {\n\tstroke: var(--series-contract);\n\tstroke-width: 2;\n}\n\n/* \"Expired, no successor yet\" is hollow: an outline with nothing inside, which no restyling of colours can fill. */\n.contract-bar.status-expired {\n\tfill: none;\n\tstroke: var(--series-contract);\n\tstroke-width: 1.5;\n}\n\n/* Superseded and unknown contracts are thin grey bars (contractBarMarks), so they differ from the rest without colour.\n   Their edge is solid: a dashed outline means 12 months at the same rate in the bar charts. */\n.contract-bar.status-superseded,\n.contract-bar.status-unknown {\n\tfill: var(--series-superseded);\n\tstroke: var(--text-muted);\n}\n\n/* An event's mark is drawn in one colour, a text colour, and nothing else: filled, its fill and edge alike, or hollow,\n   an edge with nothing inside. So whatever recolours the page's text (Dark Reader, which treats every fill and stroke\n   as text, or forced colours) recolours the whole mark, and filled stays filled and hollow hollow. A halo or a hollow\n   inside painted in the surface colour would not: restyled as text, it no longer matches the surface behind it, and\n   the marks look swapped. */\n.marker {\n\tfill: var(--text-primary);\n\tstroke: var(--text-primary);\n\tstroke-width: 1;\n}\n\n.marker-other {\n\tfill: var(--text-secondary);\n\tstroke: var(--text-secondary);\n}\n\n/* A mark whose place is approximate (a date known only to the year, or an event off the scale): hollow. */\n.marker.hollow {\n\tfill: none;\n\tstroke: var(--text-primary);\n\tstroke-width: 1.5;\n}\n\n.as-of {\n\tstroke: var(--text-muted);\n\tstroke-width: 1;\n}\n\n.track .track-note,\n.key .track-note {\n\tfont-size: var(--size-small);\n\tfill: var(--text-muted);\n}\n\n/* Table */\n.table-details > summary {\n\tmargin-bottom: 8px;\n}\n\n/* The table's one-line introduction, then its \"How to read this table\". */\n.table-intro {\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n\tmax-width: 52em;\n\tmargin: 0 0 8px;\n}\n\n.table-explainer {\n\tmax-width: 52em;\n}\n\n.table-controls {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 8px 20px;\n\tmargin: 8px 0;\n}\n\n/* The key to the Union contract and benefit columns' labels, just above the table: each label in bold, then what it\n   means, in two columns where there is room. */\n.label-key {\n\tfont-size: var(--size-label);\n\tcolor: var(--text-secondary);\n\tmargin: 12px 0;\n}\n\n.label-key .key-heading {\n\tfont-size: var(--size-label);\n\tfont-weight: 600;\n\tcolor: var(--text-primary);\n\tmargin: 0 0 6px;\n}\n\n.key-groups {\n\tdisplay: grid;\n\tgrid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n\tgap: 4px 28px;\n}\n\n.key-group-title {\n\tfont-weight: 600;\n\tmargin: 0 0 2px;\n}\n\n.label-key dl {\n\tmargin: 0;\n}\n\n.label-key dl > div {\n\tmargin: 0 0 3px;\n}\n\n.label-key dt {\n\tdisplay: inline;\n\tfont-weight: 600;\n\tcolor: var(--text-primary);\n}\n\n.label-key dd {\n\tdisplay: inline;\n\tmargin: 0;\n}\n\n/* The table is drawn as cards (cards on the disclosure) on phones and wherever its columns do not fit; then \"Sort by\"\n   does the headings' job. */\n.table-details:not(.cards) .sort-control,\n.table-details:not(.cards) .narrow-only,\n.table-details.cards .wide-only {\n\tdisplay: none;\n}\n\n/* On cards both controls put their label above the select. */\n.table-details.cards .table-controls label {\n\tflex-direction: column;\n\talign-items: flex-start;\n}\n\n.table-wrap {\n\toverflow-x: auto;\n}\n\n/* Where the table fits without scrolling sideways, its heading row stays in view as the page scrolls, with a rule\n   along its bottom edge (a box shadow does not paint on collapsed-border cells). */\n.table-details:not(.cards) .table-wrap.fits {\n\toverflow: visible;\n}\n\n.table-details:not(.cards) .table-wrap.fits thead th {\n\tposition: sticky;\n\ttop: var(--sticky-top, 0px);\n\tz-index: 2;\n\tbackground: var(--surface);\n}\n\n.table-details:not(.cards) .table-wrap.fits thead th::after {\n\tcontent: \"\";\n\tposition: absolute;\n\tleft: 0;\n\tright: 0;\n\tbottom: -1px;\n\theight: 1px;\n\tbackground: var(--baseline);\n}\n\ntable {\n\tborder-collapse: collapse;\n\twidth: 100%;\n\tfont-size: 14px;\n}\n\ncaption {\n\ttext-align: left;\n\tpadding-bottom: 8px;\n\tfont-weight: 600;\n\tcolor: var(--text-primary);\n}\n\nth,\ntd {\n\ttext-align: left;\n\tpadding: 8px;\n\tborder-bottom: 1px solid var(--gridline);\n\tvertical-align: top;\n}\n\nth {\n\tcolor: var(--text-secondary);\n\tfont-weight: 600;\n}\n\ntbody th .school-name {\n\tcolor: var(--text-primary);\n}\n\n.status-line {\n\tdisplay: block;\n\tmargin-top: 2px;\n}\n\n/* The school's unions under its name, linked to their websites. */\n.union-line {\n\tdisplay: block;\n\tfont-size: var(--size-small);\n\tfont-weight: 400;\n\tcolor: var(--text-secondary);\n}\n\n.status-marker {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tgap: 4px;\n\tfont-size: var(--size-small);\n\tfont-weight: 400;\n\tcolor: var(--text-secondary);\n}\n\ntd.number {\n\ttext-align: right;\n\tfont-variant-numeric: tabular-nums;\n}\n\n/* Headings over figures align with them, at the right. */\nth.number,\ntd.number .cell-button,\nth.number .sort-button {\n\ttext-align: right;\n}\n\n/* A school's name and a contract's status break only between words (in Chinese, at a comma: \u5df2\u5230\u671f\uff0c/\u6761\u6b3e\u7ee7\u7eed\u9002\u7528),\n   so narrow columns don't split them between any two characters; in Chinese the same holds for the benefit labels,\n   the notes where a figure is missing and the headings. */\ntbody th .school-name,\ntd.contract .main,\n.root:lang(zh) :is(td .main, td .muted, th .sort-button, tr.divider td) {\n\tword-break: keep-all;\n}\n\n/* Amounts and shares stay whole; the parts of a label may wrap between them. */\n.nowrap {\n\twhite-space: nowrap;\n}\n\n.share-bar {\n\tdisplay: block;\n\tmargin: 3px 0 0 auto;\n\tforced-color-adjust: none;\n}\n\n.share-track {\n\tfill: var(--gridline);\n}\n\n.share-fill {\n\tfill: var(--text-muted);\n}\n\n/* The part of a rent share past HUD's 30 percent line, in the colour of the details' \u25b2 for the same. */\n.share-fill.over {\n\tfill: var(--burden);\n}\n\n.share-tick {\n\tstroke: var(--text-primary);\n\tstroke-width: 1.5;\n}\n\n/* The key to the bars' mark: a small bar and its words, under the rent column's heading, which stays in view, and on\n   cards, which hide the headings, under each bar. */\n.share-key {\n\tdisplay: flex;\n\talign-items: flex-start;\n\tjustify-content: flex-end;\n\tgap: 4px;\n\tmargin-top: 4px;\n\tcolor: var(--text-muted);\n\tfont-size: var(--size-small);\n\tfont-weight: 400;\n\tline-height: 1.3;\n}\n\n.share-glyph {\n\tflex: none;\n\tmargin-top: 2px;\n\tforced-color-adjust: none;\n}\n\n/* Chinese breaks the key only between words: after its colon, or at its hint (U+200B). */\n.root:lang(zh) .share-key {\n\tword-break: keep-all;\n}\n\n/* On cards the key labels the bar's own mark: the mark's line runs down from the bar to the words. */\n.table-details.cards .share-key {\n\tjustify-content: flex-start;\n\tmargin: 0 0 0 calc(var(--share-line) - 0.75px);\n\tpadding: 2px 0 0 4px;\n\tborder-left: 1.5px solid var(--text-primary);\n}\n\n.table-details.cards .share-key .share-glyph {\n\tdisplay: none;\n}\n\n/* On the table the heading's key serves every row. */\n.table-details:not(.cards) td .share-key {\n\tdisplay: none;\n}\n\ntr.divider td {\n\tcolor: var(--text-muted);\n\tfont-size: var(--size-label);\n\tborder-bottom: 2px solid var(--baseline);\n\tpadding-top: 16px;\n}\n\n.sort-button {\n\tmin-height: 24px;\n\tbackground: none;\n\tborder: none;\n\tpadding: 0;\n\tcursor: pointer;\n\ttext-align: left;\n\tfont-weight: 600;\n}\n\n@media (hover: hover) {\n\t.sort-button:hover {\n\t\ttext-decoration: underline;\n\t\ttext-underline-offset: 3px;\n\t}\n}\n\n/* The sort mark is joined to the heading's last word by a no-break space, so it never takes a line alone. */\nth[aria-sort=\"none\"] .sort-button::after {\n\tcontent: \"\\00a0\u2195\" / \"\";\n\tcolor: var(--text-muted);\n\tfont-weight: 400;\n}\n\nth[aria-sort=\"ascending\"] .sort-button::after {\n\tcontent: \"\\00a0\u25b2\" / \"\";\n}\n\nth[aria-sort=\"descending\"] .sort-button::after {\n\tcontent: \"\\00a0\u25bc\" / \"\";\n}\n\n/* Column headings sort on the table; on cards, where the heading row is hidden, they are plain text, so no Tab stop\n   lands on an invisible button. */\n.table-details:not(.cards) .header-text,\n.table-details.cards .sort-button {\n\tdisplay: none;\n}\n\n.cell-button {\n\tmin-height: 24px;\n\tbackground: none;\n\tborder: none;\n\tpadding: 0;\n\ttext-align: left;\n\tcursor: pointer;\n\tborder-radius: 2px;\n}\n\n.cell-button:focus-visible .main,\n.cell-button[aria-expanded=\"true\"] .main {\n\ttext-decoration: underline;\n\ttext-underline-offset: 3px;\n}\n\n@media (hover: hover) {\n\t.cell-button:hover .main {\n\t\ttext-decoration: underline;\n\t\ttext-underline-offset: 3px;\n\t}\n}\n\n/* The conditions a benefit depends on, in up to three lines; the preview and the details give them in full. */\n.cell-button .scope {\n\tdisplay: -webkit-box;\n\t-webkit-line-clamp: 3;\n\t-webkit-box-orient: vertical;\n\toverflow: hidden;\n\tcolor: var(--text-muted);\n\tfont-size: var(--size-small);\n\tmax-width: 22em;\n}\n\n/* Under a label that provides nothing, the term that provides something to some students, in the text's colour. */\n.cell-button .scope.other-term {\n\tmargin-top: 2px;\n\tcolor: var(--text-secondary);\n}\n\n/* Chinese breaks between any two characters, so keep a lone one off the last line. */\n.root:lang(zh) .cell-button .scope {\n\ttext-wrap: pretty;\n}\n\n/* Cards: on phones, and wherever the table's columns do not fit its box (a tablet in portrait). The column headings\n   stay in the accessibility tree, hidden visually. A card is the school's name, then one line per column, its label\n   beside its value: one column of lines on phones, two where there is room. */\n.table-details.cards .table-wrap > table,\n.table-details.cards .table-wrap > table > tbody,\n.table-details.cards .table-wrap > table > tbody > tr,\n.table-details.cards .table-wrap > table > tbody > tr > th,\n.table-details.cards .table-wrap > table > caption {\n\tdisplay: block;\n\twidth: 100%;\n}\n\n.table-details.cards thead {\n\tposition: absolute;\n\twidth: 1px;\n\theight: 1px;\n\toverflow: hidden;\n\tclip: rect(0 0 0 0);\n\tclip-path: inset(50%);\n}\n\n.table-details.cards .table-wrap > table > tbody > tr {\n\tdisplay: grid;\n\tgrid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));\n\tcolumn-gap: 24px;\n\tborder-bottom: 1px solid var(--gridline);\n\tpadding: 10px 0;\n}\n\n.table-details.cards tbody th {\n\tgrid-column: 1 / -1;\n\tmargin-bottom: 2px;\n}\n\n.table-details.cards .table-wrap > table > tbody > tr > td {\n\tdisplay: grid;\n\tgrid-template-columns: minmax(0, 38%) minmax(0, 1fr);\n\tcolumn-gap: 10px;\n\talign-items: center;\n\tmin-height: 44px;\n\ttext-align: left;\n}\n\n.table-details.cards th,\n.table-details.cards td {\n\tborder: none;\n\tpadding: 0;\n}\n\n.table-details.cards td::before {\n\tcontent: attr(data-label) / \"\";\n\tcolor: var(--text-muted);\n\tfont-size: var(--size-small);\n\tline-height: 1.3;\n}\n\n.root:lang(zh) .table-details.cards td::before {\n\tword-break: keep-all;\n}\n\n/* A details panel that opens inside a card's line takes the whole line. */\n.table-details.cards td > .panel {\n\tgrid-column: 1 / -1;\n}\n\n.table-details.cards .cell-button {\n\twidth: 100%;\n\tmin-height: 44px;\n}\n\n.table-details.cards td.number .cell-button {\n\ttext-align: left;\n}\n\n.table-details.cards .share-bar {\n\tmargin-left: 0;\n}\n\n.table-details.cards .table-wrap > table > tbody > tr.divider {\n\tdisplay: block;\n}\n\n.table-details.cards .table-wrap > table > tbody > tr.divider > td {\n\tdisplay: block;\n\tmin-height: 0;\n}\n\n.table-details.cards tr.divider td::before {\n\tcontent: none;\n}\n\n/* Hover previews and details panels. A preview touches its row and can be hovered, so the pointer can move into it. */\n.preview {\n\tposition: absolute;\n\tz-index: 30;\n\twidth: max-content;\n\tmax-width: min(300px, calc(100% - 16px));\n\tbackground: var(--panel-surface);\n\tborder: 1px solid var(--border);\n\tborder-radius: 8px;\n\tbox-shadow: var(--panel-shadow);\n\tpadding: 8px 10px;\n\tfont-size: var(--size-label);\n\tline-height: 1.4;\n\tcursor: pointer;\n}\n\n.preview p {\n\tmargin: 0 0 3px;\n}\n\n.preview .preview-title {\n\tcolor: var(--text-secondary);\n}\n\n.preview .preview-value {\n\tfont-weight: 600;\n\tfont-variant-numeric: tabular-nums;\n}\n\n.preview .hint {\n\tcolor: var(--text-muted);\n\tfont-size: var(--size-small);\n\tmargin: 4px 0 0;\n}\n\n.clamp {\n\tdisplay: -webkit-box;\n\t-webkit-line-clamp: 3;\n\t-webkit-box-orient: vertical;\n\toverflow: hidden;\n}\n\n.panel {\n\tbackground: var(--panel-surface);\n\tcolor: var(--text-primary);\n\tborder: 1px solid var(--border);\n\tborder-radius: 10px;\n\tpadding: 10px 14px 12px;\n\tmargin: 6px 0 10px;\n\tfont-size: var(--size-label);\n\tfont-weight: 400;\n\tline-height: 1.45;\n\ttext-align: left;\n\twhite-space: normal;\n\tcursor: auto;\n}\n\n.panel.floating {\n\tposition: absolute;\n\tz-index: 20;\n\tmargin: 0;\n\twidth: min(460px, calc(100% - 16px));\n\tmax-height: 75vh;\n\toverflow: auto;\n\tbox-shadow: var(--panel-shadow);\n}\n\n.panel-header {\n\tdisplay: flex;\n\talign-items: flex-start;\n\tjustify-content: space-between;\n\tgap: 12px;\n\tmargin-bottom: 4px;\n}\n\n.panel-header .panel-title {\n\tfont-size: 15px;\n\tpadding-top: 4px;\n}\n\n.close {\n\tflex: none;\n\tbackground: none;\n\tborder: 1px solid transparent;\n\tborder-radius: 6px;\n\tmin-width: 32px;\n\tmin-height: 32px;\n\tfont-size: 1.4em;\n\tline-height: 1;\n\tcolor: var(--text-secondary);\n\tcursor: pointer;\n}\n\n@media (hover: hover) {\n\t.close:hover {\n\t\tborder-color: var(--border);\n\t}\n}\n\n.panel-footer {\n\tmargin: 12px 0 0;\n}\n\n.panel-value {\n\tfont-size: 15px;\n\tfont-weight: 600;\n\tmargin-bottom: 6px;\n}\n\n.panel-value .muted {\n\tfont-size: var(--size-label);\n\tfont-weight: 400;\n}\n\n/* What a label means, under it in a preview or a details panel, as the table's key says. */\n.label-meaning {\n\tcolor: var(--text-secondary);\n}\n\n.preview .label-meaning {\n\tfont-size: var(--size-small);\n}\n\n/* The terms take a column of one width in every list, so lists stacked in a panel line up. */\n.panel dl {\n\tmargin: 8px 0;\n\tdisplay: grid;\n\tgrid-template-columns: 10.5em minmax(0, 1fr);\n\tgap: 2px 10px;\n}\n\n.panel dl:lang(zh) {\n\tgrid-template-columns: 8em minmax(0, 1fr);\n}\n\n/* On phones each term sits above its value, so values keep the panel's width. */\n.root[data-layout=\"narrow\"] .panel dl:not(.lines) {\n\tgrid-template-columns: minmax(0, 1fr);\n\tgap: 0;\n}\n\n.root[data-layout=\"narrow\"] .panel dl:not(.lines) dd {\n\tmargin-bottom: 6px;\n}\n\n.panel dt {\n\tcolor: var(--text-muted);\n}\n\n.panel dd {\n\tmargin: 0;\n\tmin-width: 0;\n\toverflow-wrap: anywhere;\n}\n\n/* A budget's lines: the label wraps, the amount stays whole at the right. */\n.panel dl.lines {\n\tgrid-template-columns: minmax(0, 1fr) auto;\n}\n\n.panel dl.lines dd {\n\ttext-align: right;\n\twhite-space: nowrap;\n\tfont-variant-numeric: tabular-nums;\n\toverflow-wrap: normal;\n}\n\n/* Under a line's amount: which end of a range is used, or the amount the source states per term. */\n.panel dl.lines .line-note {\n\tdisplay: block;\n\twhite-space: normal;\n\tfont-size: var(--size-small);\n}\n\n/* Under a line, across the list: its note, which names the columns of the table row its source quotes. */\n.panel dl.lines dd.line-explanation {\n\tgrid-column: 1 / -1;\n\tmargin-bottom: 4px;\n\ttext-align: start;\n\twhite-space: normal;\n\toverflow-wrap: anywhere;\n\tcolor: var(--text-muted);\n\tfont-size: var(--size-small);\n\tfont-variant-numeric: normal;\n}\n\n/* A details panel's pay by appointment: each appointment's titles, its pay, then its level and the link to its source.\n   The charted one is shaded as a selected row is, and says so in words. */\n.appointment-list {\n\tlist-style: none;\n\tmargin: 6px 0;\n\tpadding: 0;\n}\n\n.appointment-list > li {\n\tmargin: 0 -8px;\n\tpadding: 6px 8px;\n\tborder-radius: 6px;\n}\n\n.appointment-list > li + li {\n\tborder-top: 1px solid var(--gridline);\n}\n\n.appointment-list > li.charted,\n.appointment-list > li.charted + li {\n\tborder-top-color: transparent;\n}\n\n.appointment-list > li.charted {\n\tbackground: var(--selected);\n}\n\n.appointment-list p {\n\tmargin: 0;\n}\n\n.appointment-name {\n\tfont-weight: 600;\n}\n\n/* The separator between a title and its badge, for screen readers and copied text: hidden, but inline, so that the\n   text runs \"Teaching Assistant, In the chart\" on one line. */\n.appointment-separator {\n\tdisplay: inline-block;\n\twidth: 1px;\n\theight: 1px;\n\tmargin: -1px;\n\toverflow: hidden;\n\tclip-path: inset(50%);\n\twhite-space: pre;\n}\n\n.appointment-charted {\n\tdisplay: inline-block;\n\tmargin-inline-start: 8px;\n\twhite-space: nowrap;\n\tfont-size: var(--size-small);\n\tfont-weight: 400;\n\tcolor: var(--text-secondary);\n}\n\n.appointment-pay {\n\tfont-variant-numeric: tabular-nums;\n}\n\n.appointment-meta {\n\talign-items: center;\n\tfont-size: var(--size-small);\n}\n\n.appointment-tier {\n\tcolor: var(--text-secondary);\n}\n\n/* A preview's short list of the year's appointments, the charted one in bold. */\n.preview .preview-subheading {\n\tmargin-top: 6px;\n\tcolor: var(--text-secondary);\n}\n\n.preview-appointments {\n\tlist-style: none;\n\tmargin: 0 0 3px;\n\tpadding: 0;\n\tfont-variant-numeric: tabular-nums;\n}\n\n.preview-appointments .charted {\n\tfont-weight: 600;\n}\n\n/* Sections behind disclosures inside a panel span its width. */\n.panel details.panel-section {\n\tmargin: 10px 0;\n}\n\n.panel details.panel-section > summary,\n.panel details.budget > summary {\n\tdisplay: flex;\n\twidth: 100%;\n\tfont-size: var(--size-label);\n\tfont-variant-numeric: tabular-nums;\n}\n\n.panel details.panel-section[open] > summary {\n\tmargin-bottom: 6px;\n}\n\n.panel details.budget {\n\tmargin: 6px 0;\n}\n\n.panel details.budget[open] {\n\tpadding-bottom: 6px;\n\tborder-bottom: 1px solid var(--gridline);\n}\n\n/* A union's line in a details panel, above its \"About the union\". */\n.panel .union-summary {\n\tmargin: 12px 0 6px;\n}\n\n/* A contract's or a union event's sources, under it: a disclosure as wide as its name, not the panel. */\n.panel details.item-sources {\n\tmargin: 6px 0 2px;\n}\n\n.panel details.item-sources > summary {\n\tdisplay: inline-flex;\n\twidth: auto;\n}\n\n.group-heading,\n.sources-heading {\n\tfont-size: 1em;\n\tfont-weight: 600;\n\tmargin: 12px 0 4px;\n}\n\n.item {\n\tborder-top: 1px solid var(--gridline);\n\tpadding-top: 8px;\n\tmargin-top: 8px;\n}\n\n.item-title {\n\tfont-size: 1em;\n\tfont-weight: 600;\n\tmargin: 0 0 2px;\n}\n\n.source {\n\tmargin-bottom: 8px;\n}\n\n.source-title {\n\tmargin: 0;\n}\n\n.source blockquote {\n\tmargin: 6px 0;\n\tpadding: 4px 10px;\n\tborder-left: 3px solid var(--baseline);\n\tcolor: var(--text-secondary);\n\tfont-style: italic;\n}\n\n.links {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 4px 14px;\n}\n\n/* Targets of at least 24 px everywhere, and 44 px on phones. */\n.links a,\n.network-links a,\n.living-wage a,\n.license a,\n.reason a {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tmin-height: 24px;\n}\n\n/* On phones a reason's link takes a line of its own, so its 44 px target leaves the sentence's lines even. */\n.root[data-layout=\"narrow\"] .reason a {\n\tdisplay: flex;\n\twidth: fit-content;\n}\n\n.root[data-layout=\"narrow\"] :is(select, .picker-search, .segmented button, .copy-button, .button-link, .disclosure > summary, .close, .close-end, .skip-link, .cell-button, .timeline-row, .chip) {\n\tmin-height: 44px;\n}\n\n.root[data-layout=\"narrow\"] :is(.links a, .network-links a, .living-wage a, .license a, .byline a, .reason a, .back-to-contents, .link-button) {\n\tmin-height: 44px;\n}\n\n.root[data-layout=\"narrow\"] .picker-list label {\n\tmin-height: 44px;\n}\n\n/* Selects and the search box at 16 px on phones, so iOS doesn't zoom the page when they are tapped. */\n.root[data-layout=\"narrow\"] :is(select, .picker-search) {\n\tfont-size: 16px;\n}\n\n.root[data-layout=\"narrow\"] .close {\n\tmin-width: 44px;\n}\n\n.root[data-layout=\"narrow\"] .cell-button {\n\twidth: 100%;\n}\n\n.trend-wrap {\n\tmargin: 10px 0;\n}\n\n.trend-title {\n\tcolor: var(--text-secondary);\n\tmargin-bottom: 2px;\n}\n\n.trend {\n\tdisplay: block;\n\tmax-width: 100%;\n\toverflow: visible;\n\tforced-color-adjust: none;\n}\n\n.trend text {\n\tfont-size: var(--size-small);\n\tfont-variant-numeric: tabular-nums;\n}\n\n.trend-axis {\n\tfill: var(--text-muted);\n}\n\n.trend-value {\n\tfill: var(--text-secondary);\n}\n\n.trend-value.current,\n.trend-axis.current {\n\tfill: var(--text-primary);\n\tfont-weight: 600;\n}\n\n.trend-baseline {\n\tstroke: currentColor;\n\tstroke-opacity: var(--baseline-opacity);\n\tstroke-width: 1;\n}\n\n.trend-break {\n\tstroke: var(--text-muted);\n\tstroke-width: 1;\n}\n\n.trend-line {\n\tstroke: var(--text-secondary);\n\tstroke-width: 2;\n\tstroke-linecap: round;\n}\n\n.trend-line.scheduled {\n\tstroke-dasharray: 4 3;\n}\n\n.trend-dot {\n\tfill: var(--text-secondary);\n\tstroke: var(--panel-surface);\n\tstroke-width: 2;\n}\n\n.trend-dot.scheduled {\n\tfill: var(--panel-surface);\n\tstroke: var(--text-secondary);\n\tstroke-width: 1.5;\n}\n\n.trend-dot.current.series-contract {\n\tfill: var(--series-contract);\n}\n\n.trend-dot.current.series-policy {\n\tfill: var(--series-policy);\n}\n\n.trend-notes {\n\tmargin: 4px 0 0;\n\tpadding-left: 18px;\n\tcolor: var(--text-secondary);\n}\n\n/* The over-time view: a line for each chosen school, in the dataviz palette's eight categorical colours in their\n   fixed order, each school keeping its colour while it stays chosen. Validated with validate_palette.js against the\n   widget's surfaces: on white, adjacent pairs' colour-blind \u0394E 9.1 at worst and normal-vision \u0394E 19.6; on #1a1a19,\n   8.4 and 19.3, every colour 3:1 or more. Light slots 3 to 5 are under 3:1 against white, and any two lines can cross,\n   so no line relies on colour: each has its own point shape, the legend names every line, up to four have their names\n   at their ends, and the table gives every value. */\n.root {\n\t--line-1: #2a78d6;\n\t--line-2: #eb6834;\n\t--line-3: #1baf7a;\n\t--line-4: #eda100;\n\t--line-5: #e87ba4;\n\t--line-6: #008300;\n\t--line-7: #6250d6;\n\t--line-8: #e34948;\n}\n\n.root[data-theme=\"dark\"] {\n\t--line-1: #3987e5;\n\t--line-2: #d95926;\n\t--line-3: #199e70;\n\t--line-4: #c98500;\n\t--line-5: #d55181;\n\t--line-6: #008300;\n\t--line-7: #9085e9;\n\t--line-8: #e66767;\n}\n\n.ot-slot-1 {\n\t--ot-colour: var(--line-1);\n}\n\n.ot-slot-2 {\n\t--ot-colour: var(--line-2);\n}\n\n.ot-slot-3 {\n\t--ot-colour: var(--line-3);\n}\n\n.ot-slot-4 {\n\t--ot-colour: var(--line-4);\n}\n\n.ot-slot-5 {\n\t--ot-colour: var(--line-5);\n}\n\n.ot-slot-6 {\n\t--ot-colour: var(--line-6);\n}\n\n.ot-slot-7 {\n\t--ot-colour: var(--line-7);\n}\n\n.ot-slot-8 {\n\t--ot-colour: var(--line-8);\n}\n\n/* Its Per year | Per month switch, over the legend. */\n.unit-control {\n\tmargin: 0 0 10px;\n}\n\n/* The chart, with the points' buttons over it. */\n.ot-plot {\n\tposition: relative;\n\tmax-width: 100%;\n\tmargin: 4px 0 8px;\n}\n\n.over-time-chart {\n\tdisplay: block;\n\toverflow: visible;\n\tforced-color-adjust: none;\n}\n\n.over-time-chart text {\n\tfont-size: var(--size-small);\n\tfont-variant-numeric: tabular-nums;\n}\n\n.ot-tick,\n.ot-year {\n\tfill: var(--text-muted);\n}\n\n.ot-year.selected,\n.ot-label {\n\tfill: var(--text-primary);\n\tfont-weight: 600;\n}\n\n.ot-label {\n\tfont-variant-numeric: normal;\n}\n\n.ot-selected {\n\tstroke: var(--text-secondary);\n\tstroke-width: 1;\n}\n\n.ot-crosshair,\n.ot-leader {\n\tstroke: var(--text-muted);\n\tstroke-width: 1;\n}\n\n.ot-line,\n.ot-key-line {\n\tfill: none;\n\tstroke: var(--ot-colour);\n\tstroke-width: 2;\n\tstroke-linecap: round;\n}\n\n.ot-key-line {\n\tstroke: var(--text-secondary);\n}\n\n/* Scheduled years: a dashed line (square ends, so the gaps stay open) into hollow points. */\n.ot-line.scheduled,\n.ot-key-line.scheduled {\n\tstroke-linecap: butt;\n\tstroke-dasharray: 5 3;\n}\n\n/* Points carry a 2 px ring of the surface where they cross a line; the one hovered or focused grows. */\n.ot-point,\n.ot-key-point {\n\tfill: var(--ot-colour);\n\tstroke: var(--surface);\n\tstroke-width: 4;\n\tpaint-order: stroke;\n\tstroke-linejoin: round;\n}\n\n.ot-key-point {\n\tfill: var(--text-secondary);\n}\n\n.ot-point.scheduled {\n\tfill: var(--surface);\n\tstroke: var(--ot-colour);\n\tstroke-width: 1.5;\n\tpaint-order: normal;\n}\n\n/* A labelled figure's point (one school's or department's, or a continued rate) has a ring in its line's colour. */\n.ot-ring,\n.ot-key-ring {\n\tfill: none;\n\tstroke: var(--ot-colour);\n\tstroke-width: 1.5;\n}\n\n.ot-key-ring {\n\tstroke: var(--text-secondary);\n}\n\n.ot-point.active {\n\ttransform-box: fill-box;\n\ttransform-origin: center;\n\ttransform: scale(1.45);\n}\n\n/* The points' buttons take the keyboard and show its focus; the pointer goes through them to each point's part of\n   the chart under them (.ot-hit), shaped so that no two points' parts overlap. */\n.ot-points,\n.ot-hits {\n\tposition: absolute;\n\tinset: 0;\n\tpointer-events: none;\n}\n\n.ot-hit {\n\tposition: absolute;\n\tpointer-events: auto;\n\tcursor: pointer;\n}\n\n.ot-point-button {\n\tposition: absolute;\n\twidth: 24px;\n\theight: 24px;\n\tmargin: 0;\n\tpadding: 0;\n\tborder: none;\n\tborder-radius: 50%;\n\tbackground: transparent;\n\tpointer-events: none;\n}\n\n.ot-point-button:focus-visible,\n.ot-point-button[aria-expanded=\"true\"] {\n\toutline: 2px solid var(--focus);\n\toutline-offset: 0;\n}\n\n/* The values as a table: years down, schools across, scrolling sideways on a narrow screen. */\n.ot-table-details {\n\tmargin: 4px 0 12px;\n}\n\n.ot-table-wrap {\n\tmax-width: 100%;\n\tmargin-top: 8px;\n\toverflow-x: auto;\n}\n\n.ot-table {\n\twidth: auto;\n\tfont-size: var(--size-label);\n\tfont-variant-numeric: tabular-nums;\n}\n\n.ot-table caption {\n\tfont-weight: 400;\n\tcolor: var(--text-secondary);\n}\n\n.ot-table th,\n.ot-table td {\n\tpadding: 4px 10px;\n\twhite-space: nowrap;\n}\n\n.ot-table td {\n\ttext-align: right;\n}\n\n/* A figure's labels, under its amount, in a column wide enough that a label takes no more than two lines. */\n.ot-cell-tags {\n\tdisplay: block;\n\tmin-width: 9em;\n\tmax-width: 16em;\n\tmargin-left: auto;\n\tcolor: var(--text-secondary);\n\tfont-size: var(--size-small);\n\twhite-space: normal;\n}\n\n.ot-table tbody th {\n\tfont-weight: 400;\n}\n\n.ot-table tr.selected th,\n.ot-table tr.selected td {\n\tbackground: var(--selected);\n}\n\n/* As the charts' other marks (see the note above the bar charts' block below): repeated where Dark Reader leaves them\n   alone, so they keep the theme's palette. The points' halo and the hollow points' fill are the widget's surface, or,\n   while Dark Reader darkens the page, its darkened background (--ot-halo, set by the widget), never the light theme's\n   white; the grey keys and the year lines are left for Dark Reader to adjust with the page's text. */\n@media (forced-colors: none) {\n\t@scope (.root) {\n\t\t.ot-line,\n\t\t.ot-ring {\n\t\t\tstroke: var(--ot-colour);\n\t\t}\n\n\t\t.ot-point {\n\t\t\tfill: var(--ot-colour);\n\t\t\tstroke: var(--ot-halo, var(--surface));\n\t\t}\n\n\t\t.ot-key-point {\n\t\t\tstroke: var(--ot-halo, var(--surface));\n\t\t}\n\n\t\t.ot-point.scheduled {\n\t\t\tfill: var(--ot-halo, var(--surface));\n\t\t\tstroke: var(--ot-colour);\n\t\t}\n\t}\n}\n\n/* Forced colours: every line in the text colour, told apart by its points' shapes, its name and the legend; the\n   selected year in the highlight colour. */\n@media (forced-colors: active) {\n\t.over-time-chart text,\n\t.ot-year.selected,\n\t.ot-label {\n\t\tfill: CanvasText;\n\t}\n\n\t.ot-line,\n\t.ot-key-line {\n\t\tstroke: CanvasText;\n\t}\n\n\t.ot-point,\n\t.ot-key-point {\n\t\tfill: CanvasText;\n\t\tstroke: Canvas;\n\t}\n\n\t.ot-point.scheduled {\n\t\tfill: Canvas;\n\t\tstroke: CanvasText;\n\t}\n\n\t.ot-ring,\n\t.ot-key-ring {\n\t\tstroke: CanvasText;\n\t}\n\n\t.ot-selected {\n\t\tstroke: Highlight;\n\t}\n\n\t.ot-crosshair,\n\t.ot-leader {\n\t\tstroke: GrayText;\n\t}\n}\n\n/* Living costs in a details panel. A school's other campuses, which the charts leave out, follow its own. */\n.item-title.other-campuses {\n\tmargin-top: 10px;\n}\n\n.campus-rents dd {\n\tfont-variant-numeric: tabular-nums;\n}\n\n.campus-rents .area {\n\tdisplay: block;\n\tcolor: var(--text-muted);\n\tfont-size: var(--size-small);\n}\n\n.living-wage {\n\tmargin: 6px 0;\n}\n\n.living-wage p {\n\tmargin: 0 0 2px;\n}\n\n/* Other campuses' counties: wrapped in a line on wide layouts, one to a line (each a 44 px target) on phones. */\n.county-links {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tgap: 0 14px;\n\tmargin: 0;\n\tpadding: 0;\n\tlist-style: none;\n}\n\n.root[data-layout=\"narrow\"] .county-links {\n\tdisplay: block;\n}\n\n.budget-name {\n\tmargin: 6px 0 0;\n\tcolor: var(--text-secondary);\n}\n\n/* Where Dark Reader darkens the page (a site without its own dark mode; the standalone page and sites with one lock it\n   out), it restyles the colours in the widget's shadow root as it does the page's, treating every fill and stroke as\n   text: dark fills turn light and pale ones bright, which inverts the charts' encodings (a pale summer segment or a\n   contract whose terms still apply would outshine one in force). So the marks' colours are repeated here inside\n   @scope, which Dark Reader 4.9 does not restyle and whose rules outrank its overrides by scoping proximity, so the\n   marks keep the palette of the theme the widget shows: dark with Auto, which follows Dark Reader there, or the\n   reader's explicit choice. Browsers without @scope use the rules above, which mean the same. Gridlines and baselines\n   are faint strokes of the text colour, and the timeline's event marks and the per-month view's living-cost marks are\n   inked in a text colour (hollow ones have no fill), so they are left out of this block: Dark Reader recolours them as\n   it does the text, which keeps them readable on the surface it gives the widget whichever theme the widget shows,\n   the light one included. Forced colours use their own rules below. */\n@media (forced-colors: none) {\n\t@scope (.root) {\n\t\t.bar.series-contract {\n\t\t\tfill: var(--series-contract);\n\t\t}\n\n\t\t.bar.series-policy {\n\t\t\tfill: var(--series-policy);\n\t\t}\n\n\t\t.bar.summer.series-contract {\n\t\t\tfill: var(--series-contract-light);\n\t\t\tstroke: var(--series-contract);\n\t\t}\n\n\t\t.bar.summer.series-policy {\n\t\t\tfill: var(--series-policy-light);\n\t\t\tstroke: var(--series-policy);\n\t\t}\n\n\t\t.extension {\n\t\t\tfill: none;\n\t\t\tstroke: var(--text-muted);\n\t\t}\n\n\t\t.soft-bar.series-contract {\n\t\t\tstroke: var(--series-contract);\n\t\t}\n\n\t\t.soft-bar.series-policy {\n\t\t\tstroke: var(--series-policy);\n\t\t}\n\n\t\t.hatch-dot.series-contract {\n\t\t\tfill: var(--series-contract);\n\t\t}\n\n\t\t.hatch-dot.series-policy {\n\t\t\tfill: var(--series-policy);\n\t\t}\n\n\t\t.policy-hatch {\n\t\t\tstroke: var(--series-policy);\n\t\t}\n\n\t\t.policy-stripe {\n\t\t\tstroke: #ffffff;\n\t\t}\n\n\t\t.burden-line {\n\t\t\tstroke: var(--living-mark);\n\t\t}\n\n\t\t.median-line {\n\t\t\tstroke: var(--text-secondary);\n\t\t}\n\n\t\t.contract-bar.status-current {\n\t\t\tfill: var(--series-contract);\n\t\t\tstroke: var(--series-contract);\n\t\t}\n\n\t\t.contract-bar.status-expired-continuing {\n\t\t\tfill: var(--series-contract-continuing);\n\t\t\tstroke: var(--series-contract);\n\t\t}\n\n\t\t.continuing-line {\n\t\t\tstroke: var(--series-contract);\n\t\t}\n\n\t\t.contract-bar.status-expired {\n\t\t\tfill: none;\n\t\t\tstroke: var(--series-contract);\n\t\t}\n\n\t\t.contract-bar.status-superseded,\n\t\t.contract-bar.status-unknown {\n\t\t\tfill: var(--series-superseded);\n\t\t\tstroke: var(--text-muted);\n\t\t}\n\n\t\t.as-of,\n\t\t.trend-break {\n\t\t\tstroke: var(--text-muted);\n\t\t}\n\n\t\t.trend-line {\n\t\t\tstroke: var(--text-secondary);\n\t\t}\n\n\t\t.trend-dot {\n\t\t\tfill: var(--text-secondary);\n\t\t\tstroke: var(--panel-surface);\n\t\t}\n\n\t\t.trend-dot.scheduled {\n\t\t\tfill: var(--panel-surface);\n\t\t\tstroke: var(--text-secondary);\n\t\t}\n\n\t\t.trend-dot.current.series-contract {\n\t\t\tfill: var(--series-contract);\n\t\t}\n\n\t\t.trend-dot.current.series-policy {\n\t\t\tfill: var(--series-policy);\n\t\t}\n\n\t\t.share-track {\n\t\t\tfill: var(--gridline);\n\t\t}\n\n\t\t.share-fill {\n\t\t\tfill: var(--text-muted);\n\t\t}\n\n\t\t.share-fill.over {\n\t\t\tfill: var(--burden);\n\t\t}\n\n\t\t.share-tick {\n\t\t\tstroke: var(--text-primary);\n\t\t}\n\n\t\t.status-current .status-disc {\n\t\t\tfill: var(--status-good);\n\t\t}\n\n\t\t.status-check .status-disc {\n\t\t\tfill: var(--status-warning);\n\t\t\tstroke: var(--text-secondary);\n\t\t}\n\n\t\t.status-current .status-ink {\n\t\t\tstroke: #ffffff;\n\t\t}\n\n\t\t.status-check .status-ink {\n\t\t\tstroke: #0b0b0b;\n\t\t}\n\n\t\t/* The highlighter mark is translucent, so it reads on whatever surface Dark Reader gives the widget. */\n\t\t:is(.pay-row, .timeline-row).highlighted .name-text {\n\t\t\tbackground: var(--highlight-mark);\n\t\t}\n\t}\n}\n\n/* Chinese text: no italics, which browsers fake by slanting the glyphs. Quotes in English (lang=\"en\") keep them. */\n.source blockquote:lang(zh) {\n\tfont-style: normal;\n}\n\n@media (forced-colors: active) {\n\t.segmented button[aria-pressed=\"true\"] {\n\t\tforced-color-adjust: none;\n\t\tbackground: Highlight;\n\t\tcolor: HighlightText;\n\t\tborder-color: Highlight;\n\t}\n\n\t.segmented button[aria-disabled=\"true\"] {\n\t\tcolor: GrayText;\n\t}\n\n\t/* The line over a section that shows only the chosen schools keeps an edge where its tint is dropped. */\n\t.choice-note {\n\t\tborder: 1px solid CanvasText;\n\t}\n\n\t.track text,\n\t.trend text,\n\t.trend-value.current,\n\t.trend-axis.current {\n\t\tfill: CanvasText;\n\t}\n\n\t.gridline,\n\t.baseline,\n\t.tick,\n\t.trend-baseline {\n\t\tstroke: CanvasText;\n\t\tstroke-opacity: 0.3;\n\t}\n\n\t.as-of,\n\t.trend-break,\n\t.burden-line,\n\t.median-line,\n\t.share-tick {\n\t\tstroke: CanvasText;\n\t}\n\n\t.living-mark {\n\t\tfill: CanvasText;\n\t\tstroke: Canvas;\n\t}\n\n\t/* A rent share's bar: grey up to HUD's line, and the text colour past it. */\n\t.share-fill {\n\t\tfill: GrayText;\n\t}\n\n\t.share-fill.over {\n\t\tfill: CanvasText;\n\t}\n\n\t.living-mark.partial,\n\t.contract-bar.status-expired {\n\t\tfill: none;\n\t\tstroke: CanvasText;\n\t}\n\n\t.continuing-line {\n\t\tstroke: CanvasText;\n\t}\n\n\t.share-track {\n\t\tfill: Canvas;\n\t\tstroke: CanvasText;\n\t\tstroke-width: 0.5;\n\t}\n\n\t.credit text {\n\t\tfill: CanvasText;\n\t}\n\n\t.track .track-note,\n\t.key .track-note {\n\t\tfill: CanvasText;\n\t}\n\n\t.marker {\n\t\tfill: CanvasText;\n\t\tstroke: CanvasText;\n\t}\n\n\t.marker.hollow {\n\t\tfill: none;\n\t\tstroke: CanvasText;\n\t}\n\n\t.trend-line {\n\t\tstroke: CanvasText;\n\t}\n\n\t.hatch-ground {\n\t\tfill: none;\n\t}\n\n\t.contents a[aria-current=\"location\"] {\n\t\ttext-decoration: underline;\n\t}\n\n\t.pay-row[aria-expanded=\"true\"],\n\t.timeline-row[aria-expanded=\"true\"] {\n\t\toutline: 1px solid Highlight;\n\t}\n\n\t/* A highlighted school's name takes the system's highlight colours, as selected text does. */\n\t:is(.pay-row, .timeline-row).highlighted .name-text {\n\t\tforced-color-adjust: none;\n\t\tbackground: Highlight;\n\t\tcolor: HighlightText;\n\t}\n}\n";
 const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"64px\" height=\"64px\" viewBox=\"5.5 -3.5 64 64\"> <g> <circle fill=\"#FFFFFF\" cx=\"37.785\" cy=\"28.501\" r=\"28.836\"/> <path d=\"M37.441-3.5c8.951,0,16.572,3.125,22.857,9.372c3.008,3.009,5.295,6.448,6.857,10.314 c1.561,3.867,2.344,7.971,2.344,12.314c0,4.381-0.773,8.486-2.314,12.313c-1.543,3.828-3.82,7.21-6.828,10.143 c-3.123,3.085-6.666,5.448-10.629,7.086c-3.961,1.638-8.057,2.457-12.285,2.457s-8.276-0.808-12.143-2.429 c-3.866-1.618-7.333-3.961-10.4-7.027c-3.067-3.066-5.4-6.524-7-10.372S5.5,32.767,5.5,28.5c0-4.229,0.809-8.295,2.428-12.2 c1.619-3.905,3.972-7.4,7.057-10.486C21.08-0.394,28.565-3.5,37.441-3.5z M37.557,2.272c-7.314,0-13.467,2.553-18.458,7.657 c-2.515,2.553-4.448,5.419-5.8,8.6c-1.354,3.181-2.029,6.505-2.029,9.972c0,3.429,0.675,6.734,2.029,9.913 c1.353,3.183,3.285,6.021,5.8,8.516c2.514,2.496,5.351,4.399,8.515,5.715c3.161,1.314,6.476,1.971,9.943,1.971 c3.428,0,6.75-0.665,9.973-1.999c3.219-1.335,6.121-3.257,8.713-5.771c4.99-4.876,7.484-10.99,7.484-18.344 c0-3.543-0.648-6.895-1.943-10.057c-1.293-3.162-3.18-5.98-5.654-8.458C50.984,4.844,44.795,2.272,37.557,2.272z M37.156,23.187 l-4.287,2.229c-0.458-0.951-1.019-1.619-1.685-2c-0.667-0.38-1.286-0.571-1.858-0.571c-2.856,0-4.286,1.885-4.286,5.657 c0,1.714,0.362,3.084,1.085,4.113c0.724,1.029,1.791,1.544,3.201,1.544c1.867,0,3.181-0.915,3.944-2.743l3.942,2 c-0.838,1.563-2,2.791-3.486,3.686c-1.484,0.896-3.123,1.343-4.914,1.343c-2.857,0-5.163-0.875-6.915-2.629 c-1.752-1.752-2.628-4.19-2.628-7.313c0-3.048,0.886-5.466,2.657-7.257c1.771-1.79,4.009-2.686,6.715-2.686 C32.604,18.558,35.441,20.101,37.156,23.187z M55.613,23.187l-4.229,2.229c-0.457-0.951-1.02-1.619-1.686-2 c-0.668-0.38-1.307-0.571-1.914-0.571c-2.857,0-4.287,1.885-4.287,5.657c0,1.714,0.363,3.084,1.086,4.113 c0.723,1.029,1.789,1.544,3.201,1.544c1.865,0,3.18-0.915,3.941-2.743l4,2c-0.875,1.563-2.057,2.791-3.541,3.686 c-1.486,0.896-3.105,1.343-4.857,1.343c-2.896,0-5.209-0.875-6.941-2.629c-1.736-1.752-2.602-4.19-2.602-7.313 c0-3.048,0.885-5.466,2.658-7.257c1.77-1.79,4.008-2.686,6.713-2.686C51.117,18.558,53.938,20.101,55.613,23.187z\"/> </g> </svg>", "cc-zero": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"64px\" height=\"64px\" viewBox=\"-0.5 0.5 64 64\"> <g> <circle fill=\"#FFFFFF\" cx=\"31.325\" cy=\"32.873\" r=\"30.096\"/> <path d=\"M31.5,14.08c-10.565,0-13.222,9.969-13.222,18.42c0,8.452,2.656,18.42,13.222,18.42 c10.564,0,13.221-9.968,13.221-18.42C44.721,24.049,42.064,14.08,31.5,14.08z M31.5,21.026c0.429,0,0.82,0.066,1.188,0.157 c0.761,0.656,1.133,1.561,0.403,2.823l-7.036,12.93c-0.216-1.636-0.247-3.24-0.247-4.437C25.808,28.777,26.066,21.026,31.5,21.026z M36.766,26.987c0.373,1.984,0.426,4.056,0.426,5.513c0,3.723-0.258,11.475-5.69,11.475c-0.428,0-0.822-0.045-1.188-0.136 c-0.07-0.021-0.134-0.043-0.202-0.067c-0.112-0.032-0.23-0.068-0.336-0.11c-1.21-0.515-1.972-1.446-0.874-3.093L36.766,26.987z\"/> <path d=\"M31.433,0.5c-8.877,0-16.359,3.09-22.454,9.3c-3.087,3.087-5.443,6.607-7.082,10.532 C0.297,24.219-0.5,28.271-0.5,32.5c0,4.268,0.797,8.32,2.397,12.168c1.6,3.85,3.921,7.312,6.969,10.396 c3.085,3.049,6.549,5.399,10.398,7.037c3.886,1.602,7.939,2.398,12.169,2.398c4.229,0,8.34-0.826,12.303-2.465 c3.962-1.639,7.496-3.994,10.621-7.081c3.011-2.933,5.289-6.297,6.812-10.106C62.73,41,63.5,36.883,63.5,32.5 c0-4.343-0.77-8.454-2.33-12.303c-1.562-3.885-3.848-7.32-6.857-10.33C48.025,3.619,40.385,0.5,31.433,0.5z M31.567,6.259 c7.238,0,13.412,2.566,18.554,7.709c2.477,2.477,4.375,5.31,5.67,8.471c1.296,3.162,1.949,6.518,1.949,10.061 c0,7.354-2.516,13.454-7.506,18.33c-2.592,2.516-5.502,4.447-8.74,5.781c-3.2,1.334-6.498,1.994-9.927,1.994 c-3.468,0-6.788-0.653-9.949-1.948c-3.163-1.334-6.001-3.238-8.516-5.716c-2.515-2.514-4.455-5.353-5.826-8.516 c-1.333-3.199-2.017-6.498-2.017-9.927c0-3.467,0.684-6.787,2.017-9.949c1.371-3.2,3.312-6.074,5.826-8.628 C18.092,8.818,24.252,6.259,31.567,6.259z\"/> </g> </svg>"};
 (() => {
 	"use strict";
@@ -20,6 +20,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 	const NARROW_MARKED_TRACK_HEIGHT = 24;
 	const NARROW_BAR_THICKNESS = 14;
 	const VALUE_LABEL_GAP = 3;
+	const LONG_TAG_WIDTH = 30;
 	const LABEL_LINE_HEIGHT = 16;
 	const MONTHLY_ROOM_SHARE = 0.85;
 	const RENT_PAY_ROOM_SHARE = 0.6;
@@ -77,6 +78,10 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 	const OVER_TIME_HEIGHT = { wide: 280, narrow: 220 };
 	const OVER_TIME_POINT_RADIUS = 4;
 	const OVER_TIME_HIT = 24;
+	const OVER_TIME_POINTER = { fine: 28, coarse: 44 };
+	const OVER_TIME_MARK = 12;
+	const OVER_TIME_DODGE = 9;
+	const OVER_TIME_RING = 8;
 	const OVER_TIME_DIRECT_LABELS = 4;
 	const OVER_TIME_LABEL_SPACING = 15;
 	const SECTION_IDS = ["chart", "timeline", "table", "downloads", "about", "purpose", "network"];
@@ -121,6 +126,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			perMonthWords: (amount) => `${amount} a month`,
 			monthsShort: (months) => `${months} months`,
 			amountPer: (amount, unit) => `${amount} per ${unit}`,
+			amountForTerm: (amount, term) => `${amount} for ${term}`,
 			perMode: { year: "per year", month: "per month" },
 			modeAdjective: { year: "yearly", month: "monthly" },
 			units: { year: "year", month: "month", semester: "semester", quarter: "quarter", hour: "hour", week: "week", summer: "summer" },
@@ -194,7 +200,13 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				stipend: "Stipend for the appointment",
 			},
 			componentShort: { "total-support": "total support", salary: "a salary", stipend: "a stipend" },
-			tags: { derived: "calculated", policy: "university policy", withSummer: "with summer pay" },
+			tags: {
+				derived: "calculated",
+				policy: "university policy",
+				withSummer: "with summer pay",
+				continued: (year) => `${year} rate, continued while a new contract is bargained`,
+				continuedShort: (year) => `${year} rate, continued`,
+			},
 			softTags: { intention: "estimate", threshold: "qualifying amount" },
 			softValueTags: { intention: "estimate, not a commitment", threshold: "qualifying amount, not minimum pay" },
 			monthsNotRecorded: "length not stated",
@@ -220,6 +232,9 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				contract: "rate from a union contract",
 				policy: "rate from university policy",
 				derived: "calculated from the stated rate",
+				scope: (label) => `${label} only`,
+				appointment: (titles) => `${titles} appointment`,
+				continued: (year) => `${year} rate continued while a new contract is bargained`,
 			},
 			payDetails: {
 				noYearly: "No yearly figure: our sources do not state how many months the appointment lasts.",
@@ -246,14 +261,16 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				yearlyOverMonths: (months) => `Monthly figure: the yearly amount divided by ${months} months.`,
 				calculatedTag: "calculated (*)",
 				calculatedLead: "How this figure is calculated: ",
+				scopeNote: (label, year) => `${label} only: our sources give no wider figure for ${year}, so the chart shows this one.`,
+				continuedNote: (year, fromYear) => `The ${fromYear} rate continues in ${year} while a new contract is bargained. The sources say why.`,
 				thresholdNote:
 					"A qualifying amount is the least pay that makes a student eligible for a benefit, such as a tuition waiver. It is not minimum pay, so the chart does not rank it.",
 				notGuaranteed: (byContract) => `${byContract ? "the union contract" : "the university policy"} does not guarantee that amount; see the Summer funding column in the table`,
 				otherSummerTerm: (byContract, otherByContract) =>
 					`${byContract ? "the union contract" : "the university policy"} guarantees no pay for the other months, although ${otherByContract ? "the union contract" : "a university policy"} pays some of these students for the summer`,
 				nothingGuarantees: "nothing in our data guarantees pay for the other months",
-				twelveMonths: (months, equivalent, consequence) =>
-					`This appointment pays for ${months} months. At the same monthly rate, 12 months of pay would be ${equivalent} (the dashed outline on the chart). However, ${consequence}.`,
+				twelveMonths: (months, equivalent, consequence, outline) =>
+					`This appointment pays for ${months} months. At the same monthly rate, 12 months of pay would be ${equivalent}${outline ? " (the dashed outline on the chart)" : ""}. However, ${consequence}.`,
 				policyBeforeContract: (name, date) => `This figure comes from university policy, from before the union contract at ${name} took effect on ${date}.`,
 				policyBesideContract: (name, status) =>
 					status ? `The union contract at ${name} (${lowerFirst(status)}) does not set this figure; it comes from university policy.` : `The union contract at ${name} does not set this figure; it comes from university policy.`,
@@ -263,7 +280,8 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			},
 			appointments: {
 				heading: (year) => `Pay by appointment, ${year}`,
-				introduction: "The minimum for each main appointment PhD students hold, at its lowest step. Fellowships and side jobs, such as readers and tutors, are left out.",
+				introduction:
+					"The minimum for each main appointment PhD students hold, at its lowest step. Besides the figure in the chart, fellowships, jobs paid by the hour or by the course, and side jobs, such as readers and tutors, are left out.",
 				charted: "In the chart",
 				months: (months) => `${months} months`,
 				withSummer: (months) => `${months} months with summer pay`,
@@ -273,6 +291,9 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				source: "Source",
 				sourceDownload: { docx: "Source (Word file)", doc: "Source (Word file)", xlsx: "Source (Excel file)" },
 				sourceDownloadGeneric: "Source (download)",
+				summerSource: "Summer source",
+				summerSourceDownload: { docx: "Summer source (Word file)", doc: "Summer source (Word file)", xlsx: "Summer source (Excel file)" },
+				summerSourceDownloadGeneric: "Summer source (download)",
 				calculatedLead: "How the calculated amounts are worked out: ",
 				previewHeading: "Pay by appointment",
 				previewCharted: "in the chart",
@@ -290,6 +311,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				label: (unit, points) => `Pay ${unit} by academic year: ${points.join("; ")}`,
 				point: (year, amount) => `${year} ${amount}`,
 				gapBreak: (missingYears) => `Our data has no figure for ${missingYears.join(", ")}, so the line is broken there.`,
+				gapBreakExplained: (missingYears, explanation) => `${explanation} Our data therefore has no figure for ${missingYears.join(", ")}, and the line is broken there.`,
 				seriesBreak: (year, changes) =>
 					`From ${year}, the figure ${changes.length < 2 ? changes.join("") : `${changes.slice(0, -1).join(", ")} and ${changes.at(-1)}`}, so the line does not join it to the years before.`,
 				averageChange: (firstYear, lastYear, change) => `Average change from ${firstYear} to ${lastYear}: ${change} a year, with the same kind of figure throughout.`,
@@ -297,6 +319,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				scheduled: "Dashed line: scheduled rates for years that have not started.",
 			},
 			seriesChanges: {
+				appointment: (after, before) => `is the ${after}'s pay instead of the ${before}'s`,
 				toContract: "is set by a union contract instead of university policy",
 				toPolicy: "is set by university policy instead of a union contract",
 				months: (after, before) => `covers ${after} instead of ${before}`,
@@ -306,7 +329,11 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				component: (after, before) => `is ${after || "a different kind of pay"} instead of ${before || "another kind"}`,
 				addsSummer: "includes summer pay",
 				dropsSummer: "leaves out summer pay",
-				stated: (after, before) => `is stated per ${after} instead of per ${before}`,
+				summerTotal: (months) => `is ${months} months' pay plus summer pay instead of a 12-month rate`,
+				twelveMonthRate: (months) => `is a 12-month rate instead of ${months} months' pay plus summer pay`,
+				toScope: (label) => `covers one school or department only (${label})`,
+				fromScope: (label) => `no longer covers one school or department only (${label})`,
+				scope: (after, before) => `covers another school or department (${after} instead of ${before})`,
 				other: "measures something different",
 			},
 			payChart: {
@@ -353,6 +380,14 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				noteDerivedMonth:
 					"An asterisk (*) marks a figure we calculated from a rate the source states per hour or per term, or as a full-time rate. Each figure's details explain the calculation.",
 				noteYears: "Each rate is listed under the academic year it mostly covers. Rates take effect on different dates; each figure's details give the date.",
+				noteScope: (labels) =>
+					`A label that names a school or department, such as ${labels.map((label) => `“${label}”`).join(" or ")}, marks a figure for that part of the university alone. The chart shows it where our sources give no wider figure for the year, and its line over time is broken where the figure's source changes.`,
+				noteContinued: (label) =>
+					`A label such as “${label}” marks an expired contract's last rate, which the cited sources show still applies in a later year while a new contract is bargained.`,
+				noteAppointment: (mode, label) =>
+					mode === "month"
+						? `A job title beside a school's figure, such as “${label}”, marks a school whose lowest-paid appointment depends on the measure. Per month, the chart shows the appointment that pays least in a month, such as one paid over 12 months; “Per year” and “Rent as a share of pay” show the one that pays least in a year.`
+						: `A job title beside a school's figure, such as “${label}”, marks a school whose lowest-paid appointment depends on the measure. Here the chart shows the appointment that pays least in a year; “Per month” shows the one that pays least in a month, which can be another appointment paid over more months.`,
 				noteRanking:
 					"The ranking compares minimum pay in dollars, not standards of living. Rents and prices differ widely between cities, and schools also differ in many ways besides whether their graduate workers have a union contract.",
 				noteLivingPointer:
@@ -516,6 +551,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				previewRent: (amount) => `One-bedroom rent: ${amount} per month`,
 				previewEstimate: (amount, partial) => `Living costs: ${amount} per month${partial ? " (partial)" : ""}`,
 				previewRentShare: (share) => `Rent is ${share} of pay`,
+				previewPay: (pay) => `Minimum pay: ${pay}`,
 				previewPayShare: (share, partial, unit) => `Pay is ${share} of ${partial ? "partial living costs" : "living costs"}${unit ? ` per ${unit}` : ""}`,
 				rentPhrase: (amount) => `one-bedroom rent ${amount} per month`,
 				estimatePhrase: (amount, partial) => `${partial ? "partial living costs" : "living costs"} ${amount} per month`,
@@ -539,11 +575,17 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			},
 			contractMeanings: {
 				current: "The contract is in force.",
+				coveredYear: "The contract was in force in this academic year.",
+				coversYear: "This academic year falls within the contract's term.",
 				"expired-continuing": "The contract has ended, but a cited source says its terms still apply while a new one is bargained.",
 				expired: "The contract has ended. Our sources show no new one and do not say whether its terms still apply.",
+				expiresBefore: "The contract's term ends before this academic year, and our data has no newer contract yet.",
+				betweenContracts: "The earlier contract had ended, and the next one took effect after this academic year.",
 				superseded: "A newer contract has taken its place.",
 				unknown: "Our sources do not say whether the contract is in force.",
 				termEnded: "The contract's term has ended since our data was last updated; what followed is not in our data yet.",
+				beforeFirst: "No union contract was in force in this academic year: the school's first contract took effect later, so university policy set pay and benefits.",
+				earlierContract: "The union had a contract with the university before the earliest one in our data, which our data does not include yet.",
 				unionNoContract: "The graduate workers have a union, but it has no contract with the university, so university policy sets pay and benefits.",
 				unionRecognizedNoContract: "The union is recognized but has no contract yet, so university policy sets pay and benefits for now.",
 				noUnionContract: "Our data has no union contract at this school, so university policy sets pay and benefits.",
@@ -621,6 +663,11 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				noUnionContractYet: "No union contract yet",
 				unionNoContract: "Union, no contract",
 				unionRecognizedNoContract: "Union recognized, no contract yet",
+				noContractYet: (firstYear) => `No contract yet (first in ${firstYear})`,
+				earlierContract: "Earlier contract (not in our data)",
+				expires: (date) => `Expires ${date}`,
+				expiredOn: (date) => `Expired ${date}`,
+				yearNote: (year, label) => `This is its status in ${year}. Now: ${label}.`,
 				previewValue: (label) => `Union contract: ${label}`,
 				latest: (label, date) => `Latest: ${label}, ${date}`,
 				latestEvent: "Latest union event",
@@ -679,6 +726,9 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				nearestYear: (year, otherYear) => `Our data has nothing on this for ${year}, so this shows ${otherYear}, the nearest year with data.`,
 				silentWithPolicy: "The union contract says nothing about this. Our data has university policy on it, but for another year or for only some of the students the figure in the chart covers.",
 				silentWithoutPolicy: "The union contract says nothing about this. That does not mean the school provides nothing: we have not yet researched university policy on it.",
+				silentPolicyToo: "Neither the union contract nor the university policy in our data provides this.",
+				otherHeading: (byContract) => `${byContract ? "Union contract" : "University policy"}, for some students`,
+				otherLine: (byContract, label) => `${byContract ? "Union contract" : "University policy"}, for some students: ${label}`,
 				covers: "Covers",
 				statedIn: "Stated in",
 				theUnionContract: "The union contract",
@@ -781,6 +831,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				shortAppointments: (months) => `Rent counts 12 months even where the appointment pays for fewer: at some schools it lasts only ${months}.`,
 				coverageParts: {
 					missing: (count, year) => `${count === 1 ? "has" : "have"} no ${year} rate in our sources yet`,
+					noMinimum: (count, year) => `had no university-wide minimum in ${year}`,
 					soft: (count, kind) => `${count === 1 ? "has" : "have"} only ${kind}, not minimum pay`,
 					noYearly: (count) => `${count === 1 ? "has" : "have"} no yearly figure, since our sources do not state the appointment's length`,
 					noRent: (count) => `${count === 1 ? "has" : "have"} no rent figure`,
@@ -806,6 +857,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				forYear: (year, label) => `${label} for ${year}`,
 				inForce: (date) => `Contract in effect through ${date}`,
 				rate: (year) => `${year} rate in our sources`,
+				rateContinued: (year, fromYear) => `${fromYear} rate continues in ${year}`,
 				lastChecked: (date) => `Last checked ${date}`,
 				ended: (date) => `The contract expired on ${date}; newer terms may apply`,
 				endedOtherTerms: (date) => `The union contract expired on ${date}, so its benefits may have changed; the pay figure comes from university policy`,
@@ -836,10 +888,11 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				remove: (name) => `${name}: remove from the chosen schools`,
 				announce: (count) => (count ? `${count} ${count === 1 ? "school" : "schools"} chosen` : "No schools chosen"),
 				noMatch: "No school matches.",
+				matches: (count) => (count === 1 ? "1 school matches." : `${count} schools match.`),
 				modeLabel: "How to show them",
 				modes: { all: "Among all schools", only: "Only chosen schools" },
 				modeDescriptions: {
-					all: "The chosen schools are marked in their place among all schools.",
+					all: "The chosen schools are marked in their place among all schools. “Over time” always shows only the chosen schools.",
 					only: "The charts, the timelines and the table show only the chosen schools.",
 				},
 				modeHint: "Choose at least one school to show only the chosen ones.",
@@ -878,7 +931,11 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 					const lead = count === 1 ? `Minimum pay ${unit} at ${names[0]}, ${span}.` : `Minimum pay ${unit} at ${count} chosen schools, ${span}.`;
 					let selected = count === 1 ? `It has no figure for ${year}, the selected year.` : `None of them has a figure for ${year}, the selected year.`;
 					if (inYear.length === 1) selected = count === 1 ? `In ${year}, the selected year, it is ${inYear[0].value}.` : `In ${year}, the selected year, only ${inYear[0].name} has a figure: ${inYear[0].value}.`;
-					if (inYear.length > 1) selected = `In ${year}, the selected year, ${inYear[0].name} is highest at ${inYear[0].value} and ${inYear.at(-1).name} lowest at ${inYear.at(-1).value}.`;
+					const highest = inYear.filter((school) => school.value === inYear[0].value).map((school) => school.name);
+					const lowest = inYear.filter((school) => school.value === inYear.at(-1).value).map((school) => school.name);
+					const listed = (names) => (names.length < 2 ? names.join("") : `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`);
+					if (inYear.length > 1) selected = `In ${year}, the selected year, ${listed(highest)} ${highest.length > 1 ? "are" : "is"} highest at ${inYear[0].value} and ${listed(lowest)} lowest at ${inYear.at(-1).value}.`;
+					if (inYear.length > 1 && highest.length === inYear.length) selected = `In ${year}, the selected year, ${inYear.length === count ? `all ${count}` : `the ${inYear.length} with a figure`} have the same figure: ${inYear[0].value}.`;
 					return `${lead} ${selected}`;
 				},
 				noFigures: (adjective, names) => `Our data has no ${adjective} figure for ${names}.`,
@@ -889,19 +946,29 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				yearLabel: (year, scheduled) => (scheduled ? `${year} (scheduled)` : year),
 				legendSelected: (year) => `Selected year, ${year}`,
 				legendScheduled: "Scheduled rates for years that have not started (dashed)",
-				legendBreak: "Break in a line: no figure for a year, or from then on the figure measures something different",
+				legendBreak: "Break in a line: no figure for a year, or from then on the figure is of another kind or set by another kind of document",
 				keyScheduled: "Scheduled (dashed)",
-				keyBreak: "Break: no figure, or a different kind of figure",
+				keyBreak: "Break: no figure, or a change in the figure's kind or source",
 				notJoined: (otherYear, reasons) => `Not joined to ${otherYear}: ${reasons.join(", and ")}`,
 				breakGap: (missingYears) => `no figure for ${missingYears.join(", ")}`,
-				breakSeries: (year, changes) =>
-					`the figures measure different things, since from ${year} the figure ${changes.length < 2 ? changes.join("") : `${changes.slice(0, -1).join(", ")} and ${changes.at(-1)}`}`,
-				noteLine: "A line joins a school's figures only in consecutive years and while the figure measures the same thing, so it never compares unlike figures.",
+				breakGapExplained: (missingYears, short) => `no figure for ${missingYears.join(", ")} (${lowerFirst(short)})`,
+				breakSeries: (year, changes) => `from ${year} the figure ${changes.length < 2 ? changes.join("") : `${changes.slice(0, -1).join(", ")} and ${changes.at(-1)}`}`,
+				noteLine: "A line joins a school's figures only in consecutive years, and only while the same kind of document sets a figure of the same kind; each break says what changed.",
 				breakNote: (name, sentence) => `${name}: ${sentence}`,
 				tableToggle: (open) => `${open ? "Hide" : "Show"} the values as a table`,
 				tableCaption: (unit) => `Minimum pay ${unit} of the chosen schools by academic year`,
 				yearColumn: "Academic year",
 				noFigure: "No figure",
+				noFigureInUnit: { year: "No yearly figure (length not stated)", month: "No monthly figure (length not stated)" },
+				keyTagged: "Ringed: a labeled figure",
+				legendTagged: "Ring around a point: a figure for one school or department only, or an expired contract's rate continued in a later year; its details and the values table give the label",
+				noteScope: (labels) =>
+					`A ring around a point, and a label in its details and in the values table such as ${labels.map((label) => `“${label}”`).join(" or ")}, marks a figure for that part of the university alone. The chart shows it where our sources give no wider figure for the year, and the line does not join it to figures for the whole university.`,
+				noteContinued: (label) =>
+					`A ring around a point, and a label in its details and in the values table such as “${label}”, marks an expired contract's last rate, which the cited sources show still applies in a later year while a new contract is bargained.`,
+				noteAppointment: (label) =>
+					`A job title in a point's details and in the values table, such as “${label}”, marks a school whose lowest-paid appointment depends on the measure. Per year, the chart shows the appointment that pays least in a year; per month, the one that pays least in a month, which can be another appointment paid over more months.`,
+				noteSameFigures: (names) => `${names} have the same figure in every year, so their lines run together; in each year their points sit side by side.`,
 				panelYear: (year) => year,
 			},
 			panels: {
@@ -941,6 +1008,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			perMonthWords: (amount) => `每月${amount}`,
 			monthsShort: (months) => `${months}个月`,
 			amountPer: (amount, unit) => `每${unit}${amount}`,
+			amountForTerm: (amount, term) => `${term}${amount}`,
 			perMode: { year: "每年", month: "每月" },
 			modeAdjective: { year: "年度", month: "月度" },
 			units: { year: "年", month: "月", semester: "学期", quarter: "学季", hour: "小时", week: "周", summer: "暑期" },
@@ -1010,8 +1078,14 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				salary: "salary（薪水），即工作报酬",
 				stipend: "stipend（生活津贴），随TA/RA职位发放",
 			},
-			componentShort: { "total-support": "total support", salary: "salary", stipend: "stipend" },
-			tags: { derived: "折算", policy: "校方政策", withSummer: "含暑期工资" },
+			componentShort: { "total-support": "total support（资助总额）", salary: "salary（薪水）", stipend: "stipend（生活津贴）" },
+			tags: {
+				derived: "折算",
+				policy: "校方政策",
+				withSummer: "含暑期工资",
+				continued: (year) => `${year}学年工资标准，新合同谈判期间沿用`,
+				continuedShort: (year) => `沿用${year}学年标准`,
+			},
 			softTags: { intention: "估算值", threshold: "资格门槛" },
 			softValueTags: { intention: "估算值，并非承诺", threshold: "资格门槛，并非最低工资" },
 			monthsNotRecorded: "未说明雇佣期",
@@ -1037,6 +1111,9 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				contract: "工会合同规定的工资标准",
 				policy: "校方政策规定的工资标准",
 				derived: "由来源所列的工资标准折算得出",
+				scope: (label) => `仅限${label}`,
+				appointment: (titles) => `${titles}职位`,
+				continued: (year) => `新合同谈判期间沿用${year}学年工资标准`,
 			},
 			payDetails: {
 				noYearly: "无年度数字：我们的来源未说明该职位的雇佣期有多少个月。",
@@ -1063,13 +1140,15 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				yearlyOverMonths: (months) => `月度数字：年度金额除以${months}个月。`,
 				calculatedTag: "折算（*）",
 				calculatedLead: "折算方法：",
+				scopeNote: (label, year) => `仅限${label}：我们的来源中没有${year}学年适用范围更广的数字，因此图中显示这一数字。`,
+				continuedNote: (year, fromYear) => `新合同谈判期间，${fromYear}学年的工资标准在${year}学年继续适用。原因见来源。`,
 				thresholdNote: "资格门槛是学生获得学费减免等福利所需的最低工资金额，并非最低工资，因此图中不对其排名。",
 				notGuaranteed: (byContract) => `${byContract ? "工会合同" : "该校方政策"}并不保证这笔金额；见表格中的“暑期资助”一栏`,
 				otherSummerTerm: (byContract, otherByContract) =>
 					`${byContract ? "工会合同" : "该校方政策"}不保证其余月份的工资，但${otherByContract ? "工会合同" : "一项校方政策"}为其中部分学生提供暑期工资`,
 				nothingGuarantees: "我们的数据中没有任何规定保证其余月份的工资",
-				twelveMonths: (months, equivalent, consequence) =>
-					`该职位（appointment）支付${months}个月的工资。按相同的月工资标准计算，12个月的工资合计为${equivalent}，即图中的虚线轮廓。但${consequence}。`,
+				twelveMonths: (months, equivalent, consequence, outline) =>
+					`该职位（appointment）支付${months}个月的工资。按相同的月工资标准计算，12个月的工资合计为${equivalent}${outline ? "，即图中的虚线轮廓" : ""}。但${consequence}。`,
 				policyBeforeContract: (name, date) => `此数字来自${name}的工会合同于${date}生效之前的校方政策。`,
 				policyBesideContract: (name, status) => (status ? `此数字并非由${name}的工会合同（${status}）规定，而是来自校方政策。` : `此数字并非由${name}的工会合同规定，而是来自校方政策。`),
 				defaultPick: "我们的数据中，该校本学年博士生各项最低工资标准里最低的一项（默认选取）。",
@@ -1078,7 +1157,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			},
 			appointments: {
 				heading: (year) => `${year}学年各职位工资`,
-				introduction: "博士生担任的各主要TA/RA职位（appointment）的最低工资，按最低一档列出。奖学金（fellowship）和阅卷员、辅导员等兼职工作不列入。",
+				introduction: "博士生担任的各主要TA/RA职位（appointment）的最低工资，按最低一档列出。除图中数字外，奖学金（fellowship）、按小时或按课程计酬的工作，以及阅卷员、辅导员等兼职工作均不列入。",
 				charted: "图中数字",
 				months: (months) => `${months}个月`,
 				withSummer: (months) => `${months}个月，含暑期工资`,
@@ -1088,6 +1167,9 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				source: "来源",
 				sourceDownload: { docx: "来源（Word文件）", doc: "来源（Word文件）", xlsx: "来源（Excel文件）" },
 				sourceDownloadGeneric: "来源（下载）",
+				summerSource: "暑期工资来源",
+				summerSourceDownload: { docx: "暑期工资来源（Word文件）", doc: "暑期工资来源（Word文件）", xlsx: "暑期工资来源（Excel文件）" },
+				summerSourceDownloadGeneric: "暑期工资来源（下载）",
 				calculatedLead: "折算方法：",
 				previewHeading: "各职位工资",
 				previewCharted: "图中数字",
@@ -1105,12 +1187,14 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				label: (unit, points) => `各学年工资（${unit}）：${points.join("；")}`,
 				point: (year, amount) => `${year}学年${amount}`,
 				gapBreak: (missingYears) => `我们的数据中没有${missingYears.join("、")}学年的数字，因此趋势线在此中断。`,
+				gapBreakExplained: (missingYears, explanation) => `${explanation}因此我们的数据中没有${missingYears.join("、")}学年的数字，趋势线在此中断。`,
 				seriesBreak: (year, changes) => `自${year}学年起，该数字${changes.join("，")}，因此趋势线不与此前各年相连。`,
 				averageChange: (firstYear, lastYear, change) => `${firstYear}至${lastYear}学年的年均变化：每年${change}，期间数字性质一致。`,
 				signedPercent: (rising, value) => `${rising ? "+" : "−"}${value}%`,
 				scheduled: "虚线：尚未开始的学年的已排定工资标准。",
 			},
 			seriesChanges: {
+				appointment: (after, before) => `为${after}而非${before}的工资`,
 				toContract: "改由工会合同而非校方政策规定",
 				toPolicy: "改由校方政策而非工会合同规定",
 				months: (after, before) => `涵盖${after}而非${before}`,
@@ -1120,7 +1204,11 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				component: (after, before) => `为${after || "另一种工资类型"}而非${before || "另一种"}`,
 				addsSummer: "包含暑期工资",
 				dropsSummer: "不含暑期工资",
-				stated: (after, before) => `按${after}而非按${before}列出`,
+				summerTotal: (months) => `为${months}个月的工资加暑期工资，而非12个月工资标准`,
+				twelveMonthRate: (months) => `为12个月工资标准，而非${months}个月的工资加暑期工资`,
+				toScope: (label) => `仅涵盖${label}`,
+				fromScope: (label) => `不再仅涵盖${label}`,
+				scope: (after, before) => `涵盖${after}而非${before}`,
 				other: "衡量的内容不同",
 			},
 			payChart: {
@@ -1164,6 +1252,13 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 					"星号（*）表示我们折算的年度数字。这类来源按小时或按学期列出工资标准，或以全职标准列出，或按月列出但未规定雇佣期。每个数字的详情说明了折算方法。",
 				noteDerivedMonth: "星号（*）表示我们折算的数字：来源按小时或按学期列出工资标准，或以全职标准列出。每个数字的详情说明了折算方法。",
 				noteYears: "每项工资标准列在其主要涵盖的学年之下。各标准的生效日期不同，具体日期见各数字的详情。",
+				noteScope: (labels) =>
+					`标签中写明学院或院系名称的（例如${labels.map((label) => `“${label}”`).join("或")}），表示该数字只适用于学校的这一部分。只有在我们的来源中没有当年适用范围更广的数字时，图中才显示这类数字；数字的来源改变之处，其历年变化的线条会中断。`,
+				noteContinued: (label) => `“${label}”这类标签表示已到期合同的最后一项工资标准：所引来源表明，在新合同谈判期间，这一标准在此后的学年继续适用。`,
+				noteAppointment: (mode, label) =>
+					mode === "month"
+						? `学校数字旁标有职位名称（例如“${label}”）的，表示该校工资最低的职位因衡量方式而异。按月显示时，图中为月工资最低的职位，例如分12个月发放工资的职位；“按年”和“租金占工资比例”显示年收入最低的职位。`
+						: `学校数字旁标有职位名称（例如“${label}”）的，表示该校工资最低的职位因衡量方式而异。此处图中为年收入最低的职位；“按月”显示月工资最低的职位，可能是分更多个月发放工资的另一职位。`,
 				noteRanking:
 					"排名比较的是以美元计的最低工资，而不是生活水平。各城市的租金和物价差异很大；除了研究生工人是否有工会合同（union contract）之外，各校在许多方面也有差异。",
 				noteLivingPointer:
@@ -1319,6 +1414,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				previewRent: (amount) => `一居室租金：每月${amount}`,
 				previewEstimate: (amount, partial) => `生活成本：每月${amount}${partial ? "（不完整）" : ""}`,
 				previewRentShare: (share) => `租金占工资的${share}`,
+				previewPay: (pay) => `最低工资：${pay}`,
 				previewPayShare: (share, partial, unit) => `工资为${unit ? `每${unit}` : ""}生活成本的${share}${partial ? "（生活成本不完整）" : ""}`,
 				rentPhrase: (amount) => `一居室租金为每月${amount}`,
 				estimatePhrase: (amount, partial) => `生活成本为每月${amount}${partial ? "（不完整）" : ""}`,
@@ -1342,11 +1438,17 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			},
 			contractMeanings: {
 				current: "合同目前有效。",
+				coveredYear: "该学年合同有效。",
+				coversYear: "该学年在合同期限之内。",
 				"expired-continuing": "合同已到期，但所引来源表明，在谈判新合同期间，其条款继续适用。",
 				expired: "合同已到期。我们的来源中尚无新合同，也未说明其条款是否继续适用。",
+				expiresBefore: "合同期限在该学年之前结束，我们的数据中尚无新合同。",
+				betweenContracts: "此前的合同已到期，下一份合同在该学年之后才生效。",
 				superseded: "已被更新的合同取代。",
 				unknown: "我们的来源未说明该合同是否有效。",
 				termEnded: "数据上次更新之后，合同期限已经结束；之后的情况尚未纳入我们的数据。",
+				beforeFirst: "该学年没有生效的工会合同：该校首份合同此后才生效，因此当时工资和福利由校方政策规定。",
+				earlierContract: "在我们数据中最早的合同之前，工会已与学校签有合同，但我们的数据尚未收录。",
 				unionNoContract: "该校研究生工人有工会，但工会与学校没有合同，因此工资和福利由校方政策规定。",
 				unionRecognizedNoContract: "工会已获承认，但尚无合同，因此目前工资和福利由校方政策规定。",
 				noUnionContract: "我们的数据中该校没有工会合同，因此工资和福利由校方政策规定。",
@@ -1423,6 +1525,11 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				noUnionContractYet: "尚无工会合同",
 				unionNoContract: "有工会，无合同",
 				unionRecognizedNoContract: "工会已获承认，尚无合同",
+				noContractYet: (firstYear) => `尚无合同（首份合同始于${firstYear}学年）`,
+				earlierContract: "此前的合同（未收入我们的数据）",
+				expires: (date) => `${date}到期`,
+				expiredOn: (date) => `已于${date}到期`,
+				yearNote: (year, label) => `以上为${year}学年的状态。目前：${label}。`,
 				previewValue: (label) => `工会合同：${label}`,
 				latest: (label, date) => `最近：${label}，${date}`,
 				latestEvent: "最近的工会事件",
@@ -1481,6 +1588,9 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				nearestYear: (year, otherYear) => `我们的数据中没有${year}学年的相关内容，因此显示有数据的最近学年（${otherYear}学年）。`,
 				silentWithPolicy: "工会合同（union contract）对此未作规定。我们的数据中有相关的校方政策，但属于另一学年，或只适用于图中数字所涵盖的部分学生。",
 				silentWithoutPolicy: "工会合同（union contract）对此未作规定。这并不意味着学校不提供任何相关福利：我们尚未调研相关的校方政策。",
+				silentPolicyToo: "工会合同（union contract）和我们数据中的校方政策都未对此作出规定。",
+				otherHeading: (byContract) => `${byContract ? "工会合同" : "校方政策"}（适用于部分学生）`,
+				otherLine: (byContract, label) => `${byContract ? "工会合同" : "校方政策"}（适用于部分学生）：${label}`,
 				covers: "适用范围",
 				statedIn: "出处",
 				theUnionContract: "工会合同",
@@ -1581,6 +1691,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				shortAppointments: (months) => `即使雇佣期不足12个月，租金也按12个月计算：部分学校的雇佣期只有${months}。`,
 				coverageParts: {
 					missing: (count, year) => `在我们的来源中尚无${year}学年工资标准`,
+					noMinimum: (count, year) => `${year}学年没有全校统一的最低标准`,
 					soft: (count, kind) => `只有${kind}，并非最低工资`,
 					noYearly: () => "没有年度数字，因为我们的来源未说明雇佣期",
 					noRent: () => "没有租金数字",
@@ -1606,6 +1717,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				forYear: (year, label) => `${year}学年${label}`,
 				inForce: (date) => `合同有效期至${date}`,
 				rate: (year) => `我们的来源中有${year}学年工资标准`,
+				rateContinued: (year, fromYear) => `${fromYear}学年工资标准在${year}学年继续适用`,
 				lastChecked: (date) => `最后核对于${date}`,
 				ended: (date) => `合同已于${date}到期；可能已有更新的条款`,
 				endedOtherTerms: (date) => `工会合同已于${date}到期，其福利可能已有变化；工资数字来自校方政策`,
@@ -1636,10 +1748,11 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				remove: (name) => `${name}：取消选择`,
 				announce: (count) => (count ? `已选${count}所学校` : "未选择任何学校"),
 				noMatch: "没有匹配的学校。",
+				matches: (count) => `有${count}所学校匹配。`,
 				modeLabel: "显示方式",
 				modes: { all: "在全部学校中显示", only: "只显示所选学校" },
 				modeDescriptions: {
-					all: "所选学校在全部学校中标出，位置不变。",
+					all: "所选学校在全部学校中标出，位置不变。“历年变化”始终只显示所选学校。",
 					only: "图表、时间线和表格只显示所选学校。",
 				},
 				modeHint: "请先选择至少一所学校，才能只显示所选学校。",
@@ -1674,7 +1787,11 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 					const lead = count === 1 ? `${names[0]}${span}的${adjective}最低工资。` : `所选${count}所学校${span}的${adjective}最低工资。`;
 					let selected = count === 1 ? `该校没有所选的${year}学年的数字。` : `这些学校都没有所选的${year}学年的数字。`;
 					if (inYear.length === 1) selected = count === 1 ? `所选的${year}学年为${inYear[0].value}。` : `所选的${year}学年只有${inYear[0].name}有数字：${inYear[0].value}。`;
-					if (inYear.length > 1) selected = `所选的${year}学年中，${inYear[0].name}最高，为${inYear[0].value}；${inYear.at(-1).name}最低，为${inYear.at(-1).value}。`;
+					const highest = inYear.filter((school) => school.value === inYear[0].value).map((school) => school.name);
+					const lowest = inYear.filter((school) => school.value === inYear.at(-1).value).map((school) => school.name);
+					const listed = (names) => (names.length < 2 ? names.join("") : `${names.slice(0, -1).join("、")}和${names.at(-1)}`);
+					if (inYear.length > 1) selected = `所选的${year}学年中，${listed(highest)}最高，为${inYear[0].value}；${listed(lowest)}最低，为${inYear.at(-1).value}。`;
+					if (inYear.length > 1 && highest.length === inYear.length) selected = `所选的${year}学年中，${inYear.length === count ? `全部${count}所学校` : `有数字的${inYear.length}所学校`}的数字相同：${inYear[0].value}。`;
 					return `${lead}${selected}`;
 				},
 				noFigures: (adjective, names) => `我们的数据中没有${names}的${adjective}数字。`,
@@ -1685,18 +1802,28 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				yearLabel: (year, scheduled) => (scheduled ? `${year}学年（已排定）` : `${year}学年`),
 				legendSelected: (year) => `所选学年（${year}）`,
 				legendScheduled: "尚未开始的学年的已排定工资标准（虚线）",
-				legendBreak: "线条中断：该学年没有数字，或自该学年起数字衡量的内容不同",
+				legendBreak: "线条中断：该学年没有数字，或自该学年起数字的类型或规定数字的文件类型改变",
 				keyScheduled: "已排定（虚线）",
-				keyBreak: "线条中断：没有数字，或数字类型不同",
+				keyBreak: "线条中断：没有数字，或数字的类型或来源改变",
 				notJoined: (otherYear, reasons) => `未与${otherYear}学年相连：${reasons.join("，且")}`,
 				breakGap: (missingYears) => `${missingYears.join("、")}学年没有数字`,
-				breakSeries: (year, changes) => `两个数字衡量的内容不同，因为自${year}学年起，该数字${changes.join("，")}`,
-				noteLine: "同一所学校的线条只连接相邻学年、且衡量内容相同的数字，因此不会比较性质不同的数字。",
+				breakGapExplained: (missingYears, short) => `${missingYears.join("、")}学年没有数字（${short}）`,
+				breakSeries: (year, changes) => `自${year}学年起，该数字${changes.join("，")}`,
+				noteLine: "同一所学校的线条只连接相邻学年的数字，且只在规定数字的文件类型和数字类型都不变时相连；每处中断都说明了改变之处。",
 				breakNote: (name, sentence) => `${name}：${sentence}`,
 				tableToggle: (open) => (open ? "隐藏数值表" : "以表格显示各项数值"),
 				tableCaption: (unit, adjective) => `所选学校各学年${adjective}最低工资`,
 				yearColumn: "学年",
 				noFigure: "无数字",
+				noFigureInUnit: { year: "无年度数字（未说明雇佣期）", month: "无月度数字（未说明雇佣期）" },
+				keyTagged: "带圈的点：带标签的数字",
+				legendTagged: "带圈的点：仅适用于某一学院或院系的数字，或已到期合同在此后学年沿用的工资标准；其详情和数值表注明标签",
+				noteScope: (labels) =>
+					`带圈的点在其详情和数值表中带有${labels.map((label) => `“${label}”`).join("或")}这类标签，表示该数字只适用于学校的这一部分。只有在我们的来源中没有当年适用范围更广的数字时，图中才显示这类数字，线条也不会把它与适用于全校的数字相连。`,
+				noteContinued: (label) => `带圈的点在其详情和数值表中带有“${label}”这类标签，表示已到期合同的最后一项工资标准：所引来源表明，在新合同谈判期间，这一标准在此后的学年继续适用。`,
+				noteAppointment: (label) =>
+					`数据点详情和数值表中标有职位名称（例如“${label}”）的，表示该校工资最低的职位因衡量方式而异。按年显示时，图中为年收入最低的职位；按月显示时，为月工资最低的职位，可能是分更多个月发放工资的另一职位。`,
+				noteSameFigures: (names) => `${names}每个学年的数字都相同，因此线条重合在一起；每个学年的数据点并排显示。`,
 				panelYear: (year) => `${year}学年`,
 			},
 			panels: {
@@ -2273,11 +2400,11 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		const meta = document.querySelector('meta[name="color-scheme"]');
 		return /(^|\s)wp-dark-mode-/i.test(classes) || DARK_CLASS_PATTERN.test(classes) || hasThemeAttribute || /\bdark\b/.test(meta ? meta.content : "") || pageBackgroundIsDark(mount);
 	}
-	function lockDarkReader(mount, standalone) {
-		if (standalone || !siteHasDarkMode(mount)) return;
+	function lockDarkReader(mount, standalone, theme) {
+		if (standalone ? theme !== "light" : !siteHasDarkMode(mount)) return;
 		addDarkReaderLock();
 	}
-	function lockStandaloneDark() {
+	function lockStandalone() {
 		if (document.documentElement.hasAttribute("data-darkreader-mode")) addDarkReaderLock();
 	}
 	function addDarkReaderLock() {
@@ -2288,6 +2415,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		const panel = element("div", { class: "panel", id: "details-panel", role: "group", "aria-labelledby": "details-heading" });
 		root.append(preview);
 		const handlersByTrigger = new WeakMap();
+		const areaTriggers = new WeakMap();
 		let previewOwner = null;
 		let previewKey = null;
 		let panelOwner = null;
@@ -2447,7 +2575,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		document.addEventListener("click", (event) => {
 			if (!panelOwner) return;
 			const path = event.composedPath();
-			if (path.includes(panel) || path.some((node) => node instanceof Element && handlersByTrigger.has(node))) return;
+			if (path.includes(panel) || path.some((node) => node instanceof Element && (handlersByTrigger.has(node) || areaTriggers.has(node)))) return;
 			closePanel(false);
 		});
 		shadow.addEventListener("focusin", (event) => {
@@ -2463,25 +2591,31 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			attach(trigger, handlers) {
 				handlersByTrigger.set(trigger, handlers);
 				trigger.setAttribute("aria-expanded", "false");
-				trigger.addEventListener("pointerenter", (event) => {
-					if (event.pointerType === "mouse" && pointerMoved(event)) showPreview(trigger, event);
-				});
-				trigger.addEventListener("pointermove", (event) => {
-					if (event.pointerType === "mouse" && pointerMoved(event)) showPreview(trigger, event);
-				});
-				trigger.addEventListener("pointerleave", (event) => {
-					if (previewOwner === trigger && !preview.contains(event.relatedTarget)) scheduleHide();
-				});
+				const areas = handlers.pointerAreas || [trigger];
+				for (const area of areas) {
+					if (area !== trigger) areaTriggers.set(area, trigger);
+					area.addEventListener("pointerenter", (event) => {
+						if (event.pointerType === "mouse" && pointerMoved(event)) showPreview(trigger, event);
+					});
+					area.addEventListener("pointermove", (event) => {
+						if (event.pointerType === "mouse" && pointerMoved(event)) showPreview(trigger, event);
+					});
+					area.addEventListener("pointerleave", (event) => {
+						if (previewOwner === trigger && !preview.contains(event.relatedTarget)) scheduleHide();
+					});
+				}
 				trigger.addEventListener("focus", () => {
 					if (!suppressFocusPreview && trigger.matches(":focus-visible")) showPreview(trigger, null);
 				});
 				trigger.addEventListener("blur", () => {
 					if (previewOwner === trigger) hidePreview();
 				});
-				trigger.addEventListener("click", (event) => {
-					if (panelOwner === trigger) closePanel(false);
-					else openPanel(trigger, event.detail ? event : null);
-				});
+				for (const area of new Set([trigger, ...areas])) {
+					area.addEventListener("click", (event) => {
+						if (panelOwner === trigger) closePanel(false);
+						else openPanel(trigger, event.detail ? event : null);
+					});
+				}
 			},
 			closeAll() {
 				hidePreview();
@@ -2531,7 +2665,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 	}
 	function translatedList(englishList, translations, field, language) {
 		const items = asArray(englishList).filter(asText);
-		const translation = language === "en" ? [] : asArray(asObject(asObject(translations)[language])[field]);
+		const translation = asArray(asObject(asObject(translations)[language])[field]);
 		return translation.length === items.length && translation.every(asText) ? { items: translation, language } : { items, language: "en" };
 	}
 	function normalizeFigure(figure, language) {
@@ -2552,8 +2686,14 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		const tier = translated(figure.tier, figure.translations, "tier", language);
 		const positions = translatedList(figure.positions, figure.translations, "positions", language);
 		const schools = translatedList(figure.schools, figure.translations, "schools", language);
+		const scopeLabel = translated(figure.scope_label, figure.translations, "scope_label", language);
 		return {
 			...figure,
+			scope_label: scopeLabel.text,
+			scope_label_language: scopeLabel.language,
+			continued_from: YEAR_PATTERN.test(asText(figure.continued_from) || "") ? figure.continued_from : null,
+			stated_amounts: asArray(figure.stated_amounts).filter((amount) => asNumber(amount) !== null),
+			stated_terms: translatedList(figure.stated_terms, figure.translations, "stated_terms", language).items,
 			derivation: derivation.text,
 			derivation_language: derivation.language,
 			tier: tier.text,
@@ -2572,7 +2712,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			summer,
 			academic_year_amount: academicYearAmount,
 			academic_year_months: academicYearMonths,
-			series: asText(figure.series) || [figure.agreement_kind, months, figure.basis, figure.component, summer ? "summer" : "", figure.stated].join("|"),
+			series: asText(figure.series) || [figure.agreement_kind, months, figure.basis, figure.component, summer ? "summer" : "", ...(scopeLabel.text ? [figure.scope_label] : [])].join("|"),
 		};
 	}
 	function normalizeAppointment(line, language) {
@@ -2598,9 +2738,21 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			basis: asText(line.basis) || "minimum",
 			soft: line.soft === true,
 			summer: line.summer === true,
+			summer_sources: asArray(line.summer_sources),
 			charted: line.charted === true,
+			charted_month: line.charted_month === true,
 			sources: asArray(line.sources),
 		};
+	}
+	function normalizeNoFigure(raw, language) {
+		const byYear = {};
+		for (const [year, view] of Object.entries(asObject(raw))) {
+			if (!YEAR_PATTERN.test(year) || !isObject(view)) continue;
+			const sentence = translated(view.text, view.translations, "text", language);
+			const short = translated(view.short, view.translations, "short", language);
+			if (sentence.text && short.text) byYear[year] = { text: sentence.text, text_language: sentence.language, short: short.text, short_language: short.language, sources: asArray(view.sources) };
+		}
+		return byYear;
 	}
 	function normalizeLivingCosts(raw, language) {
 		const budgetName = (budget) => {
@@ -2686,8 +2838,16 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		const englishSummary = asText(view.summary) || "";
 		const translatedSummary = language === "en" ? null : asText(asObject(view.summary_translations)[language]);
 		let summaryParts = [{ text: englishSummary, language: "en" }];
+		let shared = 0;
+		while (translatedSummary && shared < Math.min(englishSummary.length, translatedSummary.length) && englishSummary[shared] === translatedSummary[shared]) shared += 1;
+		const sentenceEnd = translatedSummary ? translatedSummary.lastIndexOf(". ", shared - 1) : -1;
 		if (translatedSummary && englishSummary && translatedSummary.startsWith(`${englishSummary} `)) {
 			summaryParts = [summaryParts[0], { text: translatedSummary.slice(englishSummary.length + 1), language }];
+		} else if (translatedSummary && sentenceEnd > 0 && shared < translatedSummary.length) {
+			summaryParts = [
+				{ text: translatedSummary.slice(0, sentenceEnd + 1), language: "en" },
+				{ text: translatedSummary.slice(sentenceEnd + 2), language },
+			];
 		} else if (translatedSummary) summaryParts = [{ text: translatedSummary, language }];
 		let keyedLabel = strings.terms.labels[view.label_key];
 		let dataLabel = asText(view.label);
@@ -2714,7 +2874,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		return {
 			name: raw.name,
 			short_name: asText(raw.short_name) || raw.name,
-			search_names: ["name", "short_name", `name_${language}`].map((key) => asText(translation[key])).filter(Boolean),
+			search_names: [...["name", "short_name", `name_${language}`].map((key) => asText(translation[key])), ...asArray(raw.search_names).map(asText)].filter(Boolean),
 		};
 	}
 	function normalizeInstitution(raw, strings, language) {
@@ -2722,6 +2882,16 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		for (const [year, figure] of Object.entries(asObject(raw.pay))) {
 			const normalized = YEAR_PATTERN.test(year) ? normalizeFigure(figure, language) : null;
 			if (normalized) pay[year] = normalized;
+		}
+		const payMonth = { ...pay };
+		const ownMonthYears = new Set();
+		const appointmentTag = (figure) => figure.positions.join((STRINGS[figure.positions_language] || strings).itemSeparator);
+		for (const [year, figure] of Object.entries(asObject(raw.pay_month))) {
+			const normalized = YEAR_PATTERN.test(year) && pay[year] ? normalizeFigure(figure, language) : null;
+			if (!normalized || !normalized.positions.length) continue;
+			pay[year] = { ...pay[year], appointment_tag: appointmentTag(pay[year]) };
+			payMonth[year] = { ...normalized, appointment_tag: appointmentTag(normalized) };
+			ownMonthYears.add(year);
 		}
 		const appointments = {};
 		for (const [year, lines] of Object.entries(asObject(raw.appointments))) {
@@ -2754,11 +2924,17 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			reason_language: reason.language,
 			last_checked: asText(raw.last_checked) && /^\d{4}-\d{2}-\d{2}$/.test(raw.last_checked) ? raw.last_checked : null,
 			pay,
+			pay_month: payMonth,
+			own_month_years: ownMonthYears,
 			appointments,
+			no_figure: normalizeNoFigure(raw.no_figure, language),
 			term_views: asArray(raw.term_views).map((view) => (isObject(view) ? normalizeTermView(view, strings, language) : null)),
 			terms: asObject(raw.terms),
 			other_terms: asObject(raw.other_terms),
+			terms_month: asObject(raw.terms_month),
+			other_terms_month: asObject(raw.other_terms_month),
 			policy_topics: asObject(raw.policy_topics),
+			policy_silent: asObject(raw.policy_silent),
 			timeline: {
 				contracts: asArray(timeline.contracts)
 					.filter(isObject)
@@ -3226,40 +3402,50 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			if (fte) return text.partTime(percentage);
 			return text.notRecorded;
 		}
-		function figureLabel(figure, mode, includeMonthly = true) {
+		function figureLabel(figure, mode, includeMonthly = true, shortTags = false) {
 			const value = valueFor(figure, mode);
 			const main = [mode === "year" ? money(value) : strings.perMonthShort(money(value))];
 			const tags = [];
 			if (figure.months === null || figure.months === undefined) tags.push(strings.monthsNotRecorded);
 			else if (figure.months !== 12) main.push(strings.monthsShort(figure.months));
 			if (mode === "year" && includeMonthly && figure.monthly) main.push(strings.perMonthShort(money(figure.monthly)));
+			if (figure.appointment_tag) tags.push(figure.appointment_tag);
+			if (figure.scope_label) tags.push(figure.scope_label);
 			if (calculatedIn(figure, mode)) tags.push(strings.tags.derived);
 			const hours = hoursTag(figure.workload || {});
 			if (hours) tags.push(hours);
 			if (figure.soft) tags.push(strings.softTags[figure.basis] || strings.softTags.intention);
 			if (figure.agreement_kind !== "union-contract") tags.push(strings.tags.policy);
+			if (figure.continued_from) tags.push((shortTags ? strings.tags.continuedShort : strings.tags.continued)(figure.continued_from));
 			return { main, tags };
 		}
 		const partText = (part) => (typeof part === "string" ? part : part.text);
 		const partSeparator = (part) => (typeof part === "string" ? strings.separator : part.separator);
 		function labelText(label, short = false) {
-			const parts = [...label.main, ...label.tags, short ? null : label.monthly].filter(Boolean);
+			const parts = [...label.main, ...label.tags, short ? null : monthlyText(label)].filter(Boolean);
 			const text = parts.map((part, index) => (index < parts.length - 1 ? `${partText(part)}${partSeparator(part)}` : partText(part))).join("");
 			return short && label.plain && label.monthly ? `${text}${partSeparator(parts.at(-1)).trimEnd()}` : text;
 		}
 		function labelNodes(label, trailing = null) {
-			const parts = [
-				...label.main.map((part) => ({ text: partText(part), separator: partSeparator(part), className: "segment" })),
-				...label.tags.map((text) => ({ text, separator: strings.separator, className: "segment tag" })),
-			];
-			if (label.monthly) parts.push({ text: label.monthly, separator: strings.separator, className: label.plain ? "segment monthly plain" : "segment monthly" });
-			const nodes = parts.flatMap((part, index) => {
+			const tagPart = (text) => ({ text, separator: strings.separator, className: [...text].reduce((width, character) => width + (/[⺀-鿿]/.test(character) ? 2 : 1), 0) > LONG_TAG_WIDTH ? "segment tag long" : "segment tag" });
+			const parts = [...label.main.map((part) => ({ text: partText(part), separator: partSeparator(part), className: "segment" })), ...label.tags.map(tagPart)];
+			const firstMonthly = parts.length;
+			if (label.monthly) parts.push({ text: label.monthly, separator: strings.separator, className: "segment" }, ...(label.monthlyTags || []).map(tagPart));
+			const segments = parts.map((part, index) => {
 				const last = index === parts.length - 1;
-				const separatorClass = last ? "separator end" : label.monthly && !label.plain && index === parts.length - 2 ? "separator before-monthly" : "separator";
-				const segment = element("span", { class: part.className }, [part.text, element("span", { class: separatorClass, "aria-hidden": "true", text: part.separator.trim() }), last ? trailing : null]);
-				return index ? [element("wbr"), segment] : [segment];
+				const separatorClass = last ? "separator end" : label.monthly && !label.plain && index === firstMonthly - 1 ? "separator before-monthly" : "separator";
+				return element("span", { class: part.className }, [part.text, element("span", { class: separatorClass, "aria-hidden": "true", text: part.separator.trim() }), last ? trailing : null]);
 			});
+			const withBreaks = (list) => list.flatMap((segment, index) => (index ? [element("wbr"), segment] : [segment]));
+			const nodes = withBreaks(segments.slice(0, firstMonthly));
+			if (label.monthly) {
+				const monthly = element("span", { class: label.plain ? "monthly plain" : "monthly" }, withBreaks(segments.slice(firstMonthly)));
+				nodes.push(...(nodes.length ? [element("wbr"), monthly] : [monthly]));
+			}
 			return [element("span", { class: "label-clip" }, [element("span", { class: "label-parts" }, nodes)])];
+		}
+		function monthlyText(label) {
+			return label.monthly ? [label.monthly, ...(label.monthlyTags || [])].join(strings.separator) : null;
 		}
 		function abbreviationExpander() {
 			const explained = new Set();
@@ -3305,6 +3491,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 						element("p", { class: "source-title", lang: langOf("en"), text: source.title }),
 						location.length ? element("p", { class: "muted" }, location) : null,
 						citation.quote ? element("blockquote", { lang: langOf("en"), text: strings.quoted(citation.quote) }) : null,
+						asText(source.note) ? element("p", { class: "muted" }, [element("strong", { text: strings.noteLead }), english(source.note)]) : null,
 						element("p", { class: "links" }, [
 							link.downloads ? downloadLink(url, documentLabel, strings.withTitle(documentLabel, source.title)) : safeLink(url, documentLabel, strings.newTabWithTitle(documentLabel, source.title)),
 							link.downloadsArchive ? downloadLink(archive, archiveLabel, strings.withTitle(archiveLabel, source.title)) : safeLink(archive, archiveLabel, strings.newTabWithTitle(archiveLabel, source.title)),
@@ -3313,10 +3500,17 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				}),
 			]);
 		}
-		function seriesChanges(before, after) {
+		function gapBreakText(institution, missingYears, short = false) {
+			const views = missingYears.map((year) => institution.no_figure[year]);
+			const explained = views.every(Boolean) && new Set(views.map((view) => view.text)).size === 1 ? views[0] : null;
+			if (short) return explained ? strings.overTime.breakGapExplained(missingYears, explained.short) : strings.overTime.breakGap(missingYears);
+			return explained ? strings.trend.gapBreakExplained(missingYears, explained.text) : strings.trend.gapBreak(missingYears);
+		}
+		function seriesChanges(before, after, institution) {
 			const text = strings.seriesChanges;
-			const unit = (stated) => strings.units[stated] || stated;
 			const changes = [];
+			const titles = (figure) => figure.positions.join((STRINGS[figure.positions_language] || strings).itemSeparator);
+			if (institution.lowest_of === true && before.positions.length && after.positions.length && titles(before) !== titles(after)) changes.push(text.appointment(titles(after), titles(before)));
 			if (before.agreement_kind !== after.agreement_kind) changes.push(after.agreement_kind === "union-contract" ? text.toContract : text.toPolicy);
 			if (before.months !== after.months) {
 				if (!before.months) changes.push(text.monthsFromUnknown(after.months));
@@ -3325,13 +3519,21 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			}
 			if (before.basis !== after.basis) changes.push(text.basis(strings.basisShort[after.basis], strings.basisShort[before.basis]));
 			if (before.component !== after.component) changes.push(text.component(strings.componentShort[after.component], strings.componentShort[before.component]));
-			if (Boolean(before.summer) !== Boolean(after.summer)) changes.push(after.summer ? text.addsSummer : text.dropsSummer);
-			if (before.stated !== after.stated) changes.push(text.stated(unit(after.stated), unit(before.stated)));
+			if (Boolean(before.summer) !== Boolean(after.summer)) {
+				const twelveMonths = (figure) => (figure.months || 0) >= 12;
+				if (after.summer) changes.push(twelveMonths(before) ? text.summerTotal(after.academic_year_months) : text.addsSummer);
+				else changes.push(twelveMonths(after) ? text.twelveMonthRate(before.academic_year_months) : text.dropsSummer);
+			}
+			if (before.scope_label !== after.scope_label) {
+				if (!before.scope_label) changes.push(text.toScope(after.scope_label));
+				else if (!after.scope_label) changes.push(text.fromScope(before.scope_label));
+				else changes.push(text.scope(after.scope_label, before.scope_label));
+			}
 			return changes.length ? changes : [text.other];
 		}
 		function trendChart(institution, selectedYear, mode, years, width) {
 			const entries = years
-				.map((year, index) => ({ year, index, figure: institution.pay[year] }))
+				.map((year, index) => ({ year, index, figure: payIn(institution, mode)[year] }))
 				.filter((entry) => entry.figure && valueFor(entry.figure, mode) !== null)
 				.map((entry) => ({ ...entry, value: valueFor(entry.figure, mode) }));
 			if (entries.length < 2) return null;
@@ -3370,9 +3572,9 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 					continue;
 				}
 				runs.push([after]);
-				if (!consecutive) breaks.push(text.gapBreak(years.slice(before.index + 1, after.index)));
+				if (!consecutive) breaks.push(gapBreakText(institution, years.slice(before.index + 1, after.index)));
 				if (!sameSeries) {
-					breaks.push(text.seriesBreak(after.year, seriesChanges(before.figure, after.figure)));
+					breaks.push(text.seriesBreak(after.year, seriesChanges(before.figure, after.figure, institution)));
 					const middle = (x(before.index) + x(after.index)) / 2;
 					breakPositions.push(middle);
 					svg.append(svgElement("line", { class: "trend-break", x1: middle, x2: middle, y1: top - 8, y2: plotBottom }));
@@ -3383,10 +3585,13 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			const breakSpans = breakPositions.map((position) => [position - 2, position + 2]);
 			const placed = { above: [...breakSpans], below: [...breakSpans], years: [] };
 			const labelWidth = (label) => [...label].reduce((total, character) => total + (/[⺀-鿿]/.test(character) ? 12 : 7), 0);
-			const place = (lane, centre, label) => {
+			const place = (lane, centre, label, shift = false) => {
 				const half = labelWidth(label) / 2 + 2;
-				const middle = clamp(centre, half, width - half);
-				if (placed[lane].some(([start, end]) => middle - half < end && middle + half > start)) return null;
+				const base = clamp(centre, half, width - half);
+				const fits = (middle) => !placed[lane].some(([start, end]) => middle - half < end && middle + half > start);
+				const shifted = shift ? placed[lane].flatMap(([start, end]) => [end + half, start - half]).filter((middle) => middle >= half && middle <= width - half && Math.abs(middle - centre) <= half - 6) : [];
+				const middle = [base, ...shifted.sort((one, other) => Math.abs(one - centre) - Math.abs(other - centre))].find(fits);
+				if (middle === undefined) return null;
 				placed[lane].push([middle - half, middle + half]);
 				return middle;
 			};
@@ -3394,7 +3599,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				const otherLane = preferredLane === "above" ? "below" : "above";
 				for (const label of [...new Set(labels)]) {
 					for (const lane of [preferredLane, otherLane]) {
-						const middle = place(lane, centre, label);
+						const middle = place(lane, centre, label, true);
 						if (middle !== null) return { lane, middle, label };
 					}
 				}
@@ -3508,6 +3713,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			});
 			return svg;
 		}
+		const payIn = (institution, mode) => (mode === "month" ? institution.pay_month : institution.pay);
 		const termEnded = (status, end) => status === "current" && Boolean(end) && parseDate(end, true) < today;
 		for (const institution of data.institutions) {
 			const representation = institution.representation;
@@ -3618,6 +3824,8 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		const hostObserver = new MutationObserver(() => {
 			if (!standalone) applyTheme();
 			updateContentsSurface();
+			updateMarkHalo();
+			window.setTimeout(updateMarkHalo, 600);
 		});
 		for (const node of [document.documentElement, document.body].filter(Boolean)) {
 			hostObserver.observe(node, {
@@ -3625,8 +3833,9 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				attributeFilter: ["class", "data-theme", "data-color-scheme", "data-bs-theme", "style", "data-darkreader-mode", "data-darkreader-scheme"],
 			});
 		}
-		lockDarkReader(mount, standalone);
+		lockDarkReader(mount, standalone, state.theme);
 		applyTheme();
+		updateMarkHalo();
 		function readHashState() {
 			const result = { section: null, year: null, view: null, unit: null, schools: [] };
 			let hash = "";
@@ -3699,6 +3908,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				reasons,
 				inForceUntil: !ended && representation.status === "current" ? period.end : null,
 				currentRate: Boolean(currentFigure),
+				continuedFrom: currentFigure?.continued_from || null,
 				lastChecked: institution.last_checked,
 				latestYear,
 			};
@@ -3965,6 +4175,15 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			updateContentsSurface();
 		}
 		let contentsSurface = null;
+		function updateMarkHalo() {
+			let colour = "";
+			for (let node = darkReaderIsDark() ? mount : null; node && !colour; node = node.parentElement) {
+				const background = getComputedStyle(node).backgroundColor;
+				if (background && background !== "transparent" && !/^rgba\(.*,\s*0\)$/.test(background)) colour = background;
+			}
+			if (colour) root.style.setProperty("--ot-halo", colour);
+			else root.style.removeProperty("--ot-halo");
+		}
 		function updateContentsSurface() {
 			if (!contents.classList.contains("side")) {
 				contentsSurface = null;
@@ -4032,7 +4251,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 					storeTheme(theme);
 					for (const other of buttons) other.setAttribute("aria-pressed", String(other === button));
 					applyTheme();
-					if (standalone && root.dataset.theme === "dark") lockStandaloneDark();
+					if (standalone && theme !== "auto") lockStandalone();
 				});
 				return button;
 			});
@@ -4086,7 +4305,8 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			const others = data.institutions.filter((institution) => rentShareOf(institution, year) === null);
 			const softBases = [...new Set(others.filter((institution) => institution.pay[year]?.soft).map((institution) => institution.pay[year].basis))];
 			const groups = {
-				missing: others.filter((institution) => !institution.pay[year]).length,
+				missing: others.filter((institution) => !institution.pay[year] && !institution.no_figure[year]).length,
+				noMinimum: others.filter((institution) => !institution.pay[year] && institution.no_figure[year]).length,
 				soft: softBases.length ? others.filter((institution) => institution.pay[year]?.soft).length : 0,
 				noYearly: others.filter((institution) => institution.pay[year] && !institution.pay[year].soft && institution.pay[year].annual === null).length,
 				noRent: others.filter((institution) => institution.pay[year] && !institution.pay[year].soft && institution.pay[year].annual !== null).length,
@@ -4149,7 +4369,8 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			const lastChecked = status.lastChecked ? text.lastChecked(formatDate(status.lastChecked.slice(0, 7))) : null;
 			const title = (label) => (year && year !== currentYear ? text.forYear(currentYear, label) : label);
 			if (status.state === "current") {
-				const facts = [status.inForceUntil ? text.inForce(formatDate(status.inForceUntil)) : null, status.currentRate ? text.rate(currentYear) : null, lastChecked].filter(Boolean);
+				const rate = status.continuedFrom ? text.rateContinued(currentYear, status.continuedFrom) : text.rate(currentYear);
+				const facts = [status.inForceUntil ? text.inForce(formatDate(status.inForceUntil)) : null, status.currentRate ? rate : null, lastChecked].filter(Boolean);
 				return element("div", { class: "status-block current" }, [
 					element(headingLevel(5), { class: "status-title" }, [statusIcon("current"), element("span", {}, keepYearsWhole(title(text.current)))]),
 					facts.length ? element("p", { class: "muted" }, keepYearsWhole(facts.join(strings.separator))) : null,
@@ -4184,10 +4405,13 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				return { institution, box, item, keys: names.filter(Boolean).map(searchKey) };
 			});
 			const empty = element("p", { class: "muted", hidden: true, text: text.noMatch });
+			const matchStatus = element("p", { class: "visually-hidden", role: "status" });
 			search.addEventListener("input", () => {
 				const query = searchKey(search.value);
 				for (const entry of entries) entry.item.hidden = Boolean(query) && !entry.keys.some((key) => key.includes(query));
-				empty.hidden = entries.some((entry) => !entry.item.hidden);
+				const count = entries.filter((entry) => !entry.item.hidden).length;
+				empty.hidden = count > 0;
+				matchStatus.textContent = query ? (count ? text.matches(count) : text.noMatch) : "";
 			});
 			const clear = element("button", { type: "button", class: "link-button", text: text.clear });
 			clear.addEventListener("click", () => {
@@ -4216,6 +4440,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 					element("label", { class: "picker-label" }, [element("span", { text: text.find }), search]),
 					element("ul", { class: "picker-list" }, entries.map((entry) => entry.item)),
 					empty,
+					matchStatus,
 					clear,
 				]),
 			]);
@@ -4256,9 +4481,9 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				modeButtons[1].setAttribute("aria-describedby", unavailable ? "choice-description-only choice-hint" : "choice-description-only");
 				modeHint.hidden = !unavailable;
 				choiceMode.hidden = unavailable && !picker.open;
-				for (const { label, note } of notes) {
+				for (const { heading, label, note } of notes) {
 					label.textContent = text.shown(state.highlighted.size, total);
-					note.hidden = !only;
+					note.hidden = !only || (heading === chartHeading && state.view === "time");
 				}
 				tilesScope.hidden = !only;
 			}
@@ -4298,6 +4523,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			updateChips();
 			return {
 				control: element("div", { class: "highlight-control" }, [picker, chips, choiceMode]),
+				refresh: updateChoice,
 				openPicker() {
 					picker.open = true;
 					search.focus({ preventScroll: true });
@@ -4453,6 +4679,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			viewDescriptions.forEach((description, index) => description.classList.toggle("shown", VIEWS[index] === state.view));
 			updateHeader();
 			renderChart();
+			highlight.refresh();
 			table.update();
 		}
 		function renderChart() {
@@ -4508,7 +4735,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			const fullWidth = (institution) => measure(labelText(labels.get(institution))) + CHEVRON_SPACE;
 			const shortWidth = (institution) => {
 				const label = labels.get(institution);
-				return label.monthly ? Math.max(measure(labelText(label, true)), measure(label.monthly)) + CHEVRON_SPACE : fullWidth(institution);
+				return label.monthly ? Math.max(measure(labelText(label, true)), measure(monthlyText(label))) + CHEVRON_SPACE : fullWidth(institution);
 			};
 			const wrapped = new Set();
 			let plotWidth = trackWidth - 4;
@@ -4581,9 +4808,12 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			const tags = [];
 			if (figure.months === null || figure.months === undefined) tags.push(strings.monthsNotRecorded);
 			else if (figure.months !== 12) main.push(strings.monthsShort(figure.months));
+			if (figure.appointment_tag) tags.push(figure.appointment_tag);
+			if (figure.scope_label) tags.push(figure.scope_label);
 			if (figure.soft) tags.push(strings.softTags[figure.basis] || strings.softTags.intention);
 			if (figure.soft && figure.agreement_kind !== "union-contract") tags.push(strings.tags.policy);
 			if (figure.summer) tags.push(strings.tags.withSummer);
+			if (figure.continued_from) tags.push(strings.tags.continued(figure.continued_from));
 			if (shownYear) tags.push(strings.status.showingYear(shownYear));
 			return { main, tags, monthly: mode === "year" ? monthlyWords(figure) : null };
 		}
@@ -4591,7 +4821,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			return figure.months && figure.monthly ? strings.perMonthWords(money(figure.monthly)) : null;
 		}
 		function payRow(institution, layout, shownYear = layout.year) {
-			const figure = institution.pay[shownYear];
+			const figure = payIn(institution, layout.mode)[shownYear];
 			const lagging = shownYear !== layout.year;
 			const summary = layout.living.get(institution) || null;
 			const wrapped = layout.wrapped.has(institution);
@@ -4621,18 +4851,24 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			]);
 			popups.attach(button, {
 				preview: () => payPreview(institution, figure, layout.mode, summary, shownYear, flagged(institution)),
-				details: () => payDetails(institution, figure, layout.mode, shownYear),
+				details: () => payDetails(institution, figure, layout.mode, shownYear, state.year, true),
 			});
 			return rowItem(institution, button, layout.narrow ? layout.trackWidth : layout.nameColumn);
+		}
+		function scopeExamples(figures) {
+			return [...new Set(figures.map((figure) => figure.scope_label).filter(Boolean))].sort((one, other) => one.localeCompare(other)).slice(0, 2);
 		}
 		function figureSentence(institution, figure, mode) {
 			const text = strings.figureSentence;
 			const parts = [text.amount(spokenName(institution), money(valueFor(figure, mode)), strings.perMode[mode])];
+			if (figure.appointment_tag) parts.push(text.appointment(figure.appointment_tag));
 			parts.push(periodText(figure));
 			if (mode === "year" && monthlyWords(figure)) parts.push(monthlyWords(figure));
 			parts.push(lowerFirst(strings.basis[figure.basis] || figure.basis));
 			parts.push(figure.agreement_kind === "union-contract" ? text.contract : text.policy);
+			if (figure.scope_label) parts.push(text.scope(figure.scope_label));
 			if (figure.summer) parts.push(strings.tags.withSummer);
+			if (figure.continued_from) parts.push(text.continued(figure.continued_from));
 			if (calculatedIn(figure, mode)) parts.push(text.derived);
 			return parts.join(strings.listSeparator);
 		}
@@ -4732,22 +4968,23 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		}
 		function renderPayChart() {
 			const { year, mode } = state;
+			const payOf = (institution) => payIn(institution, mode);
 			const text = strings.payChart;
 			const link = sectionLinker();
-			const listed = filteredSchools(data.institutions).filter((institution) => valueFor(institution.pay[year], mode) !== null);
-			const byValue = (first, second) => valueFor(second.pay[year], mode) - valueFor(first.pay[year], mode) || byShortName(first, second);
-			const charted = listed.filter((institution) => !institution.pay[year].soft).sort(byValue);
-			const soft = listed.filter((institution) => institution.pay[year].soft).sort(byValue);
-			const allCharted = filtering() ? data.institutions.filter((institution) => valueFor(institution.pay[year], mode) !== null && !institution.pay[year].soft) : charted;
+			const listed = filteredSchools(data.institutions).filter((institution) => valueFor(payOf(institution)[year], mode) !== null);
+			const byValue = (first, second) => valueFor(payOf(second)[year], mode) - valueFor(payOf(first)[year], mode) || byShortName(first, second);
+			const charted = listed.filter((institution) => !payOf(institution)[year].soft).sort(byValue);
+			const soft = listed.filter((institution) => payOf(institution)[year].soft).sort(byValue);
+			const allCharted = filtering() ? data.institutions.filter((institution) => valueFor(payOf(institution)[year], mode) !== null && !payOf(institution)[year].soft) : charted;
 			const laggingYear = (institution) => statusOf(institution).latestYear;
 			const lagging =
 				year === currentYear
 					? filteredSchools(data.institutions)
-							.filter((institution) => !institution.pay[year] && laggingYear(institution) && valueFor(institution.pay[laggingYear(institution)], mode) !== null)
-							.sort((first, second) => valueFor(second.pay[laggingYear(second)], mode) - valueFor(first.pay[laggingYear(first)], mode) || byShortName(first, second))
+							.filter((institution) => !payOf(institution)[year] && laggingYear(institution) && valueFor(payOf(institution)[laggingYear(institution)], mode) !== null)
+							.sort((first, second) => valueFor(payOf(second)[laggingYear(second)], mode) - valueFor(payOf(first)[laggingYear(first)], mode) || byShortName(first, second))
 					: [];
-			const shownYearOf = (institution) => (institution.pay[year] ? year : laggingYear(institution));
-			const shownFigure = (institution) => institution.pay[shownYearOf(institution)];
+			const shownYearOf = (institution) => (payOf(institution)[year] ? year : laggingYear(institution));
+			const shownFigure = (institution) => payOf(institution)[shownYearOf(institution)];
 			const rows = [...charted, ...soft, ...lagging];
 			const narrow = isNarrow();
 			const width = chartHolder.clientWidth || root.clientWidth;
@@ -4758,8 +4995,8 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 							.filter(([, summary]) => summary && (summary.rent !== null || summary.estimate !== null))
 					: [],
 			);
-			const values = charted.map((institution) => valueFor(institution.pay[year], mode));
-			const middle = universityMedian(allCharted.map((institution) => ({ institution, value: valueFor(institution.pay[year], mode) })));
+			const values = charted.map((institution) => valueFor(payOf(institution)[year], mode));
+			const middle = universityMedian(allCharted.map((institution) => ({ institution, value: valueFor(payOf(institution)[year], mode) })));
 			const split = splitUniversities(allCharted);
 			const layout = {
 				...rankedLayout(rows, width, narrow, {
@@ -4770,7 +5007,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 						const summary = living.get(institution);
 						return Math.max(valueFor(figure, mode), twelveMonthEquivalent(figure, mode) || 0, summary?.rent || 0, summary?.estimate || 0);
 					},
-					label: (institution) => chartLabel(shownFigure(institution), mode, institution.pay[year] ? null : laggingYear(institution)),
+					label: (institution) => chartLabel(shownFigure(institution), mode, payOf(institution)[year] ? null : laggingYear(institution)),
 					tickLabel: axisMoney,
 				}),
 				year,
@@ -4787,7 +5024,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			for (const holder of [chartHolder, softHolder, laggingHolder]) holder.style.setProperty("--name-column", `${layout.nameColumn}px`);
 			const notices = [];
 			const bestCount = Math.max(
-				...years.map((other) => universityCount(data.institutions.filter((institution) => valueFor(institution.pay[other], mode) !== null && !institution.pay[other].soft))),
+				...years.map((other) => universityCount(data.institutions.filter((institution) => valueFor(payOf(institution)[other], mode) !== null && !payOf(institution)[other].soft))),
 			);
 			const chartedUniversities = universityCount(allCharted);
 			if (year > currentYear) notices.push(text.scheduledYear(year));
@@ -4800,6 +5037,9 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			const anyDerived = [...barFigures, ...softFigures].some((figure) => calculatedIn(figure, mode));
 			const summerFigure = barFigures.find((figure) => figure.summer);
 			const anyCalculated = barFigures.some((figure) => calculatedIn(figure, mode));
+			const scopeLabels = scopeExamples([...barFigures, ...softFigures]);
+			const continuedFigure = [...barFigures, ...softFigures].find((figure) => figure.continued_from);
+			const appointmentFigure = [...barFigures, ...softFigures].find((figure) => figure.appointment_tag);
 			const anyPartial = summaries.some((summary) => summary.estimate !== null && summary.partial);
 			legendHolder.replaceChildren(
 				...[
@@ -4862,7 +5102,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			}
 			chartHolder.replaceChildren(...children.filter(Boolean));
 			const anyLiving = data.institutions.some((institution) => institution.living_costs[year]);
-			const sharedContract = ({ campuses }) => campuses.every((institution) => institution.pay[year].agreement_kind === "union-contract" && institution.pay[year].agreement_name === campuses[0].pay[year].agreement_name);
+			const sharedContract = ({ campuses }) => campuses.every((institution) => payOf(institution)[year].agreement_kind === "union-contract" && payOf(institution)[year].agreement_name === payOf(campuses[0])[year].agreement_name);
 			chartNotes(
 				rows.length
 					? [
@@ -4872,6 +5112,9 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 							charted.length && split.length ? text.noteMedian(countedCampuses(allCharted), split.every(sharedContract)) : null,
 							mode === "month" ? [text.noteMonthly, anyDerived ? text.noteDerivedMonth : null].filter(Boolean).join(strings.sentenceSeparator) : anyDerived ? text.noteDerived : null,
 							text.noteYears,
+							scopeLabels.length ? text.noteScope(scopeLabels) : null,
+							continuedFigure ? text.noteContinued(strings.tags.continued(continuedFigure.continued_from)) : null,
+							appointmentFigure ? text.noteAppointment(mode, appointmentFigure.appointment_tag) : null,
 							text.noteRanking,
 							mode === "month" && living.size ? text.noteLivingMarks : null,
 							mode === "year" && anyLiving ? text.noteLivingPointer : null,
@@ -4886,8 +5129,8 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 								element(headingLevel(4), { class: "block-heading", text: text.softHeading }),
 								element("p", { class: "muted" }, link(text.softIntroduction)),
 								element("ul", { class: "legend" }, [
-									soft.some((institution) => seriesOf(institution.pay[year]) === "contract") ? legendItem(payKey("soft-contract"), text.softContract) : null,
-									soft.some((institution) => seriesOf(institution.pay[year]) === "policy") ? legendItem(payKey("soft-policy"), text.softPolicy) : null,
+									soft.some((institution) => seriesOf(payOf(institution)[year]) === "contract") ? legendItem(payKey("soft-contract"), text.softContract) : null,
+									soft.some((institution) => seriesOf(payOf(institution)[year]) === "policy") ? legendItem(payKey("soft-policy"), text.softPolicy) : null,
 									softFigures.some((figure) => calculatedIn(figure, mode)) ? legendItem(derivedKey(), text.legendDerived) : null,
 								]),
 								rankedList("soft", soft, (institution) => payRow(institution, unrankedLayout), text.softListName(unit, year, adjective)),
@@ -4989,8 +5232,21 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 					].filter(Boolean),
 				);
 				const campuses = allRows.length >= 3 && splitUniversities(allRows).length ? countedCampuses(allRows) : null;
+				const figures = rows.map((institution) => institution.pay[year]);
+				const scopeLabels = scopeExamples(figures);
+				const continuedFigure = figures.find((figure) => figure.continued_from);
+				const appointmentFigure = figures.find((figure) => figure.appointment_tag);
 				chartNotes(
-					[strings.payChart.noteSeries, text.noteBars, text.noteBenchmark, campuses ? strings.payChart.noteMedian(campuses, false) : null, anyCalculated ? strings.payChart.noteDerived : null].filter(Boolean),
+					[
+						strings.payChart.noteSeries,
+						text.noteBars,
+						text.noteBenchmark,
+						campuses ? strings.payChart.noteMedian(campuses, false) : null,
+						anyCalculated ? strings.payChart.noteDerived : null,
+						scopeLabels.length ? strings.payChart.noteScope(scopeLabels) : null,
+						continuedFigure ? strings.payChart.noteContinued(strings.tags.continuedShort(continuedFigure.continued_from)) : null,
+						appointmentFigure ? strings.payChart.noteAppointment("year", appointmentFigure.appointment_tag) : null,
+					].filter(Boolean),
 					link,
 				);
 			} else {
@@ -5019,8 +5275,13 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				main: [share(summary.rentShare), { text: text.yearOfRent(money(12 * summary.rent)), separator: text.pairSeparator }],
 				tags: [],
 				monthly: payParts.filter(Boolean).join(strings.separator),
+				monthlyTags: payTags(figure, true),
 				plain: true,
 			};
+		}
+		function payTags(figure, short = false) {
+			const continued = figure.continued_from ? (short ? strings.tags.continuedShort : strings.tags.continued)(figure.continued_from) : null;
+			return [figure.appointment_tag, figure.scope_label, continued].filter(Boolean);
 		}
 		function rentRow(institution, layout) {
 			const summary = layout.summaries.get(institution);
@@ -5050,6 +5311,9 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			const figure = institution.pay[state.year];
 			const parts = [text.sentence({ name: spokenName(institution), rent: money(summary.rent), share: share(summary.rentShare), pay: money(figure.annual), months: shortPayMonths(figure) })];
 			if (summary.rentShare > RENT_BURDEN_SHARE) parts.push(text.sentenceAbove);
+			if (figure.appointment_tag) parts.push(strings.figureSentence.appointment(figure.appointment_tag));
+			if (figure.scope_label) parts.push(strings.figureSentence.scope(figure.scope_label));
+			if (figure.continued_from) parts.push(strings.tags.continued(figure.continued_from));
 			if (calculatedIn(figure, "year")) parts.push(strings.figureSentence.derived);
 			if (institution.pay[state.year].agreement_kind !== "union-contract") parts.push(strings.figureSentence.policy);
 			if (flagged(institution)) parts.push(strings.status.checkPhrase);
@@ -5109,6 +5373,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 					svgElement("path", { class: "ot-key-point", d: overTimeShape(0, 17, 3, 2.5) }),
 				);
 			}
+			if (kind === "ring") svg.append(svgElement("circle", { class: "ot-key-ring", cx: 12, cy: 6, r: 5 }), svgElement("path", { class: "ot-key-point", d: overTimeShape(0, 12, 6, 2.5) }));
 			return svg;
 		}
 		function overTimePreview(line, point, mode) {
@@ -5126,6 +5391,36 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				element("p", { text: capitalizeFirst(figure.agreement_kind === "union-contract" ? strings.figureSentence.contract : strings.figureSentence.policy) }),
 				...point.breaks.map((reason) => element("p", { class: "preview-break" }, keepYearsWhole(`${reason}${strings.fullStop}`))),
 			];
+		}
+		function nearestRegion(point, others, half) {
+			let polygon = [
+				[point.cx - half, point.cy - half],
+				[point.cx + half, point.cy - half],
+				[point.cx + half, point.cy + half],
+				[point.cx - half, point.cy + half],
+			];
+			for (const other of others) {
+				const dx = other.cx - point.cx;
+				const dy = other.cy - point.cy;
+				if (other === point || (!dx && !dy) || Math.abs(dx) >= 2 * half || Math.abs(dy) >= 2 * half) continue;
+				const middleX = (point.cx + other.cx) / 2;
+				const middleY = (point.cy + other.cy) / 2;
+				const side = ([px, py]) => (px - middleX) * dx + (py - middleY) * dy;
+				const kept = [];
+				polygon.forEach((corner, index) => {
+					const next = polygon[(index + 1) % polygon.length];
+					const here = side(corner);
+					const there = side(next);
+					if (here <= 0) kept.push(corner);
+					if ((here <= 0) !== (there <= 0)) {
+						const share = here / (here - there);
+						kept.push([corner[0] + (next[0] - corner[0]) * share, corner[1] + (next[1] - corner[1]) * share]);
+					}
+				});
+				polygon = kept;
+				if (polygon.length < 3) return [[point.cx, point.cy], [point.cx, point.cy], [point.cx, point.cy]];
+			}
+			return polygon;
 		}
 		function renderOverTimeChart() {
 			const text = strings.overTime;
@@ -5166,7 +5461,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			const lines = chosen.map((institution, order) => {
 				const line = { institution, order, slot: state.lineSlots.get(institution.id) };
 				line.points = data.years
-					.map((year, index) => ({ year, index, figure: institution.pay[year] }))
+					.map((year, index) => ({ year, index, figure: payIn(institution, mode)[year] }))
 					.filter((point) => valueFor(point.figure, mode) !== null)
 					.map((point) => ({ ...point, line, value: valueFor(point.figure, mode), scheduled: point.year > currentYear, key: `${institution.id}:${point.year}`, breaks: [] }));
 				return line;
@@ -5249,13 +5544,32 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			svg.append(svgElement("line", { class: "ot-selected", x1: selectedX, x2: selectedX, y1: plotTop - 6, y2: plotBottom }));
 			const crosshair = svgElement("line", { class: "ot-crosshair", x1: 0, x2: 0, y1: plotTop - 6, y2: plotBottom, visibility: "hidden" });
 			svg.append(crosshair);
+			for (const point of points) {
+				point.columnX = x(point.index);
+				point.cx = point.columnX;
+				point.cy = y(point.value);
+			}
+			for (let index = first; index <= last; index += 1) {
+				const column = points.filter((point) => point.index === index).sort((one, other) => one.cy - other.cy || one.line.order - other.line.order);
+				let cluster = [];
+				const spread = () => {
+					if (cluster.length > 1) {
+						const step = Math.min(OVER_TIME_DODGE, spacing ? (spacing * 0.7) / (cluster.length - 1) : OVER_TIME_DODGE);
+						[...cluster].sort((one, other) => one.line.order - other.line.order).forEach((point, position) => {
+							point.cx += (position - (cluster.length - 1) / 2) * step;
+						});
+					}
+					cluster = [];
+				};
+				for (const point of column) {
+					if (cluster.length && point.cy - cluster.at(-1).cy >= OVER_TIME_MARK) spread();
+					cluster.push(point);
+				}
+				spread();
+			}
 			const breakNotes = [];
 			const segments = [];
 			for (const line of drawn) {
-				for (const point of line.points) {
-					point.cx = x(point.index);
-					point.cy = y(point.value);
-				}
 				const name = line.institution.short_name;
 				for (let position = 1; position < line.points.length; position += 1) {
 					const before = line.points[position - 1];
@@ -5268,14 +5582,16 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 						continue;
 					}
 					const missingYears = data.years.slice(before.index + 1, after.index);
-					const changes = sameSeries ? null : seriesChanges(before.figure, after.figure);
-					if (!consecutive) breakNotes.push(text.breakNote(name, strings.trend.gapBreak(missingYears)));
+					const changes = sameSeries ? null : seriesChanges(before.figure, after.figure, line.institution);
+					if (!consecutive) breakNotes.push(text.breakNote(name, gapBreakText(line.institution, missingYears)));
 					if (!sameSeries) breakNotes.push(text.breakNote(name, strings.trend.seriesBreak(after.year, changes)));
-					const reasons = [consecutive ? null : text.breakGap(missingYears), sameSeries ? null : text.breakSeries(after.year, changes)].filter(Boolean);
+					const reasons = [consecutive ? null : gapBreakText(line.institution, missingYears, true), sameSeries ? null : text.breakSeries(after.year, changes)].filter(Boolean);
 					before.breaks.push(text.notJoined(after.year, reasons));
 					after.breaks.push(text.notJoined(before.year, reasons));
 				}
 			}
+			const tagged = points.filter((point) => point.figure.scope_label || point.figure.continued_from);
+			for (const point of tagged) svg.append(svgElement("circle", { class: `ot-ring ot-slot-${point.line.slot + 1}`, cx: point.cx, cy: point.cy, r: OVER_TIME_RING }));
 			for (const point of points) {
 				point.mark = svgElement("path", { class: `ot-point ot-slot-${point.line.slot + 1}${point.scheduled ? " scheduled" : ""}`, d: overTimeShape(point.line.slot, point.cx, point.cy, OVER_TIME_POINT_RADIUS) });
 				svg.append(point.mark);
@@ -5321,20 +5637,28 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 					svg.append(svgElement("text", { class: "ot-label", x: end.x, y: end.y + 4, lang: langOf("en"), text: end.line.institution.short_name }));
 				}
 			}
+			const activeLayer = svgElement("g", { class: "ot-active" });
+			svg.append(activeLayer);
 			const plot = element("div", { class: "ot-plot" });
 			plot.style.width = `${width}px`;
 			plot.style.height = `${height}px`;
-			const layer = element("div", { class: "ot-points", role: "group", "aria-label": text.listName(unit, adjective), "data-list": "time" });
+			const pointsHint = element("p", { id: "ot-points-hint", class: "visually-hidden", text: text.hint });
+			const layer = element("div", { class: "ot-points", role: "group", "aria-label": text.listName(unit, adjective), "aria-describedby": "ot-points-hint", "data-list": "time" });
+			const hitLayer = element("div", { class: "ot-hits", "aria-hidden": "true" });
+			const half = (window.matchMedia("(pointer: coarse)").matches || narrow ? OVER_TIME_POINTER.coarse : OVER_TIME_POINTER.fine) / 2;
 			let hovered = null;
 			let focused = null;
 			const showCrosshair = () => {
 				const point = hovered || focused;
-				for (const other of points) other.mark.classList.toggle("active", other === point);
+				activeLayer.replaceChildren();
 				if (!point) {
 					crosshair.setAttribute("visibility", "hidden");
 					return;
 				}
-				const position = Math.round(point.cx) + 0.5;
+				const mark = point.mark.cloneNode();
+				mark.classList.add("active");
+				activeLayer.append(mark);
+				const position = Math.round(point.columnX) + 0.5;
 				crosshair.setAttribute("x1", position);
 				crosshair.setAttribute("x2", position);
 				crosshair.setAttribute("visibility", "visible");
@@ -5356,11 +5680,21 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				});
 				Object.assign(button.style, { left: `${point.cx - OVER_TIME_HIT / 2}px`, top: `${point.cy - OVER_TIME_HIT / 2}px` });
 				point.button = button;
-				button.addEventListener("pointerenter", () => {
+				const area = element("div", { class: "ot-hit", "data-key": point.key });
+				const region = nearestRegion(point, points, half);
+				Object.assign(area.style, {
+					left: `${point.cx - half}px`,
+					top: `${point.cy - half}px`,
+					width: `${2 * half}px`,
+					height: `${2 * half}px`,
+					clipPath: `polygon(${region.map(([px, py]) => `${(px - point.cx + half).toFixed(2)}px ${(py - point.cy + half).toFixed(2)}px`).join(", ")})`,
+				});
+				hitLayer.append(area);
+				area.addEventListener("pointerenter", () => {
 					hovered = point;
 					showCrosshair();
 				});
-				button.addEventListener("pointerleave", () => {
+				area.addEventListener("pointerleave", () => {
 					hovered = null;
 					showCrosshair();
 				});
@@ -5399,11 +5733,27 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 						return { ...details, title: [details.title, strings.separator, text.panelYear(point.year)] };
 					},
 					panelAfter: plot,
+					pointerAreas: [area],
 				});
 				layer.append(button);
 			}
-			plot.append(svg, layer);
-			const cellText = (point) => (point ? (mode === "year" ? money(point.value) : strings.perMonthShort(money(point.value))) : text.noFigure);
+			plot.append(svg, hitLayer, layer, pointsHint);
+			const cellContent = (point, institution, year) => {
+				if (!point) {
+					if (institution.no_figure[year]) return institution.no_figure[year].short;
+					return payIn(institution, mode)[year] ? text.noFigureInUnit[mode] : text.noFigure;
+				}
+				const amount = mode === "year" ? money(point.value) : strings.perMonthShort(money(point.value));
+				const figure = point.figure;
+				const tags = [
+					figure.appointment_tag,
+					figure.scope_label ? strings.figureSentence.scope(figure.scope_label) : null,
+					figure.summer ? strings.tags.withSummer : null,
+					figure.continued_from ? strings.tags.continuedShort(figure.continued_from) : null,
+					calculatedIn(figure, mode) ? strings.tags.derived : null,
+				].filter(Boolean);
+				return tags.length ? [amount, element("span", { class: "ot-cell-tags", text: tags.join(strings.separator) })] : amount;
+			};
 			const caption = text.tableCaption(unit, adjective);
 			const tableFrame = element(
 				"div",
@@ -5417,7 +5767,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 						data.years.slice(dataFirst, dataLast + 1).map((year) =>
 							element("tr", { class: year === state.year ? "selected" : null }, [
 								element("th", { scope: "row", text: text.yearLabel(year, year > currentYear) }),
-								...drawn.map((line) => element("td", { text: cellText(line.points.find((point) => point.year === year)) })),
+								...drawn.map((line) => element("td", {}, cellContent(line.points.find((point) => point.year === year), line.institution, year))),
 							]),
 						),
 					),
@@ -5441,30 +5791,76 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 					legendItem(overTimeMarkKey("selected"), text.legendSelected(state.year)),
 					points.some((point) => point.scheduled) ? legendItem(overTimeKey(null, true), text.keyScheduled) : null,
 					breakNotes.length ? legendItem(overTimeMarkKey("break"), text.keyBreak) : null,
+					tagged.length ? legendItem(overTimeMarkKey("ring"), text.keyTagged) : null,
 				].filter(Boolean),
 			);
 			keyHolder.replaceChildren(
 				...[
 					points.some((point) => point.scheduled) ? legendItem(overTimeKey(null, true), text.legendScheduled) : null,
 					breakNotes.length ? legendItem(overTimeMarkKey("break"), text.legendBreak) : null,
+					tagged.length ? legendItem(overTimeMarkKey("ring"), text.legendTagged) : null,
 				].filter(Boolean),
 			);
 			chartHint.hidden = false;
 			chartHolder.replaceChildren(plot, tableDetails, creditGraphic(width));
 			if (tableDetails.open) fitFrame();
-			chartNotes([text.noteLine, ...breakNotes, strings.payChart.noteYears, mode === "month" ? strings.payChart.noteMonthly : null].filter(Boolean), link);
+			const scopeLabels = scopeExamples(points.map((point) => point.figure));
+			const continuedPoint = points.find((point) => point.figure.continued_from);
+			const appointmentPoint = points.find((point) => point.figure.appointment_tag);
+			const sameFigures = new Map();
+			for (const line of drawn) {
+				const key = line.points.map((point) => `${point.year}:${point.value}`).join("|");
+				sameFigures.set(key, [...(sameFigures.get(key) || []), line.institution.short_name]);
+			}
+			chartNotes(
+				[
+					text.noteLine,
+					...breakNotes,
+					...[...sameFigures.values()].filter((names) => names.length > 1).map((names) => text.noteSameFigures(strings.listOf(names))),
+					strings.payChart.noteYears,
+					mode === "month" ? strings.payChart.noteMonthly : null,
+					scopeLabels.length ? text.noteScope(scopeLabels) : null,
+					continuedPoint ? text.noteContinued(strings.tags.continuedShort(continuedPoint.figure.continued_from)) : null,
+					appointmentPoint ? text.noteAppointment(appointmentPoint.figure.appointment_tag) : null,
+				].filter(Boolean),
+				link,
+			);
 		}
 		function notChartedReason(institution, year, mode) {
 			const explanation = institution.pay[year] ? strings.notCharted.noMonths(strings.modeAdjective[mode], strings.views[mode === "year" ? "month" : "year"]) : missingFigureText(institution, year, true);
-			return keepYearsWhole(explanation);
+			return withNoFigureSource(institution, year, explanation);
 		}
 		function rentNotChartedReason(institution, year) {
 			const summary = livingSummary(institution, year);
 			const explanation = !summary || summary.rent === null ? strings.rentChart.noRent(year) : payGapText(institution, year, "year", true) || strings.rentChart.noRent(year);
-			return keepYearsWhole(explanation);
+			return withNoFigureSource(institution, year, explanation);
+		}
+		function withNoFigureSource(institution, year, explanation) {
+			const view = !institution.pay[year] && institution.no_figure[year];
+			const nodes = keepYearsWhole(explanation);
+			if (!view || !explanation.includes(view.text)) return nodes;
+			return [element("span", { lang: langOf(view.text_language) }, nodes), " ", appointmentSource(institution, view.sources)];
+		}
+		function noFigurePreview(institution, year) {
+			const view = institution.no_figure[year];
+			const sourceTitle = firstSourceTitle(institution, view.sources);
+			return [
+				element("p", { class: "preview-title" }, nameNode(institution)),
+				element("p", { lang: langOf(view.text_language) }, keepYearsWhole(view.text)),
+				sourceTitle ? element("p", { class: "muted clamp" }, fillSlots(strings.sourcePrefix(slot(0)), [english(sourceTitle)])) : null,
+			];
+		}
+		function noFigureDetails(institution, year) {
+			const view = institution.no_figure[year];
+			return {
+				title: [nameNode(institution), strings.separator, year],
+				body: [element("p", { class: "panel-value", lang: langOf(view.short_language) }, keepYearsWhole(view.short)), element("p", { lang: langOf(view.text_language) }, keepYearsWhole(view.text)), citationBlock(institution, view.sources)],
+			};
 		}
 		function missingFigureText(institution, year, long) {
 			const text = strings.missingFigure;
+			const explained = institution.no_figure[year];
+			if (explained) return long ? explained.text : explained.short;
 			const representation = institution.representation;
 			const end = representation.kind === "union-contract" && representation.period ? representation.period.end : null;
 			if (end && academicYearOf(end) < year && representation.status === "expired-continuing") {
@@ -5481,7 +5877,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 		function payGapText(institution, year, unit, long) {
 			const figure = institution.pay[year];
 			const gaps = long ? strings.living.gapLong : strings.living.gapShort;
-			if (!figure) return long ? missingFigureText(institution, year, true) : gaps.missing(year);
+			if (!figure) return long || institution.no_figure[year] ? missingFigureText(institution, year, long) : gaps.missing(year);
 			if (figure.soft) return long ? gaps.soft(strings.basisShort[figure.basis] || strings.basisShort.intention) : gaps.soft;
 			if (valueFor(figure, unit) === null) return gaps.unit(strings.modeAdjective[unit]);
 			return null;
@@ -5509,20 +5905,31 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			const monthly = line.monthly !== null ? strings.amountPer((line.stated === "month" ? preciseCurrency : currency).format(line.monthly), strings.units.month) : text.noMonthly;
 			let months = line.months ? text.months(line.months) : capitalizeFirst(strings.monthsNotRecorded);
 			if (line.months && line.summer) months = text.withSummer(line.months);
-			const tags = [line.derivation ? strings.tags.derived : null, line.soft ? strings.softTags[line.basis] || strings.softTags.intention : null, appointmentWorkload(line, figure)];
-			return [...(mode === "month" ? [monthly, months, yearly] : [yearly, months, monthly]), ...tags].filter(Boolean).join(strings.separator);
+			const tags = [line.derivation ? strings.tags.derived : null, line.soft ? strings.softTags[line.basis] || strings.softTags.intention : null];
+			const workload = appointmentWorkload(line, figure);
+			return [workload ? capitalizeFirst(workload) : null, ...(mode === "month" ? [monthly, months, yearly] : [yearly, months, monthly]), ...tags].filter(Boolean).join(strings.separator);
 		}
-		function appointmentSource(institution, indexes) {
+		function appointmentSource(institution, indexes, summer = false) {
+			const text = strings.appointments;
 			const [citation] = knownCitations(institution, indexes);
-			if (!citation) return element("span", { class: "muted", text: strings.noSource });
+			if (!citation) return summer ? null : element("span", { class: "muted", text: strings.noSource });
 			const link = citationLink(institution, citation);
-			if (!link.downloads) return safeLink(link.url, strings.appointments.source, strings.newTabWithTitle(strings.appointments.source, link.source.title));
-			const label = strings.appointments.sourceDownload[documentFormat(link.source)] || strings.appointments.sourceDownloadGeneric;
+			const name = summer ? text.summerSource : text.source;
+			if (!link.downloads) return safeLink(link.url, name, strings.newTabWithTitle(name, link.source.title));
+			const label = (summer ? text.summerSourceDownload : text.sourceDownload)[documentFormat(link.source)] || (summer ? text.summerSourceDownloadGeneric : text.sourceDownloadGeneric);
 			return downloadLink(link.url, label, strings.withTitle(label, link.source.title));
 		}
-		function appointmentsBlock(institution, figure, year, mode) {
+		function appointmentLines(institution, year, mode) {
 			const lines = institution.appointments[year] || [];
-			if (!lines.length) return null;
+			if (mode !== "month") return lines;
+			const own = institution.own_month_years.has(year);
+			return lines
+				.map((line) => (own ? { ...line, charted: line.charted_month } : line))
+				.sort((first, second) => (first.monthly === null) - (second.monthly === null) || (first.monthly || 0) - (second.monthly || 0) || second.charted - first.charted);
+		}
+		function appointmentsBlock(institution, figure, year, mode) {
+			const lines = appointmentLines(institution, year, mode);
+			if (lines.length < 2) return null;
 			const text = strings.appointments;
 			const titles = (line) => inLanguage(line.positions.join((STRINGS[line.positions_language] || strings).itemSeparator), line.positions_language);
 			const derived = new Map(lines.filter((line) => !line.charted && line.derivation && line.derivation !== figure.derivation).map((line) => [line.derivation, line]));
@@ -5534,9 +5941,16 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 					{ class: "appointment-list" },
 					lines.map((line) =>
 						element("li", { class: line.charted ? "charted" : null }, [
-							element("p", { class: "appointment-name" }, [titles(line), line.charted ? element("span", { class: "appointment-charted", text: text.charted }) : null]),
+							element("p", { class: "appointment-name" }, [
+								titles(line),
+								...(line.charted ? [element("span", { class: "appointment-separator", text: strings.listSeparator }), element("span", { class: "appointment-charted", text: text.charted })] : []),
+							]),
 							element("p", { class: "appointment-pay", text: appointmentPay(line, figure, mode) }),
-							element("p", { class: "links appointment-meta" }, [line.tier ? element("span", { class: "appointment-tier" }, inLanguage(line.tier, line.tier_language)) : null, appointmentSource(institution, line.sources)]),
+							element("p", { class: "links appointment-meta" }, [
+								line.tier ? element("span", { class: "appointment-tier" }, inLanguage(line.tier, line.tier_language)) : null,
+								appointmentSource(institution, line.sources),
+								line.summer ? appointmentSource(institution, line.summer_sources, true) : null,
+							]),
 						]),
 					),
 				),
@@ -5544,7 +5958,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			]);
 		}
 		function appointmentsPreview(institution, year, mode) {
-			const lines = institution.appointments[year] || [];
+			const lines = appointmentLines(institution, year, mode);
 			if (lines.length < 2) return [];
 			const text = strings.appointments;
 			const amount = (line) => {
@@ -5559,7 +5973,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 					{ class: "preview-appointments" },
 					lines.map((line) => {
 						const titles = inLanguage(line.positions.join((STRINGS[line.positions_language] || strings).itemSeparator), line.positions_language);
-						const value = [amount(line), line.charted ? text.previewCharted : null].filter(Boolean).join(strings.separator);
+						const value = [appointmentWorkload(line, payIn(institution, mode)[year] || {}), amount(line), line.summer ? strings.tags.withSummer : null, line.charted ? text.previewCharted : null].filter(Boolean).join(strings.separator);
 						return element("li", { class: line.charted ? "charted" : null }, fillSlots(text.previewLine(slot(0), slot(1)), [titles, value]));
 					}),
 				),
@@ -5588,12 +6002,12 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			if (replacedBy === "university-policy") return notes.policyByPolicy;
 			return replacedBy === "union-contract" ? notes.policyByContract : notes.other;
 		}
-		function summerConsequence(institution, year) {
+		function summerConsequence(institution, year, mode) {
 			const text = strings.payDetails;
-			const shown = termView(institution, "summer", year);
+			const shown = termView(institution, "summer", year, mode);
 			const provides = (view) => view && !view.absent && view.guarantee !== "none" && view.label_key !== "not-recorded-for-title";
 			if (provides(shown)) return text.notGuaranteed(shown.agreement_kind === "union-contract");
-			const other = otherTermView(institution, "summer", year);
+			const other = otherTermView(institution, "summer", year, mode);
 			if (shown && provides(other)) return text.otherSummerTerm(shown.agreement_kind === "union-contract", other.agreement_kind === "union-contract");
 			return text.nothingGuarantees;
 		}
@@ -5604,9 +6018,9 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			const firstStart = asText(representation.first_contract_start);
 			const before = Boolean(firstStart) && /^\d{4}-\d{2}-\d{2}$/.test(firstStart) && (year <= academicYearOf(firstStart) || Boolean(figure.effective && figure.effective < firstStart));
 			if (before) return element("p", {}, fillSlots(text.policyBeforeContract(slot(0), formatDate(firstStart)), [nameNode(institution, true)]));
-			return element("p", {}, fillSlots(text.policyBesideContract(slot(0), year >= currentYear ? representation.label : null), [nameNode(institution, true)]));
+			return element("p", {}, fillSlots(text.policyBesideContract(slot(0), year >= currentYear ? representationIn(institution, year).label : null), [nameNode(institution, true)]));
 		}
-		function payDetails(institution, figure, mode, shownYear = state.year, inPlaceOf = state.year) {
+		function payDetails(institution, figure, mode, shownYear = state.year, inPlaceOf = state.year, fromBarChart = false) {
 			const text = strings.payDetails;
 			const schoolStatus = statusOf(institution);
 			const yearly = figure.annual ? strings.amountPer(money(figure.annual), strings.units.year) : null;
@@ -5614,7 +6028,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			const [primary, secondary] = mode === "year" ? [yearly, monthly] : [monthly, yearly];
 			const expand = abbreviationExpander();
 			const softTag = figure.soft ? strings.softValueTags[figure.basis] || strings.softValueTags.intention : null;
-			const after = [secondary, softTag, calculatedIn(figure, mode) ? text.calculatedTag : null]
+			const after = [secondary, figure.scope_label, softTag, calculatedIn(figure, mode) ? text.calculatedTag : null, figure.continued_from ? strings.tags.continued(figure.continued_from) : null]
 				.filter(Boolean)
 				.map((part) => `${strings.separator}${part}`)
 				.join("");
@@ -5623,6 +6037,8 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				body.push(element("p", { class: "muted" }, keepYearsWhole(strings.status.noRate(inPlaceOf, shownYear))));
 			}
 			body.push(statusBlock(institution, { year: shownYear }));
+			if (figure.scope_label) body.push(element("p", {}, keepYearsWhole(text.scopeNote(figure.scope_label, shownYear))));
+			if (figure.continued_from) body.push(element("p", {}, keepYearsWhole(text.continuedNote(shownYear, figure.continued_from))));
 			if (!figure.annual) body.push(element("p", { class: "muted", text: text.noYearly }));
 			else if (!figure.months && !figure.summer) body.push(element("p", { class: "muted", text: text.noMonthly }));
 			if (figure.summer) {
@@ -5647,6 +6063,8 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			let stated = null;
 			if (figure.stated_amount) stated = strings.amountPer(preciseCurrency.format(figure.stated_amount), strings.units[figure.stated] || figure.stated);
 			else if (figure.stated === "month" && figure.monthly) stated = strings.amountPer(preciseCurrency.format(figure.monthly), strings.units.month);
+			else if (figure.stated_amounts.length && figure.stated_terms.length === figure.stated_amounts.length) stated = figure.stated_amounts.map((amount, index) => strings.amountForTerm(preciseCurrency.format(amount), figure.stated_terms[index])).join(strings.listSeparator);
+			else if (figure.stated_amounts.length) stated = figure.stated_amounts.map((amount) => strings.amountPer(preciseCurrency.format(amount), strings.units[figure.stated] || figure.stated)).join(strings.listSeparator);
 			body.push(
 				definitionList([
 					[text.kindOfPay, strings.component[figure.component] || figure.component],
@@ -5670,7 +6088,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			}
 			if (figure.basis === "threshold") body.push(element("p", { class: "muted", text: text.thresholdNote }));
 			const equivalent = twelveMonthEquivalent(figure, mode);
-			if (equivalent) body.push(element("p", { text: text.twelveMonths(figure.months, money(equivalent), summerConsequence(institution, shownYear)) }));
+			if (equivalent) body.push(element("p", { text: text.twelveMonths(figure.months, money(equivalent), summerConsequence(institution, shownYear, mode), fromBarChart) }));
 			body.push(policyBesideContractNode(institution, figure, shownYear));
 			const reason = institution.reason ? expand(institution.reason, institution.reason_language) : figure.default_pick ? text.defaultPick : null;
 			if (reason) body.push(element("p", {}, [element("strong", { text: text.whyThisFigure }), reason]));
@@ -5682,7 +6100,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			body.push(citationBlock(institution, figure.sources.slice(0, 1)));
 			if (!allSources) body.push(sourceNote);
 			body.push(appointmentsBlock(institution, figure, shownYear, mode));
-			const trendPoints = data.years.filter((year) => institution.pay[year] && valueFor(institution.pay[year], mode) !== null).length;
+			const trendPoints = data.years.filter((year) => valueFor(payIn(institution, mode)[year], mode) !== null).length;
 			if (trendPoints >= 2) {
 				const holder = element("div", { "data-deferred": "" });
 				deferredRenderers.set(holder, (width) => {
@@ -5964,9 +6382,12 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			const text = strings.living;
 			const summary = livingSummary(institution, year);
 			if (!summary) return null;
+			const figure = institution.pay[year];
+			const tags = figure && !figure.soft && figure.annual ? payTags(figure) : [];
 			return [
 				element("p", { class: "preview-title" }, fillSlots(text.previewTitle(slot(0)), [nameNode(institution)])),
 				summary.rentShare !== null ? element("p", { class: "preview-value", text: text.previewRentShare(share(summary.rentShare)) }) : null,
+				summary.rentShare !== null && tags.length ? element("p", {}, keepYearsWhole(text.previewPay([strings.amountPer(money(figure.annual), strings.units.year), ...tags].join(strings.separator)))) : null,
 				summary.rent !== null ? element("p", { text: text.previewRent(money(summary.rent)) }) : null,
 				summary.payShare !== null ? element("p", { class: "preview-value", text: text.previewPayShare(share(summary.payShare), summary.partial, termUnit(summary)) }) : null,
 				summary.estimate !== null ? element("p", { text: text.previewEstimate(money(summary.estimate), summary.partial) }) : null,
@@ -5985,7 +6406,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			if (headline.length) body.push(element("p", { class: "panel-value", text: capitalizeFirst(headline.join(strings.separator)) }));
 			if (figure && !figure.soft) {
 				const amounts = [figure.annual ? strings.amountPer(money(figure.annual), strings.units.year) : null, figure.monthly ? strings.amountPer(money(figure.monthly), strings.units.month) : null];
-				body.push(element("p", { class: "muted", text: text.comparedWith(amounts.filter(Boolean).join(strings.separator)) }));
+				body.push(element("p", { class: "muted" }, keepYearsWhole(text.comparedWith([...amounts, ...payTags(figure)].filter(Boolean).join(strings.separator)))));
 			}
 			if (statusOf(institution).state === "check") body.push(statusBlock(institution, { year }));
 			body.push(...livingBlocks(institution, year));
@@ -6411,24 +6832,71 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				return [line, about];
 			});
 		}
-		function representationDetails(institution) {
+		function contractYears(contract) {
+			const starting = (year) => `${year}-${String((year + 1) % 100).padStart(2, "0")}`;
+			let first = contract.start ? starting(Number(contract.start.slice(0, 4))) : null;
+			let last = contract.end ? starting(Number(contract.end.slice(0, 4)) - 1) : null;
+			if (first && last && last < first) {
+				first = academicYearOf(contract.start);
+				last = first;
+			}
+			return { first, last };
+		}
+		function representationIn(institution, year) {
+			const representation = institution.representation;
+			const own = { label: representation.label, meaning: representation.meaning, contract: null };
+			if (representation.kind !== "union-contract") return own;
+			const text = strings.representation;
+			const contracts = institution.timeline.contracts
+				.filter((contract) => contract.start || contract.end)
+				.map((contract) => ({ contract, ...contractYears(contract) }))
+				.sort((first, second) => String(first.contract.start || "").localeCompare(String(second.contract.start || "")));
+			if (!contracts.length) return own;
+			const period = representation.period || {};
+			const isOwn = (contract) => contract.start === period.start && contract.end === period.end;
+			const covering = contracts.filter((entry) => (entry.first === null || entry.first <= year) && (!entry.last || year <= entry.last)).at(-1);
+			if (covering) {
+				const { contract } = covering;
+				if (year !== currentYear) return { label: strings.contractStatus.current, meaning: year < currentYear ? "coveredYear" : "coversYear", contract };
+				if (isOwn(contract)) return { ...own, contract };
+				return { label: contract.label, meaning: termEnded(contract.status, contract.end) ? "termEnded" : contract.status, contract };
+			}
+			if (contracts[0].first !== null && year < contracts[0].first) {
+				if (representation.earlier_contracts) return { label: text.earlierContract, meaning: "earlierContract", contract: null };
+				return { label: text.noContractYet(contracts[0].first), meaning: "beforeFirst", contract: contracts[0].contract };
+			}
+			const ended = contracts.filter((entry) => entry.last && entry.last < year).sort((first, second) => first.last.localeCompare(second.last));
+			const previous = ended.at(-1);
+			if (contracts.some((entry) => entry.first !== null && entry.first > year)) return { label: text.expiredOn(formatDate(previous.contract.end)), meaning: "betweenContracts", contract: previous.contract };
+			const { contract } = previous;
+			if (contract.status === "current") {
+				if (termEnded(contract.status, contract.end)) return { label: strings.inForceThrough(formatDate(contract.end)), meaning: "termEnded", contract };
+				return { label: text.expires(formatDate(contract.end)), meaning: "expiresBefore", contract };
+			}
+			if (year === currentYear && isOwn(contract)) return { ...own, contract };
+			return { label: strings.contractStatus[contract.status] || contract.label, meaning: contract.status, contract };
+		}
+		function representationDetails(institution, year = state.year) {
 			const text = strings.representation;
 			const representation = institution.representation;
+			const shown = representationIn(institution, year);
 			const body = [];
 			const latest = !institution.unions.length && institution.timeline.events.length ? null : representation.latest_event;
 			const expand = abbreviationExpander();
+			const yearNote = shown.label !== representation.label ? element("p", { class: "muted" }, keepYearsWhole(text.yearNote(year, representation.label))) : null;
 			if (representation.kind === "union-contract") {
-				const period = representation.period || {};
-				const contract = institution.timeline.contracts.find((candidate) => candidate.start === period.start && candidate.end === period.end && candidate.status === representation.status);
-				const sources = representation.sources || contract?.sources;
+				const period = shown.contract ? { start: shown.contract.start, end: shown.contract.end } : representation.period || {};
+				const contract = shown.contract || institution.timeline.contracts.find((candidate) => candidate.start === period.start && candidate.end === period.end && candidate.status === representation.status);
+				const sources = shown.contract ? shown.contract.sources : representation.sources || contract?.sources;
 				const start = formatDate(period.start);
 				const end = formatDate(period.end);
 				body.push(
-					element("p", { class: "panel-value", text: representation.label }),
-					contractMeaningNode(institution),
+					element("p", { class: "panel-value" }, keepYearsWhole(shown.label)),
+					contractMeaningNode(shown.meaning),
+					yearNote,
 					statusBlock(institution),
 					definitionList([
-						[strings.timeline.unionInContract, expand(representation.union)],
+						[strings.timeline.unionInContract, expand(shown.contract?.union || representation.union)],
 						[strings.timeline.contract, contract ? expand(contract.name, contract.name_language) : null],
 						[strings.timeline.term, start && end ? strings.dateRange(start, end) : start || end],
 					]),
@@ -6438,44 +6906,47 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				if (sources) body.push(element(headingLevel(5), { class: "group-heading", text: text.theContract }), citationBlock(institution, sources, strings.sourceHeadings, false));
 				return { title: fillSlots(text.title(slot(0)), [nameNode(institution)]), body };
 			}
-			body.push(element("p", { class: "panel-value", text: representation.label }), contractMeaningNode(institution));
+			body.push(element("p", { class: "panel-value", text: representation.label }), contractMeaningNode(representation.meaning));
 			body.push(statusBlock(institution));
 			body.push(element("p", { text: text.policyOnly }));
 			body.push(...unionBlock(institution, { expand }));
 			if (latest) body.push(element(headingLevel(5), { class: "group-heading", text: text.latestEvent }), eventBlock(institution, latest, expand));
 			return { title: fillSlots(text.title(slot(0)), [nameNode(institution)]), body };
 		}
-		function contractMeaningNode(institution) {
-			const meaning = strings.contractMeanings[institution.representation.meaning];
+		function contractMeaningNode(key) {
+			const meaning = strings.contractMeanings[key];
 			return meaning ? element("p", { class: "label-meaning", text: meaning }) : null;
 		}
 		function termMeaningNode(view) {
 			const meaning = strings.terms.meanings[view.label_key];
 			return meaning ? element("p", { class: "label-meaning", text: meaning }) : null;
 		}
-		function representationPreview(institution) {
+		function representationPreview(institution, year = state.year) {
 			const text = strings.representation;
 			const representation = institution.representation;
+			const shown = representationIn(institution, year);
 			const latest = representation.latest_event;
-			const start = representation.period ? formatDate(representation.period.start) : null;
-			const end = representation.period ? formatDate(representation.period.end) : null;
+			const contractPeriod = shown.contract ? { start: shown.contract.start, end: shown.contract.end } : representation.period;
+			const start = contractPeriod ? formatDate(contractPeriod.start) : null;
+			const end = contractPeriod ? formatDate(contractPeriod.end) : null;
 			const period = start && end ? strings.dateRange(start, end) : start || end;
 			return [
 				element("p", { class: "preview-title" }, nameNode(institution)),
-				element("p", { class: "preview-value", text: representation.kind === "union-contract" ? text.previewValue(representation.label) : representation.label }),
-				contractMeaningNode(institution),
+				element("p", { class: "preview-value" }, keepYearsWhole(representation.kind === "union-contract" ? text.previewValue(shown.label) : shown.label)),
+				contractMeaningNode(shown.meaning),
 				period ? element("p", { text: period }) : null,
 				representation.union ? element("p", { class: "muted clamp", lang: langOf("en"), text: representation.union }) : null,
 				latest ? element("p", { class: "muted clamp", text: text.latest(strings.events[latest.kind] || latest.kind, formatDate(latest.date)) }) : null,
 			];
 		}
-		function termView(institution, key, year) {
-			const byYear = institution.terms[key];
+		function termView(institution, key, year, mode = state.mode) {
+			const byYear = mode === "month" && institution.own_month_years.has(year) ? asObject(institution.terms_month[key]) : institution.terms[key];
 			const index = byYear ? byYear[year] : undefined;
 			return index === undefined ? null : institution.term_views[index] || null;
 		}
-		function otherTermView(institution, key, year) {
-			const index = asObject(institution.other_terms[key])[year];
+		function otherTermView(institution, key, year, mode = state.mode) {
+			const byTopic = mode === "month" && institution.own_month_years.has(year) ? institution.other_terms_month : institution.other_terms;
+			const index = asObject(byTopic[key])[year];
 			return typeof index === "number" ? institution.term_views[index] || null : null;
 		}
 		function termLabel(view) {
@@ -6486,24 +6957,34 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 			const nodes = keepYearsWhole(termLabel(view));
 			return tag ? element("span", { lang: tag }, nodes) : nodes;
 		}
+		function otherTermLine(institution, key, year) {
+			const other = otherTermView(institution, key, year);
+			return other ? strings.terms.otherLine(other.agreement_kind === "union-contract", termLabel(other)) : null;
+		}
+		function termMeaningFor(institution, key, view) {
+			if (!(view.absent && view.agreement_kind === "union-contract")) return termMeaningNode(view);
+			const text = strings.terms;
+			const policy = institution.policy_topics?.[key];
+			const silent = !policy && institution.policy_silent?.[key];
+			return element("p", { class: "label-meaning", text: policy ? text.silentWithPolicy : silent ? text.silentPolicyToo : text.silentWithoutPolicy });
+		}
 		function termPreview(institution, key, view) {
 			const text = strings.terms;
+			const otherLine = otherTermLine(institution, key, state.year);
 			return [
 				element("p", { class: "preview-title" }, fillSlots(text.previewTitle(slot(0), text[key].title), [nameNode(institution)])),
 				element("p", { class: "preview-value" }, termLabelNode(view)),
-				termMeaningNode(view),
+				termMeaningFor(institution, key, view),
 				view.scope ? element("p", { class: "muted" }, fillSlots(text.scope(slot(0)), [inLanguage(view.scope, view.scope_language)])) : null,
 				element("p", { class: "clamp" }, partsNodes(view.summary_parts)),
+				otherLine ? element("p", { class: "preview-value" }, keepYearsWhole(otherLine)) : null,
 			];
 		}
-		function termDetails(institution, key, view) {
+		function termBody(institution, key, view) {
 			const text = strings.terms;
 			const body = [element("p", { class: "panel-value" }, termLabelNode(view))];
 			if (view.academic_year && view.academic_year !== state.year) body.push(element("p", { class: "muted", text: text.nearestYear(state.year, view.academic_year) }));
-			if (view.absent && view.agreement_kind === "union-contract") {
-				const policy = institution.policy_topics?.[key];
-				body.push(element("p", { text: policy ? text.silentWithPolicy : text.silentWithoutPolicy }));
-			} else body.push(termMeaningNode(view));
+			body.push(termMeaningFor(institution, key, view));
 			body.push(
 				element("p", {}, partsNodes(view.summary_parts)),
 				definitionList([
@@ -6514,15 +6995,22 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				]),
 				citationBlock(institution, view.sources),
 			);
+			return body;
+		}
+		function termDetails(institution, key, view) {
+			const text = strings.terms;
+			const body = termBody(institution, key, view);
+			const other = otherTermView(institution, key, state.year);
+			if (other) body.push(element(headingLevel(5), { class: "group-heading", text: text.otherHeading(other.agreement_kind === "union-contract") }), ...termBody(institution, key, other));
 			return { title: fillSlots(text.previewTitle(slot(0), text[key].title), [nameNode(institution)]), body };
 		}
 		function buildTable() {
 			const text = strings.table;
 			const shownPay = (institution) => {
-				const figure = institution.pay[state.year];
+				const figure = payIn(institution, state.mode)[state.year];
 				if (figure) return { figure, year: state.year };
 				const latestYear = state.year === currentYear ? statusOf(institution).latestYear : null;
-				return latestYear ? { figure: institution.pay[latestYear], year: latestYear } : null;
+				return latestYear ? { figure: payIn(institution, state.mode)[latestYear], year: latestYear } : null;
 			};
 			const rentShareValue = (institution) => livingSummary(institution, state.year)?.rentShare ?? null;
 			const payShareValue = (institution) => livingSummary(institution, state.year)?.payShare ?? null;
@@ -6533,7 +7021,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 					kind: "number",
 					numeric: true,
 					label: () => text.pay(strings.perMode[state.mode], state.year, strings.modeAdjective[state.mode]),
-					sortValue: (institution) => valueFor(institution.pay[state.year], state.mode),
+					sortValue: (institution) => valueFor(payIn(institution, state.mode)[state.year], state.mode),
 					ascendingFirst: false,
 				},
 				{ key: "rent", kind: "number", numeric: true, label: () => text.rentShare, sortValue: rentShareValue, ascendingFirst: true },
@@ -6612,8 +7100,9 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				if (details.open && !isNarrow()) renderBody();
 			});
 			function contractRank(institution) {
-				const representation = institution.representation;
-				return representation.kind === "union-contract" ? (CONTRACT_STATUS_RANK[representation.status] ?? 4) : 5;
+				const order = Object.keys(strings.contractMeanings);
+				const { meaning } = representationIn(institution, state.year);
+				return institution.representation.kind === "union-contract" && order.includes(meaning) ? order.indexOf(meaning) : order.length;
 			}
 			function updateHeader() {
 				for (const { column, button, label, cell } of headerCells) {
@@ -6639,7 +7128,7 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				const contractOrder = Object.keys(strings.contractMeanings);
 				const contractLabels = new Map();
 				for (const institution of data.institutions) {
-					const { label, meaning } = institution.representation;
+					const { label, meaning } = representationIn(institution, state.year);
 					if (strings.contractMeanings[meaning] && !contractLabels.has(label)) contractLabels.set(label, meaning);
 				}
 				const contractEntries = [...contractLabels].sort(([, first], [, second]) => contractOrder.indexOf(first) - contractOrder.indexOf(second));
@@ -6806,13 +7295,13 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				let payButton = null;
 				if (value !== null) {
 					const { figure } = shown;
-					const label = figureLabel(figure, state.mode, false);
+					const label = figureLabel(figure, state.mode, false, true);
 					if (figure.summer) label.tags.unshift(strings.tags.withSummer);
 					const lagging = shown.year !== year;
 					const tags = [lagging ? strings.status.showingYear(shown.year) : null, ...label.tags].filter(Boolean);
 					payButton = cellButton(
 						label.main.map((part, index) => element("span", { class: "nowrap", text: index ? `${strings.separator}${part}` : part })),
-						[tags.length ? element("span", { class: "scope" }, keepYearsWhole(tags.join(strings.separator))) : null],
+						[tags.length ? element("span", { class: "scope" }, keepYearsWhole(tags.join(strings.separator.replace(/^ /, "\u00a0")))) : null],
 						payLabel,
 						[labelText(label), lagging ? strings.status.noRate(year, shown.year) : null].filter(Boolean).join(strings.listSeparator),
 						{
@@ -6822,6 +7311,10 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 						institution,
 					);
 					payCell = element("td", { class: "number", "data-label": payLabel }, payButton);
+				} else if (!institution.pay[year] && institution.no_figure[year]) {
+					const view = institution.no_figure[year];
+					payButton = cellButton(keepYearsWhole(view.short), [], payLabel, view.short, { preview: () => noFigurePreview(institution, year), details: () => noFigureDetails(institution, year) }, institution);
+					payCell = element("td", { class: "number", "data-label": payLabel }, payButton);
 				} else {
 					let content = missingFigureText(institution, year, false);
 					if (institution.pay[year]) content = text.noFigureForUnit(strings.modeAdjective[state.mode]);
@@ -6830,19 +7323,20 @@ const WIDGET_ICONS = {"cc": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6
 				const name = nameCell(institution);
 				const rent = rentCell(institution, text.rentShare);
 				const estimate = estimateCell(institution, text.payShare);
-				const representation = institution.representation;
-				const contractButton = cellButton([representation.label], [], text.unionContract, representation.label, {
-					preview: () => representationPreview(institution),
-					details: () => representationDetails(institution),
+				const contractLabel = representationIn(institution, year).label;
+				const contractButton = cellButton(keepYearsWhole(contractLabel), [], text.unionContract, contractLabel, {
+					preview: () => representationPreview(institution, year),
+					details: () => representationDetails(institution, year),
 				}, institution);
 				const termButtons = TERM_KEYS.map((key) => {
 					const view = termView(institution, key, year);
 					if (!view) return null;
+					const otherLine = otherTermLine(institution, key, year);
 					return cellButton(
 						[termLabelNode(view)],
-						[view.scope ? element("span", { class: "scope", lang: langOf(view.scope_language), text: view.scope }) : null],
+						[view.scope ? element("span", { class: "scope", lang: langOf(view.scope_language), text: view.scope }) : null, otherLine ? element("span", { class: "scope other-term" }, keepYearsWhole(otherLine)) : null],
 						strings.terms[key].label,
-						[termLabel(view), view.scope ? strings.terms.scopeName(view.scope) : null].filter(Boolean).join(strings.listSeparator),
+						[termLabel(view), view.scope ? strings.terms.scopeName(view.scope) : null, otherLine].filter(Boolean).join(strings.listSeparator),
 						{
 							preview: () => termPreview(institution, key, view),
 							details: () => termDetails(institution, key, view),
