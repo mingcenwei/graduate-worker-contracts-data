@@ -4,7 +4,7 @@
 	"title": "Graduate worker contracts and funding policies at US universities",
 	"description": "Pay rates, summer funding, tuition and fee waivers, health insurance, raises, unions, and union events for graduate student workers at US universities, from union contracts and, where no contract sets pay, published university funding policies. Every fact cites the document, page, and passage it comes from.",
 	"version": "2026-10-22",
-	"created": "2026-10-22T15:41:22+00:00",
+	"created": "2026-10-22T16:09:05+00:00",
 	"homepage": "https://academic-union-network.org",
 	"licenses": [
 		{
@@ -415,7 +415,7 @@
 					{
 						"name": "topic",
 						"type": "string",
-						"description": "summer-funding, tuition-waiver, fee-waiver, health-insurance, general-increase (a raise), or other."
+						"description": "summer-funding, tuition-waiver, fee-waiver, health-insurance, general-increase (a raise), bargaining-rights (a law on whether the university may bargain with a union), or other."
 					},
 					{
 						"name": "academic_year",
